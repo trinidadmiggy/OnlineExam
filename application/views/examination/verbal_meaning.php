@@ -2,6 +2,7 @@
 	<section class="content-header">
 		<h1 class="text-center">
 			Questronix Online Examination
+			<?= $email ?>
 		</h1>
 	</section>
 	<section class="content">
@@ -30,18 +31,62 @@
 						<a href="essay">7</a>
 						<form id="onlineExam" name="personalityTest" method="post" action="<?= site_url('#')?>" >
 							<div class="table-responsive">
-								<table id="table" class="table table-bordered exam-td exam" style="table-layout:fixed">
+								<table id="example" class="table table-bordered exam-td exam" style="table-layout:fixed">
 									<thead>
 										<tr>
-											<th></th>
-											<th></th>
-											<th ></th>
-											<th></th>
-											<th></th>
+											<th style="display:none"></th>
+											<th style="display:none"></th>
 										</tr>
 									</thead>
 									<tbody>
-										
+										<?php foreach($result as $r) { ?>
+										<?php $q_arr = array($r['option1'],$r['option2'],$r['option3'],$r['option4'],$r['option5']); ?>
+										<tr>
+											<td>
+												<div class="form-group">
+													<label>
+														<?php echo $r['question_id'];?>. <?php echo $r['question']; ?>
+													</label>
+													<br/>
+													<div class="multiplechoice radio">
+														<ol type="1">
+															<li>
+																<label>
+																	<input type="radio" name="verbal_q5" id="" value="1">
+																	<?=$q_arr[0]?>
+																</label>
+															</li>
+															<li>
+																<label>
+																	<input type="radio" name="verbal_q5" id="" value="2">
+																	<?=$q_arr[1]?>
+																</label>
+															</li>
+															<li>
+																<label>
+																	<input type="radio" name="verbal_q5" id="" value="3">
+																	<?=$q_arr[2]?>
+																</label>
+															</li>
+															<li>
+																<label>
+																	<input type="radio" name="verbal_q5" id="" value="4">
+																	<?=$q_arr[3]?>
+																</label>
+															</li>
+															<li>
+
+																<label>
+																	<input type="radio" name="verbal_q5" id="" value="5">
+																	<?=$q_arr[4]?>
+																</label>
+															</li>
+														</ol>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<?php } ?>
 									</tbody>
 								</table>
 							</div>

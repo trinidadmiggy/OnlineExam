@@ -93,6 +93,7 @@
 														<li>
 															<input type="radio" name="reasoning_q" id="" value="1">
 															<label>
+																$${28-16+16\over 7-4+6}$$
 																$${XS_1\over100} + {2XS_2\over100} + {3XS_2\over100}$$
 															</label>
 														</li>

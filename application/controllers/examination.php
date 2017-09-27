@@ -8,7 +8,7 @@ class Examination extends CI_Controller{
 		$this->load->model('examination_model');
 	}
 
-	public function fetch_questions() {
+/*	public function fetch_questions() {
 		$list = $this->examination_model->get_datatables();
 		$data = array();
 		$no = $_POST['start'];
@@ -30,7 +30,7 @@ class Examination extends CI_Controller{
 			"draw" => $_POST['draw'],
 			"recordsTotal" => $this->examination_model->count_all(),
 			"recordsFiltered" => $this->examination_model->count_filtered(),
-			"data" => $data,
+			"data" => $data 
 		);
         //output to json format
 		echo json_encode($output);
@@ -39,14 +39,16 @@ class Examination extends CI_Controller{
 		$this->load->view('examination/includes/header');
 		$this->load->view('examination/verbal_meaning');
 		$this->load->view('examination/includes/footer');
-	}
-/*	public function verbal(){
+	}*/
+
+	public function verbal(){
+		print_r($this->session->all_userdata());
 		$id = 1;
 		$data['result'] = $this->examination_model->getQuestion($id);
 		$this->load->view('examination/includes/header');
 		$this->load->view('examination/verbal_meaning', $data);
 		$this->load->view('examination/includes/footer');
-	}*/
+	}
 	public function reasoning(){
 		$this->load->view('examination/includes/header');
 		$this->load->view('examination/reasoning');

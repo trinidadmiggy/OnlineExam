@@ -15,7 +15,7 @@
 <script src="<?=base_url()?>public/dist/js/demo.js"></script>
 <!-- page script -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     var table;
 
     $(document).ready(function(){
@@ -29,25 +29,15 @@
         // Load data for the table's content from an Ajax source
         "ajax": {
             "url": "<?php echo site_url('examination/fetch_questions')?>",
-            "type": "POST", 
-            
-            data: {},
-            "dataType": "json",
+            "type": "POST",
             cache: false,
             success: function (data) {
-                $.each(data, function (i, val) {
-                    var tr = 
-                    "<tr>" +
-                    "<td>"+ (i + 1) + "</td>" +
-                    "<td>"+ val.question_id + "</td>" +
-                    "<td>"+ val.question + "</td>" +
-                    "<td>"+ val.option1 + "</td>" +
-
-                    "</tr>";
-                    $(tr).appendTo("tbody");
-                });
+                $.each(data,function(i, data){
+                   $("#table").append("<tr><td>" + data.question_id + "</td><td>" + data.question + "</td></tr>");
+               }); 
             }
         },
+
 
         //Set column definition initialisation properties.
         "columnDefs": [
@@ -58,8 +48,8 @@
         ],
     });
 });
+</script> -->
 
-</script>
 <script type="text/javascript">
 /*	$(document).ready(function (){
 		var table = $('#example').DataTable({
@@ -85,7 +75,7 @@
 
 
 
-/*    $('input:radio').click(function() { 
+    $('input:radio').click(function() { 
     	$("#ptqothers").prop("disabled",true);
     	if($(this).hasClass('enable_tb')) {
     		$("#ptqothers").prop("disabled",false);
@@ -113,7 +103,7 @@
     }, 400 );
     $(".prog7").animate({
     	width: "14.285%"
-    }, 400 );*/
+    }, 400 );
 
 </script>
 

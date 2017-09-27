@@ -12,16 +12,16 @@ class Examination_model extends CI_Model {
     	return $this->db->insert_id();
     }
 
-/*	public function getQuestion($examid) {
+	public function getQuestion($examid) {
 		$this->db->select('*');
 		$this->db->from('question_bank');
 		$this->db->where('examtype_id', $examid);
 
 		return $query = $this->db->get()->result_array();
-	}*/
+	}
 
 
-	private function _get_datatables_query()
+/*	private function _get_datatables_query()
 	{
 
 
@@ -82,7 +82,7 @@ class Examination_model extends CI_Model {
     {
     	$this->db->from($this->table);
     	return $this->db->count_all_results();
-    }
+    }*/
 
 }
 ?>
