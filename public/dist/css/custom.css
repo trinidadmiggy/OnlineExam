@@ -1,0 +1,65 @@
+.multiplechoice {
+	-moz-column-count: 2;
+	-webkit-column-count: 2;
+	column-count: 2;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.main-header .qnxlogo {
+	border-bottom: 0 solid transparent;
+	display: block;
+	float: left;
+	height: 50px;
+	font-size: 20px;
+	line-height: 50px;
+	text-align: center;
+	width: 230px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	overflow: hidden;
+}
+
+.job-body {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+.box-exam {
+	position: relative;
+	border-radius: 3px;
+	background: #ffffff;
+	margin-bottom: 20px;
+	width: 100%;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.license-text {
+	font-weight: 400;
+	font-size: 12px;
+	color: #777;
+	margin-left: 90px;
+}
+.sra {
+	float: left;
+	width: 100px;
+}
+.license-border {
+	font-size: 24px;
+	margin:3px;
+	border: 1px solid black ;
+	display: inline;
+}
+
+td:hover
+{
+	background-color:rgb(230, 230, 230);
+}
+
+@media all and (max-width:670px) {
+	.exam tr {    display: table;  width:100%;    }               
+	.exam td {    display: table-row; }           
+}
