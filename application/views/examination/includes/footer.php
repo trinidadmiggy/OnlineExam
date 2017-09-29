@@ -146,31 +146,69 @@
 
 
 
-    <script type="text/javascript">
-      $(document).ready(function() {
-        var total_record = 0;
-        var total_groups = <?php echo $tol_question; ?>;  
-        $('#results').load("<?php echo base_url() ?>examination/load_more",
-          {'group_no':total_record}, function() {total_record++;});
-        $(window).scroll(function() {       
-          if($(window).scrollTop() + $(window).height() == $(document).height())  
-          {           
-            if(total_record <= total_groups)
-            {
-              loading = true; 
-              $('.loader_image').show(); 
-              $.post('<?php echo site_url() ?>examination/load_more',{'group_no': total_record},
-                function(data){ 
-                  if (data != "") {                               
-                    $("#results").append(data);                 
-                    $('.loader_image').hide();                  
-                    total_record++;
-                  }
-                });     
-            }
+
+<!--     <script type="text/javascript">
+      var page = 1;
+      $(window).scroll(function() {   
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+          page++;
+          loadMoreData(page);
+        }
+      });
+
+      function loadMoreData(page){
+        $.ajax(
+        {
+          url: '?page=' + page,
+          type: "get",
+          beforeSend: function()
+          {
+            $('.ajax-load').show();
           }
+        })
+        .done(function(data)
+        {
+          if(data == " "){
+            $('.ajax-load').html("No more records found");
+            return;
+          } else {
+            $('.ajax-load').hide();
+            $("#exam_questions").append(data);
+          }
+        })
+        .fail(function(jqXHR, ajaxOptions, thrownError)
+        {
+          alert('server not responding...');
+        });
+      }
+    </script> -->
+
+    <script>
+      $(document).ready(function(){
+        getquestion(0);
+        $("#load_more").click(function(e){
+          e.preventDefault();
+          var page = $(this).data('val');
+          getquestion(page);
         });
       });
+      var getquestion = function(page){
+
+        $.ajax({
+          url:"<?php echo base_url() ?>examination/getQuestion",
+          type:'GET',
+          data: {page:page}
+        }).done(function(response){
+          $("#ajax_table").append(response);
+          $('#load_more').data('val', ($('#load_more').data('val')+1));
+          scroll();
+        });
+      };
+      var scroll  = function(){
+        $('html, body').animate({
+          scrollTop: $('#load_more').offset().top
+        }, 1000);
+      };
     </script>
   </body>
   </html>

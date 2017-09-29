@@ -30,8 +30,8 @@
 
 	<script type="text/javascript">
 		var page = 1;
-		$(window).scroll(function() {
-			if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+		$(window).scroll(function() {   
+			if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
 				page++;
 				loadMoreData(page);
 			}

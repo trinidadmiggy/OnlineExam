@@ -12,7 +12,7 @@ class Home extends CI_Controller {
    {
      $session_data = $this->session->userdata('logged_in');
      $data['email'] = $session_data['email'];
-     redirect('examination/verbal', 'refresh');
+     redirect('examination/essay', 'refresh');
    }
    else
    {

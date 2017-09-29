@@ -1,77 +1,109 @@
 <?php
 
 class Examination extends CI_Controller{
-
+	private $perPage = 5;
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('examination_model');
 	}
-/*
-	public function fetch_questions() {
-		$list = $this->examination_model->get_datatables();
-		$data = array();
-		$no = $_POST['start'];
-		foreach ($list as $questions) {
-			$no++;
-			$row = array();
-			$row[] = $no;
-			$row[] = $questions->question;
-			$row[] = $questions->option1;
-			$row[] = $questions->option2;
-			$row[] = $questions->option3;
-			$row[] = $questions->option4;
-			$row[] = $questions->option5;
 
-			$data[] = $row;
-		}
-
-		$output = array(
-			"draw" => $_POST['draw'],
-			"recordsTotal" => $this->examination_model->count_all(),
-			"recordsFiltered" => $this->examination_model->count_filtered(),
-			"data" => $data 
-		);
-        //output to json format
-		echo json_encode($output);
-	}
 	public function verbal(){
 		$this->load->view('examination/includes/header');
 		$this->load->view('examination/verbal_meaning');
 		$this->load->view('examination/includes/footer');
-	}*/
-	public function verbal1()
-	{
-		$total_question = $this->examination_model->get_all_count();
-		$content_per_page = 20; 
-		$this->data['tol_question'] = ceil($total_question->tol_question/$content_per_page);
-		$this->load->view('examination/includes/header');
-		$this->load->view('examination/verbal_meaning', $this->data, FALSE);
-		$this->load->view('examination/includes/footer');
-	}
-
-	public function load_more()
-	{
-		$group_no = $this->input->post('group_no');
-		$content_per_page = 20;
-		$start = ceil($group_no * $content_per_page);
-		$all_content = $this->examination_model->get_all_content($start,$content_per_page);
-		if(isset($all_content) && is_array($all_content) && count($all_content)) : 
-			foreach ($all_content as $key => $content) :
-				echo '<li>'.$content->question_id.'</li>';
-				echo '<p>'.$content->question.'</p>';                 
-			endforeach;                                
-		endif; 
 	}
 
 
+	public function getQuestion(){
+		$page =  $this->input->get('page');
+		$questions = $this->examination_model->getQuestion1($page,1);
+		foreach($questions as $r) {
+			echo "<div class='col-lg-6'>
+			<br/>
+			<label>"
+			.$r->question_id.") ".$r->question.
+			"</label>
+			<div class='radio'>
+			<ol type='1'>
+			<div class='col-lg-6'>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' id='' value='1'>"
+			.$r->option1.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' id='' value='2'>"
+			.$r->option2.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' id='' value='2'>"
+			.$r->option2.
+			"</label>
+			</li>
+			</div>
+			<div class='col-lg-6'>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' id='' value='3'>"
+			.$r->option4.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' id='' value='4'>"
+			.$r->option5.
+			"</label>
+			</li>
+			</div>
+			</ol>
+			</div>
+			</div>";
 
-	public function verbal(){
-		$id = 1;
-		$data['result'] = $this->examination_model->getQuestion($id);
-		$this->load->view('examination/includes/header');
-		$this->load->view('examination/verbal_meaning', $data);
-		$this->load->view('examination/includes/footer');
+
+			/*echo "<tr><td><label>".$r->question_id.") ".$r->question."</label><br/>".
+			"<div class='multiplechoice radio'>
+			<ol type='1'>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' value=''>".
+			$r->option1.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' value=''>".
+			$r->option2.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' value=''>".
+			$r->option3.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' value=''>".
+			$r->option4.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q5' id='' value=''>".
+			$r->option5.
+			"</label>
+			</li>
+			</ol>
+			</div>
+			</td>
+			</tr>";*/
+		}
+		exit;
 	}
 	public function reasoning(){
 		$id = 2;

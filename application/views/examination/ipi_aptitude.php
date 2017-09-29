@@ -23,11 +23,11 @@
 							Letter Series
 						</div>
 						<div class="prog4 progress-bar progress-bar-primary" style="width: 0%">
-							Number Ability
+							IPI Aptitude
 						</div>
 					</div>
 					<div class="box-header with-border">
-						<h2 style="margin:0">Number Abilityt</h2>
+						<h2 style="margin:0">IPI Aptitude</h2>
 					</div>
 					<div class="box-body">
 
@@ -38,24 +38,19 @@
 						<a href="manchester">6</a>
 						<a href="essay">7</a>
 						<form id="personalityTest" name="personalityTest" method="post" >
-							<table id="example" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th style="display: none;"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php foreach($result as $r) { ?>
-									<?php $q_arr = array($r['option1'],$r['option2'],$r['option3'],$r['option4'],$r['option5']); ?>
-									<tr>
-										<td>
-											<div class="form-group">
-												<label>
-													<?php echo $r['question_id'];?>. <?php echo $r['question']; ?>
-												</label>
-												<br/>
-												<div class="multiplechoice radio">
-													<ol type="1">
+							<div class="col-lg-12">
+								<div class="container-fluid">
+									<div class="row">
+										<?php foreach($result as $r) { ?>
+										<?php $q_arr = array($r['option1'],$r['option2'],$r['option3'],$r['option4'],$r['option5']); ?>
+										<div class="col-md-6">
+											<br/>
+											<label>
+												<?php echo $r['question_id'];?>. <?php echo $r['question']; ?>
+											</label>
+											<div class="radio">
+												<ol type="1">
+													<div class="col-md-3">
 														<li>
 															<label>
 																<input type="radio" name="verbal_q5" id="" value="1">
@@ -68,6 +63,8 @@
 																<?=$q_arr[1]?>
 															</label>
 														</li>
+													</div>
+													<div class="col-md-3">
 														<li>
 															<label>
 																<input type="radio" name="verbal_q5" id="" value="3">
@@ -80,21 +77,14 @@
 																<?=$q_arr[3]?>
 															</label>
 														</li>
-														<li>
-
-															<label>
-																<input type="radio" name="verbal_q5" id="" value="5">
-																<?=$q_arr[4]?>
-															</label>
-														</li>
-													</ol>
-												</div>
+													</div>
+												</ol>
 											</div>
-										</td>
-									</tr>
-									<?php } ?>
-								</tbody>
-							</table>
+										</div>
+										<?php } ?>	
+									</div>
+								</div>
+							</div>
 						</form>
 					</div>
 					<div class="box-footer box-comments">
