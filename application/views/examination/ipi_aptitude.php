@@ -27,7 +27,7 @@
 						</div>
 					</div>
 					<div class="box-header with-border">
-						<h2 style="margin:0">Number Ability</h2>
+						<h2 style="margin:0">Number Abilityt</h2>
 					</div>
 					<div class="box-body">
 
@@ -46,12 +46,12 @@
 								</thead>
 								<tbody>
 									<?php foreach($result as $r) { ?>
-									<?php $q_arr = array($r['option1'],$r['option2'],$r['option3'],$r['option4']); ?>
+									<?php $q_arr = array($r['option1'],$r['option2'],$r['option3'],$r['option4'],$r['option5']); ?>
 									<tr>
 										<td>
 											<div class="form-group">
 												<label>
-													<?php echo $r['question_id'];?>)	 <?php echo $r['question']; ?>
+													<?php echo $r['question_id'];?>. <?php echo $r['question']; ?>
 												</label>
 												<br/>
 												<div class="multiplechoice radio">
@@ -78,6 +78,13 @@
 															<label>
 																<input type="radio" name="verbal_q5" id="" value="4">
 																<?=$q_arr[3]?>
+															</label>
+														</li>
+														<li>
+
+															<label>
+																<input type="radio" name="verbal_q5" id="" value="5">
+																<?=$q_arr[4]?>
 															</label>
 														</li>
 													</ol>
@@ -107,5 +114,3 @@
 		</div>
 	</section>
 </div>
-
-

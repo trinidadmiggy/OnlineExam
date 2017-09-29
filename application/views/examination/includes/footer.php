@@ -15,9 +15,10 @@
 <script src="<?=base_url()?>public/dist/js/demo.js"></script>
 <!-- page script -->
 
+<script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+
 <!-- <script type="text/javascript">
     var table;
-
     $(document).ready(function(){
     //datatables
     table = $('#table').DataTable({
@@ -30,14 +31,26 @@
         "ajax": {
             "url": "<?php echo site_url('examination/fetch_questions')?>",
             "type": "POST",
-            cache: false,
-            success: function (data) {
-                $.each(data,function(i, data){
-                   $("#table").append("<tr><td>" + data.question_id + "</td><td>" + data.question + "</td></tr>");
-               }); 
-            }
-        },
+            dataType: "json",
+            success: function (data) 
+            {
+           
+              var trHTML = '';
+              $.each(data, function (key,value) {
+               trHTML += 
+               '<tr><td>' + value.question_id + 
+               '</td><td>' + value.question + 
+               '</td><td>' + value.option1 +
+               '</td><td>' + value.option2 + 
+               '</td><td>' + value.option3 +
+               '</td><td>' + value.option4 + 
+               '</td><td>' + value.option5 + 
+               '</td></tr>';     
+           });
 
+              $('#table').append(trHTML);
+          }  
+      },
 
         //Set column definition initialisation properties.
         "columnDefs": [
@@ -70,55 +83,94 @@
         	return true;
         }
         e.preventDefault();
-    });*/
+      });*/
 
 
 
 
-    $('input:radio').click(function() { 
-    	$("#ptqothers").prop("disabled",true);
-    	if($(this).hasClass('enable_tb')) {
-    		$("#ptqothers").prop("disabled",false);
-    	}
+      $('input:radio').click(function() { 
+       $("#ptqothers").prop("disabled",true);
+       if($(this).hasClass('enable_tb')) {
+        $("#ptqothers").prop("disabled",false);
+      }
     });
 
-    $(".prog1").animate({
-    	backgroundColor: "#f7af07",
-    	width: "14.286%"
-    }, 400 );
-    $(".prog2").animate({
-    	width: "14.286%"
-    }, 400 );
-    $(".prog3").animate({
-    	width: "14.286%"
-    }, 400 );
-    $(".prog4").animate({
-    	width: "14.286%"
-    }, 400 );
-    $(".prog5").animate({
-    	width: "14.286%"
-    }, 400 );
-    $(".prog6").animate({
-    	width: "14.285%"
-    }, 400 );
-    $(".prog7").animate({
-    	width: "14.285%"
-    }, 400 );
+      $(".prog1").animate({
+       backgroundColor: "#f7af07",
+       width: "14.286%"
+     }, 400 );
+      $(".prog2").animate({
+       width: "14.286%"
+     }, 400 );
+      $(".prog3").animate({
+       width: "14.286%"
+     }, 400 );
+      $(".prog4").animate({
+       width: "14.286%"
+     }, 400 );
+      $(".prog5").animate({
+       width: "14.286%"
+     }, 400 );
+      $(".prog6").animate({
+       width: "14.285%"
+     }, 400 );
+      $(".prog7").animate({
+       width: "14.285%"
+     }, 400 );
 
-</script>
+   </script>
 
-<script>
-	if (window.MathJax) {
-		MathJax.Hub.Queue(
-			["Typeset",MathJax.Hub]
-			);
-	}
-	MathJax.Hub.Config({
-		tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-		showMathMenu : false
-	});
+   <script>
+     if (window.MathJax) {
+      MathJax.Hub.Queue(
+       ["Typeset",MathJax.Hub]
+       );
+    }
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showMathMenu : false,
+      "HTML-CSS": { 
+        scale: 105, 
+        minScaleAdjust: 50,
+        noReflows: false,
+        matchFontHeight: false,
+        linebreaks: { automatic: true } 
+      }, 
+      SVG: { 
+        linebreaks: { automatic:true } }, 
+        displayAlign: "left"
+      });
 
 
-</script>
-</body>
-</html>
+    </script>
+
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var total_record = 0;
+        var total_groups = <?php echo $tol_question; ?>;  
+        $('#results').load("<?php echo base_url() ?>examination/load_more",
+          {'group_no':total_record}, function() {total_record++;});
+        $(window).scroll(function() {       
+          if($(window).scrollTop() + $(window).height() == $(document).height())  
+          {           
+            if(total_record <= total_groups)
+            {
+              loading = true; 
+              $('.loader_image').show(); 
+              $.post('<?php echo site_url() ?>examination/load_more',{'group_no': total_record},
+                function(data){ 
+                  if (data != "") {                               
+                    $("#results").append(data);                 
+                    $('.loader_image').hide();                  
+                    total_record++;
+                  }
+                });     
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+  </html>

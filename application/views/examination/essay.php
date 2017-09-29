@@ -60,12 +60,22 @@
 									</tr>
 								</tbody>
 							</table>
+						</form>
+					</div>
+					<div class="box-footer box-comments">
+						<div class="box-comment">
+							<div class="sra">
+								<span class="license-border">S</span>
+								<span class="license-border">R</span>
+								<span class="license-border">A</span>
+							</div>
+							<div class="license-text" style="border-left:2px solid black;height:32px">
+								PRINTED UNDER LICENSE OF SCIENCE RESEARCH ASSOCIATES INC. COPYRIGHT 1964, SCIENCE RESEARCH INC. 259 EAST ERIE, CHICAGO ILLINOIS 60611. ALL RIGHTS RESERVED. Printed in the Philippines.
+							</div>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 </div>
-
-

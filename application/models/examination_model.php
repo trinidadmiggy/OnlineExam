@@ -1,10 +1,10 @@
 <?php 
 
 class Examination_model extends CI_Model {
-	var $table = 'question_bank';
+/*	var $table = 'question_bank';
     var $column_order = array(null, 'examtype_id','question','option1','option2','option3', 'option4', 'option5'); //set column field database for datatable orderable
     var $column_search = array('question','option1','option2','option3', 'option4', 'option5'); //set column field database for datatable searchable 
-    var $order = array('question_id' => 'asc'); // default order 
+    var $order = array('question_id' => 'asc'); // default order */
     public function saveScore($data) {
     	$this->db->set('datestarted', 'NOW()', FALSE);
     	$this->db->set('dateended', 'NOW()', FALSE);
@@ -20,8 +20,21 @@ class Examination_model extends CI_Model {
 		return $query = $this->db->get()->result_array();
 	}
 
+    public function get_all_count()
+    {
+        $sql = "SELECT COUNT(*) as tol_question FROM question_bank WHERE examtype_id = 1";       
+        $result = $this->db->query($sql)->row();
+        return $result;
+    }
 
-/*	private function _get_datatables_query()
+    public function get_all_content($start,$content_per_page)
+    {
+        $sql = "SELECT * FROM  question_bank LIMIT $start,$content_per_page";       
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+
+	/*private function _get_datatables_query()
 	{
 
 

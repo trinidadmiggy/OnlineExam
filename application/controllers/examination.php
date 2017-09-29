@@ -7,8 +7,8 @@ class Examination extends CI_Controller{
 		parent::__construct();
 		$this->load->model('examination_model');
 	}
-
-/*	public function fetch_questions() {
+/*
+	public function fetch_questions() {
 		$list = $this->examination_model->get_datatables();
 		$data = array();
 		$no = $_POST['start'];
@@ -40,9 +40,33 @@ class Examination extends CI_Controller{
 		$this->load->view('examination/verbal_meaning');
 		$this->load->view('examination/includes/footer');
 	}*/
+	public function verbal1()
+	{
+		$total_question = $this->examination_model->get_all_count();
+		$content_per_page = 20; 
+		$this->data['tol_question'] = ceil($total_question->tol_question/$content_per_page);
+		$this->load->view('examination/includes/header');
+		$this->load->view('examination/verbal_meaning', $this->data, FALSE);
+		$this->load->view('examination/includes/footer');
+	}
+
+	public function load_more()
+	{
+		$group_no = $this->input->post('group_no');
+		$content_per_page = 20;
+		$start = ceil($group_no * $content_per_page);
+		$all_content = $this->examination_model->get_all_content($start,$content_per_page);
+		if(isset($all_content) && is_array($all_content) && count($all_content)) : 
+			foreach ($all_content as $key => $content) :
+				echo '<li>'.$content->question_id.'</li>';
+				echo '<p>'.$content->question.'</p>';                 
+			endforeach;                                
+		endif; 
+	}
+
+
 
 	public function verbal(){
-		print_r($this->session->all_userdata());
 		$id = 1;
 		$data['result'] = $this->examination_model->getQuestion($id);
 		$this->load->view('examination/includes/header');
@@ -50,34 +74,46 @@ class Examination extends CI_Controller{
 		$this->load->view('examination/includes/footer');
 	}
 	public function reasoning(){
+		$id = 2;
+		$data['result'] = $this->examination_model->getQuestion($id);
 		$this->load->view('examination/includes/header');
-		$this->load->view('examination/reasoning');
+		$this->load->view('examination/reasoning', $data);
 		$this->load->view('examination/includes/footer');
 	}
 	public function letterseries(){
+		$id = 3;
+		$data['result'] = $this->examination_model->getQuestion($id);
 		$this->load->view('examination/includes/header');
-		$this->load->view('examination/letter_series');
+		$this->load->view('examination/letter_series', $data);
 		$this->load->view('examination/includes/footer');
 	}
 
 	public function numberability(){
+		$id = 4;
+		$data['result'] = $this->examination_model->getQuestion($id);
 		$this->load->view('examination/includes/header');
-		$this->load->view('examination/number_ability');
+		$this->load->view('examination/number_ability', $data);
+		$this->load->view('examination/includes/footer');
+	}
+	public function ipiaptitude(){
+		$id = 5;
+		$data['result'] = $this->examination_model->getQuestion($id);
+		$this->load->view('examination/includes/header');
+		$this->load->view('examination/ipi_aptitude', $data);
 		$this->load->view('examination/includes/footer');
 	}
 	public function manchester(){
+		$id = 6;
+		$data['result'] = $this->examination_model->getQuestion($id);
 		$this->load->view('examination/includes/header');
-		$this->load->view('examination/manchester');
-		$this->load->view('examination/includes/footer');
-	}
-	public function personal(){
-		$this->load->view('examination/includes/header');
-		$this->load->view('examination/personal_working');
+		$this->load->view('examination/manchester', $data);
 		$this->load->view('examination/includes/footer');
 	}
 	public function essay(){
+		$id = 7;
+		$data['result'] = $this->examination_model->getQuestion($id);
 		$this->load->view('examination/includes/header');
-		$this->load->view('examination/essay');
+		$this->load->view('examination/essay', $data);
 		$this->load->view('examination/includes/footer');
 	}
 }
