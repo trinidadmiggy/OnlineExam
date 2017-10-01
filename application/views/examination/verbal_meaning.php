@@ -32,58 +32,13 @@
 							<div class="col-lg-12">
 								<div class="container-fluid">
 									<div class="row">
-										<div id="ajax_table">
-<!-- 											<?php foreach($result as $r) { ?>
-											<div class="col-lg-6">
-												<br/>
-												<label>
-													<?php echo $r->question_id;?>) <?php echo $r->question; ?>
-												</label>
-												<div class="radio">
-													<ol type="1">
-														<div class="col-lg-3">
-															<li>
-																<label>
-																	<input type="radio" name="verbal_q5" id="" value="1">
-																	<?php echo $r->option1 ?>
-																</label>
-															</li>
-															<li>
-																<label>
-																	<input type="radio" name="verbal_q5" id="" value="2">
-																	<?php echo $r->option2 ?>
-																</label>
-															</li>
-															<li>
-																<label>
-																	<input type="radio" name="verbal_q5" id="" value="3">
-																	<?php echo $r->option3 ?>
-																</label>
-															</li>
-														</div>
-														<div class="col-lg-3">
-															<li>
-																<label>
-																	<input type="radio" name="verbal_q5" id="" value="4">
-																	<?php echo $r->option4 ?>
-																</label>
-															</li>
-															<li>
-																<label>
-																	<input type="radio" name="verbal_q5" id="" value="4">
-																	<?php echo $r->option5 ?>
-																</label>
-															</li>
-														</div>
-													</ol>
-												</div>
-											</div>
-											<?php } ?>	 -->
+										<div id="verbal">
 										</div>
 									</div>
 								</div>
 							</div>
-							<button class="btn btn-primary" id="load_more" data-val = "0">Load more..</button></div>
+							<button class="btn btn-primary" id="load_more" data-val = "0">Load more..</button>
+							<span><input type="submit" name="submit" class="btn btn-success" value="Submit" /> </span>
 						</form>
 					</div>
 					<div class="box-footer box-comments">

@@ -9,13 +9,15 @@ class Examination extends CI_Controller{
 	}
 
 	public function verbal(){
+		$id = 1;
+		$data['result'] = $this->examination_model->getQuestion($id);
 		$this->load->view('examination/includes/header');
-		$this->load->view('examination/verbal_meaning');
+		$this->load->view('examination/verbal_meaning', $data);
 		$this->load->view('examination/includes/footer');
 	}
 
 
-	public function getQuestion(){
+/*	public function getVerbal(){
 		$page =  $this->input->get('page');
 		$questions = $this->examination_model->getQuestion1($page,1);
 		foreach($questions as $r) {
@@ -29,19 +31,19 @@ class Examination extends CI_Controller{
 			<div class='col-lg-6'>
 			<li>
 			<label>
-			<input type='radio' name='verbal_q5' id='' value='1'>"
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option1." required>"
 			.$r->option1.
 			"</label>
 			</li>
 			<li>
 			<label>
-			<input type='radio' name='verbal_q5' id='' value='2'>"
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option2." required>"
 			.$r->option2.
 			"</label>
 			</li>
 			<li>
 			<label>
-			<input type='radio' name='verbal_q5' id='' value='2'>"
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option3." required>"
 			.$r->option2.
 			"</label>
 			</li>
@@ -49,13 +51,13 @@ class Examination extends CI_Controller{
 			<div class='col-lg-6'>
 			<li>
 			<label>
-			<input type='radio' name='verbal_q5' id='' value='3'>"
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option4." required>"
 			.$r->option4.
 			"</label>
 			</li>
 			<li>
 			<label>
-			<input type='radio' name='verbal_q5' id='' value='4'>"
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option5." required>"
 			.$r->option5.
 			"</label>
 			</li>
@@ -63,48 +65,63 @@ class Examination extends CI_Controller{
 			</ol>
 			</div>
 			</div>";
-
-
-			/*echo "<tr><td><label>".$r->question_id.") ".$r->question."</label><br/>".
-			"<div class='multiplechoice radio'>
-			<ol type='1'>
-			<li>
-			<label>
-			<input type='radio' name='verbal_q5' value=''>".
-			$r->option1.
-			"</label>
-			</li>
-			<li>
-			<label>
-			<input type='radio' name='verbal_q5' value=''>".
-			$r->option2.
-			"</label>
-			</li>
-			<li>
-			<label>
-			<input type='radio' name='verbal_q5' value=''>".
-			$r->option3.
-			"</label>
-			</li>
-			<li>
-			<label>
-			<input type='radio' name='verbal_q5' value=''>".
-			$r->option4.
-			"</label>
-			</li>
-			<li>
-			<label>
-			<input type='radio' name='verbal_q5' id='' value=''>".
-			$r->option5.
-			"</label>
-			</li>
-			</ol>
-			</div>
-			</td>
-			</tr>";*/
 		}
 		exit;
 	}
+
+	public function getNumber(){
+		$page =  $this->input->get('page');
+		$questions = $this->examination_model->getQuestion1($page,4);
+		foreach($questions as $r) {
+			echo "<div class='col-lg-6'>
+			<br/>
+			<label>"
+			.$r->question_id.") ".$r->question.
+			"</label>
+			<div class='radio'>
+			<ol type='1'>
+			<div class='col-lg-6'>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option1." required>"
+			.$r->option1.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option2." required>"
+			.$r->option2.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option3." required>"
+			.$r->option2.
+			"</label>
+			</li>
+			</div>
+			<div class='col-lg-6'>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option4." required>"
+			.$r->option4.
+			"</label>
+			</li>
+			<li>
+			<label>
+			<input type='radio' name='verbal_q".$r->question_id."' value=".$r->option5." required>"
+			.$r->option5.
+			"</label>
+			</li>
+			</div>
+			</ol>
+			</div>
+			</div>";
+		}
+		exit;
+	}
+*/
+
 	public function reasoning(){
 		$id = 2;
 		$data['result'] = $this->examination_model->getQuestion($id);

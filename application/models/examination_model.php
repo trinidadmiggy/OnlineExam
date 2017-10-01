@@ -8,7 +8,13 @@ class Examination_model extends CI_Model {
     	$this->db->insert('applicantexamresults', $data);
     	return $this->db->insert_id();
     }
+    public function getQuestion($id){
+        $this->db->select('*');
+        $this->db->from('question_bank');
+        $this->db->where('examtype_id', $id);
 
+        return $query = $this->db->get()->result_array();
+    }
 
     public function getQuestion1($page, $id){
         $offset = 10*$page;

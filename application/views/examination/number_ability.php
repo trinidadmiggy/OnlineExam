@@ -30,64 +30,23 @@
 						<h2 style="margin:0">Number Ability</h2>
 					</div>
 					<div class="box-body">
-
 						<a href="reasoning">2</a>
 						<a href="letterseries">3</a>
 						<a href="numberability">4</a>
 						<a href="ipiaptitude">5</a>
 						<a href="manchester">6</a>
 						<a href="essay">7</a>
-						<form id="personalityTest" name="personalityTest" method="post" >
-							<table id="example" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th style="display: none;"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php foreach($result as $r) { ?>
-									<?php $q_arr = array($r['option1'],$r['option2'],$r['option3'],$r['option4']); ?>
-									<tr>
-										<td>
-											<div class="form-group">
-												<label>
-													<?php echo $r['question_id'];?>)	 <?php echo $r['question']; ?>
-												</label>
-												<br/>
-												<div class="multiplechoice radio">
-													<ol type="1">
-														<li>
-															<label>
-																<input type="radio" name="verbal_q5" id="" value="1">
-																<?=$q_arr[0]?>
-															</label>
-														</li>
-														<li>
-															<label>
-																<input type="radio" name="verbal_q5" id="" value="2">
-																<?=$q_arr[1]?>
-															</label>
-														</li>
-														<li>
-															<label>
-																<input type="radio" name="verbal_q5" id="" value="3">
-																<?=$q_arr[2]?>
-															</label>
-														</li>
-														<li>
-															<label>
-																<input type="radio" name="verbal_q5" id="" value="4">
-																<?=$q_arr[3]?>
-															</label>
-														</li>
-													</ol>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<?php } ?>
-								</tbody>
-							</table>
+						<form id="onlineExam" name="personalityTest" method="post" action="<?= site_url('#')?>" >
+							<div class="col-lg-12">
+								<div class="container-fluid">
+									<div class="row">
+										<div id="number">
+										</div>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-primary" id="load_more" data-val = "0">Load more..</button>
+							<span><input type="submit" name="submit" class="btn btn-success" value="Submit" /> </span>
 						</form>
 					</div>
 					<div class="box-footer box-comments">

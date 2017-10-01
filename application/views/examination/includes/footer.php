@@ -195,11 +195,39 @@
       var getquestion = function(page){
 
         $.ajax({
-          url:"<?php echo base_url() ?>examination/getQuestion",
+          url:"<?php echo base_url() ?>examination/getVerbal",
           type:'GET',
           data: {page:page}
         }).done(function(response){
-          $("#ajax_table").append(response);
+          $("#verbal").append(response);
+          $('#load_more').data('val', ($('#load_more').data('val')+1));
+          scroll();
+        });
+      };
+      var scroll  = function(){
+        $('html, body').animate({
+          scrollTop: $('#load_more').offset().top
+        }, 1000);
+      };
+    </script>
+
+    <script>
+      $(document).ready(function(){
+        getquestion(0);
+        $("#load_more").click(function(e){
+          e.preventDefault();
+          var page = $(this).data('val');
+          getquestion(page);
+        });
+      });
+      var getquestion = function(page){
+
+        $.ajax({
+          url:"<?php echo base_url() ?>examination/getNumber",
+          type:'GET',
+          data: {page:page}
+        }).done(function(response){
+          $("#verbal").append(response);
           $('#load_more').data('val', ($('#load_more').data('val')+1));
           scroll();
         });
