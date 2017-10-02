@@ -9,18 +9,18 @@
 			<div class="col-lg-8 col-lg-offset-2">
 				<div class="box-exam">
 					<div class="progress" style="margin:0;">
-						<div class="prog1 progress-bar progress-bar-warning" style="width: 14.286%">
+						<div class="prog progress-bar progress-bar-warning" style="width: 14.286%">
 							Verbal Meaning
 						</div>
 					</div>
-					<div class="box-header with-border">
+					<div class="box-header with-border" >
 						<h3 style="margin:0">Verbal Meaning</h3>
-						<h5 style="margin:0">
-							<a data-toggle="modal" data-target="#myModal" style="text-decoration: none; color:black;">
+						<h5 style="margin:0" >
+							<a data-toggle="modal" data-target="#exampleModal" style="text-decoration: none; color:black; cursor:help;">
 								Instructions: Each item in this part of the test presents a word, followed by five alternatives. You are to choose from the five words the one that means the same or most nearly the same as the word at the beginning. Mark your answer by putting an X in the box on the answer sheet containing the number of the alternative you have chosen.	
 							</a>
 						</h5>
-					</div>
+					</div>	
 					<div class="box-body">
 						<a href="reasoning">2</a>
 						<a href="letterseries">3</a>
@@ -100,23 +100,38 @@
 				</div>
 			</div>
 		</div>
-
-		<div id="myModal" class="modal fade">
-			<div class="modal-dialog modal-lg">
+		<!-- Instruction Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1">
+			<div class="modal-dialog">
 				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title caps"><strong>For example:</strong></h4>
+					</div>
 					<div class="modal-body">
-						For Example:
-						<br/>
-						S1. RECIPIENT 1. Donor 2. Owner 3. Performer 4. Receiver 5. Borrower
-						<br/>
-						<br/>
-						The word recipient means the same as receiver, and an X has been marked in the box on the sample answer sheet for its number – 4.
-
-						You will be given eight minutes to complete this part of the test. If you are not certain of an answer, mark the answer you think might be correct and go on the next item. Work as rapidly as accurately as you can. If you finish before time is called, go back over the questions in this section. Do not go on to another section. There are two pages of questions in this section. Are there any questions?
-						<br/>
-						<br/>
-						DO NOT TURN THIS PAGE UNTIL TOLD TO DO SO.
-
+						<div class="form-group">
+							<div class="input-group col-lg-12">
+								<p>S1. RECIPIENT 1. Donor 2. Owner 3. Performer 4. Receiver 5. Borrower</p>
+								<div class="pull-right">
+									Answer Sheet<br />
+									<div class="example-border">1</div>
+									<div class="example-border">2</div>
+									<div class="example-border">3</div>
+									<div class="example-border">X</div>
+									<div class="example-border">5</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<p>
+									The word recipient means the same as <b>receiver</b>, and an X has been marked in the box on the sample answer sheet for its number – 4.
+								</p>
+								<p>
+									You will be given eight minutes to complete this part of the test. If you are not certain of an answer, mark the answer you think might be correct and go on the next item. Work as rapidly as accurately as you can. If you finish before time is called, go back over the questions in this section. <b>Do not go on to another section</b>. There are two pages of questions in this section. Are there any questions?
+								</p>
+								<h4>DO NOT TURN THIS PAGE UNTIL TOLD TO DO SO.</h4>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

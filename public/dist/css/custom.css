@@ -58,15 +58,19 @@
 	border: 1px solid black ;
 	display: inline;
 }
+.example-border {
+	font-size: 12px;
+	padding-left: 4px; 
+	padding-right: 4px;
+	border: 1px solid black ;
+	display: inline;
+}
 
 .questions.col-lg-6:hover {
 	background-color:rgb(230, 230, 230);
 }
+.trybox { background: #eee; border: 1px solid #ccc; padding: 10px; margin-bottom: 20px; }
 
-td:hover
-{
-	background-color:rgb(230, 230, 230);
-}
 
 @media all and (max-width:670px) {
 	.exam tr {    display: table;  width:100%;    }               

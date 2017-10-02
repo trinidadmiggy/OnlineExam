@@ -22,7 +22,7 @@
 						<div class="progress-bar progress-bar-warning" style="width: 14.286%">
 							Letter Series
 						</div>
-						<div class="prog4 progress-bar progress-bar-primary" style="width: 0%">
+						<div class="prog progress-bar progress-bar-primary" style="width: 0%">
 							IPI Aptitude
 						</div>
 					</div>

@@ -25,7 +25,7 @@
 						<div class="progress-bar progress-bar-warning" style="width: 14.286%">
 							Number Ability
 						</div>
-						<div class="prog5 progress-bar progress-bar-primary" style="width: 0%">
+						<div class="prog progress-bar progress-bar-primary" style="width: 0%">
 							Manchester Personality Questionnaire
 						</div>
 					</div>

@@ -31,7 +31,7 @@
 						<div class="progress-bar progress-bar-warning" style="width: 14.285%">
 							Personal Working/Management style
 						</div>
-						<div class="prog7 progress-bar progress-bar-primary" style="width: 0%">
+						<div class="prog progress-bar progress-bar-primary" style="width: 0%">
 							Essay
 						</div>
 					</div>
