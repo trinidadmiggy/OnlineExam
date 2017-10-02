@@ -59,6 +59,10 @@
 	display: inline;
 }
 
+.questions.col-lg-6:hover {
+	background-color:rgb(230, 230, 230);
+}
+
 td:hover
 {
 	background-color:rgb(230, 230, 230);

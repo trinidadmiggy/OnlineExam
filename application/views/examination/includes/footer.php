@@ -9,61 +9,34 @@
 <script src="<?=base_url()?>public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?=base_url()?>public/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="<?=base_url()?>public/plugins/iCheck/icheck.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>public/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url()?>public/dist/js/demo.js"></script>
 <!-- page script -->
 
-<script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
-
-<!-- <script type="text/javascript">
-    var table;
-    $(document).ready(function(){
-    //datatables
-    table = $('#table').DataTable({
-
-        "processing": true, //Feature control the processing indicator.
-        "serverSide": true, //Feature control DataTables' server-side processing mode.
-        "order": [], //Initial no order.
-
-        // Load data for the table's content from an Ajax source
-        "ajax": {
-            "url": "<?php echo site_url('examination/fetch_questions')?>",
-            "type": "POST",
-            dataType: "json",
-            success: function (data) 
-            {
-           
-              var trHTML = '';
-              $.each(data, function (key,value) {
-               trHTML += 
-               '<tr><td>' + value.question_id + 
-               '</td><td>' + value.question + 
-               '</td><td>' + value.option1 +
-               '</td><td>' + value.option2 + 
-               '</td><td>' + value.option3 +
-               '</td><td>' + value.option4 + 
-               '</td><td>' + value.option5 + 
-               '</td></tr>';     
-           });
-
-              $('#table').append(trHTML);
-          }  
-      },
-
-        //Set column definition initialisation properties.
-        "columnDefs": [
-        { 
-            "targets": [ 0 ], //first column / numbering column
-            "orderable": false, //set not orderable
-        },
-        ],
-    });
-});
-</script> -->
 
 <script type="text/javascript">
+      //iCheck for checkbox and radio inputs
+      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass   : 'iradio_minimal-blue'
+      })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+  </script>
+
+  <script type="text/javascript">
 /*	$(document).ready(function (){
 		var table = $('#example').DataTable({
 			'pageLength': 3,
@@ -183,7 +156,7 @@
       }
     </script> -->
 
-    <script>
+<!--     <script>
       $(document).ready(function(){
         getquestion(0);
         $("#load_more").click(function(e){
@@ -199,7 +172,7 @@
           type:'GET',
           data: {page:page}
         }).done(function(response){
-          $("#verbal").append(response);
+          $("#ajax_table").append(response);
           $('#load_more').data('val', ($('#load_more').data('val')+1));
           scroll();
         });
@@ -227,7 +200,7 @@
           type:'GET',
           data: {page:page}
         }).done(function(response){
-          $("#verbal").append(response);
+          $("#ajax_table").append(response);
           $('#load_more').data('val', ($('#load_more').data('val')+1));
           scroll();
         });
@@ -237,6 +210,6 @@
           scrollTop: $('#load_more').offset().top
         }, 1000);
       };
-    </script>
+    </script> -->
   </body>
   </html>

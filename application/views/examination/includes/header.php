@@ -16,6 +16,8 @@
 	<link rel="stylesheet" href="<?=base_url()?>public/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/AdminLTE.css">
+	<!-- iCheck for checkboxes and radio inputs -->
+	<link rel="stylesheet" href="<?=base_url()?>public/plugins/iCheck/all.css">
 	
 	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/custom.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins

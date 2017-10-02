@@ -67,9 +67,9 @@ class Examination extends CI_Controller{
 			</div>";
 		}
 		exit;
-	}
+	}*/
 
-	public function getNumber(){
+/*	public function getNumber(){
 		$page =  $this->input->get('page');
 		$questions = $this->examination_model->getQuestion1($page,4);
 		foreach($questions as $r) {

@@ -42,8 +42,8 @@
 						<a href="reasoning">2</a>
 						<a href="letterseries">3</a>
 						<a href="numberability">4</a>
-						<a href="manchester">5</a>
-						<a href="personal">6</a>
+						<a href="ipiaptitude">5</a>
+						<a href="manchester">6</a>
 						<a href="essay">7</a>
 						<form id="personalityTest" name="personalityTest" method="post" >
 							<table id="example" class="table table-bordered table-hover">

@@ -1,13 +1,9 @@
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1 class="text-center">
 			Questronix Online Examination
 		</h1>
 	</section>
-
-	
 	<section class="content">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
@@ -36,18 +32,62 @@
 						<a href="ipiaptitude">5</a>
 						<a href="manchester">6</a>
 						<a href="essay">7</a>
-						<form id="onlineExam" name="personalityTest" method="post" action="<?= site_url('#')?>" >
+						<div class="container-fluid">
 							<div class="col-lg-12">
-								<div class="container-fluid">
-									<div class="row">
-										<div id="number">
+								<div class="row">
+									<form id="onlineExam" name="personalityTest" method="post" action="<?= site_url('#')?>" >
+										<?php foreach($result as $r) { ?>
+										<div class="questions col-lg-6">
+											<br/>
+											<label>
+												<?php echo $r['question_id'];?>) <?php echo $r['question']; ?>
+											</label>
+											<br />
+											<div class="radio">
+												<ol type="1">
+													<div class="col-lg-6">
+														<li>
+															<label>
+																<input type="radio" class="" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
+																<?php echo $r['option1'];?>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="radio" class="" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>" required>
+																<?php echo $r['option2'];?>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="radio" class="" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>" required>
+																<?php echo $r['option3'];?>
+															</label>
+														</li>	
+													</div>
+													<div class="col-lg-6">
+														<li>
+															<label>
+																<input type="radio" class="" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>" required>
+																<?php echo $r['option4'];?>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="radio" class="" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option5'];?>" required>
+																<?php echo $r['option5'];?>
+															</label>
+														</li>
+													</div>
+												</ol>
+											</div>
 										</div>
-									</div>
+										<?php } ?>
+										<input type="submit" class="btn btn-primary pull-right" value="Submit" />
+									</form>
 								</div>
 							</div>
-							<button class="btn btn-primary" id="load_more" data-val = "0">Load more..</button>
-							<span><input type="submit" name="submit" class="btn btn-success" value="Submit" /> </span>
-						</form>
+						</div>
 					</div>
 					<div class="box-footer box-comments">
 						<div class="box-comment">
