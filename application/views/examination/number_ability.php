@@ -40,7 +40,7 @@
 						<div class="container-fluid">
 							<div class="col-lg-12">
 								<div class="row" >
-									<form id="onlineExam" name="personalityTest" method="post" action="<?= site_url('#')?>" >
+									<form method="post" action="<?= site_url('hr/check_answer/technical')?>" >
 										<?php foreach($result as $r) { ?>
 										<div class="questions col-lg-6" >
 											<br/>

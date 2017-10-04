@@ -43,7 +43,7 @@
 						<a href="ipiaptitude">5</a>
 						<a href="manchester">6</a>
 						<a href="essay">7</a>
-						<form method="post"  action="<?= site_url('#')?>">
+						<form method="post"  action="<?= site_url('hr/check_answer/technical')?>">
 							<input type="hidden" name="examtype_id" value="7" />
 							<?php $essay = array(); ?>
 							<?php $no = 1; foreach($result as $r) { ?>

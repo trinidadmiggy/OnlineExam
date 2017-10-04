@@ -82,12 +82,12 @@ ul li {
 						<div class="container-fluid">
 							<div class="col-lg-12">
 								<div class="row">
-									<form method="POST" action="#">
+									<form method="POST" action="<?= site_url('hr/check_answer/manchester')?>">
 										<?php $q_no = 1; foreach($result as $r) {  ?>
 										<div class="questions col-lg-6" style="padding: 0;">
 											<br/>
 											<label>
-												<?php echo $q_no++;?>) <?php echo $r['question']; ?>
+												<?php echo $q_no;?>) <?php echo $r['question']; ?>
 											</label>
 											<br />
 											<div class="radio">
@@ -95,19 +95,19 @@ ul li {
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" checked>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="B" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="B" >
 																<?php echo $r['option2'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="C" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="C" >
 																<?php echo $r['option3'];?>
 															</label>
 														</li>	
@@ -115,13 +115,13 @@ ul li {
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="D" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="D" >
 																<?php echo $r['option4'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="E" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="E" >
 																<?php echo $r['option5'];?>
 															</label>
 														</li>
@@ -129,7 +129,7 @@ ul li {
 												</ol>
 											</div>
 										</div>
-										<?php } ?>
+										<?php $q_no++; } ?>
 										<input type="submit" class="btn btn-primary pull-right" value="Submit" />
 									</form>
 								</div>

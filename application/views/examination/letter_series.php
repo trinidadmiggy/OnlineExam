@@ -37,7 +37,7 @@
 						<div class="container-fluid">
 							<div class="col-lg-12">
 								<div class="row">
-									<form method="post" action="<?= site_url('check_answer/technical')?>">
+									<form method="post" action="<?= site_url('hr/check_answer/technical')?>">
 										<input type="hidden" name="examtype_id" value="3" />
 										<?php foreach($result as $r) { ?>
 										<div class="questions col-lg-6">

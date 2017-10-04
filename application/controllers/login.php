@@ -22,9 +22,8 @@ class Login extends CI_Controller
   }
   else
   {
-     //Go to private area
-   redirect('home', 'refresh');
- }
+    redirect('applicant/examination/index', 'refresh');
+  }
 
 }
 public function send_email($email) 
@@ -56,14 +55,17 @@ function check_database($password)
 
  if($result)
  {
-/*  $this->send_email($email);*/
+  /*  $this->send_email($email);*/
   $sess_array = array();
   foreach($result as $row)
   {
    $sess_array = array(
-     'app_id' => $row->app_id,
-     'email' => $row->email
-   );
+    'lname' =>  $row->lname,
+    'fname' =>  $row->fname,
+    'mname' =>  $row->mname,
+    'app_id' => $row->app_id,
+    'email' => $row->email
+  );
    $this->session->set_userdata('logged_in', $sess_array);
  }
  return TRUE;
