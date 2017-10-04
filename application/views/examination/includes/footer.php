@@ -56,33 +56,52 @@
       }, 
       displayAlign: "left"
     });
-</script>
-<!--     <script>
-      $(document).ready(function(){
-        getquestion(0);
-        $("#load_more").click(function(e){
-          e.preventDefault();
-          var page = $(this).data('val');
-          getquestion(page);
-        });
-      });
-      var getquestion = function(page){
+  </script>
+  <script>
+   (function($) {
+    var element = $('.follow-scroll'),
+    originalY = element.offset().top;
+    
+    // Space between element and top of screen (when scrolling)
+    var topMargin = 20;
+    
+    // Should probably be set in CSS; but here just for emphasis
+    element.css('position', 'relative');
+    
+    $(window).on('scroll', function(event) {
+      var scrollTop = $(window).scrollTop();
 
-        $.ajax({
-          url:"<?php echo base_url() ?>examination/getVerbal",
-          type:'GET',
-          data: {page:page}
-        }).done(function(response){
-          $("#ajax_table").append(response);
-          $('#load_more').data('val', ($('#load_more').data('val')+1));
-          scroll();
-        });
-      };
-      var scroll  = function(){
-        $('html, body').animate({
-          scrollTop: $('#load_more').offset().top
-        }, 1000);
-      };
-    </script> -->
-  </body>
-  </html>
+      element.stop(false, false).animate({
+        top: scrollTop < originalY
+        ? 0
+        : scrollTop - originalY + topMargin
+      }, 300);
+    });
+  })(jQuery);
+</script>
+
+<!-- Timer -->
+<script>
+  $( document ).ready(function() {
+   var min = document.getElementById("timeValue").value;
+   var countDown = new Date().getTime() + min*60000;
+
+   var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDown - now;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
+
+    if(distance < 0 ) {
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) + 1;
+      document.getElementById("time").innerHTML = minutes+ "m " + seconds + "s ";
+      document.getElementById("time").style.color = "red";
+    }
+  }, 100)
+ });
+</script>
+</body>
+</html>

@@ -6,76 +6,20 @@ class Check_answer extends CI_Controller {
 		$this->load->model('examination_model');
 	}
 
-	public function check_verbal() {
-		$q1 = $this->input->post('verbal_q1');
-		$q2 = $this->input->post('verbal_q2');
-		$q3 = $this->input->post('verbal_q3');
-		$q4 = $this->input->post('verbal_q4');
-		$q5 = $this->input->post('verbal_q5');
+	public function technical() {
+		$score = 0;
+		$examtype_id = $this->input->post('examtype_id');
+		$questions = $this->examination_model->getQuestion($examtype_id);
 
-		if($q1 == '1') {
-			$score = 1;
+		foreach($questions as $question)
+		{
+			if($this->input->post('q_'.$question['question_id']) == $question['answer']) 
+			{
+				$score = $score + 1;
+			}
 		}
 
-		if($q2 == '1') {
-			$score += 1;
-		}
-
-		if($q3 == '1') {
-			$score += 1;
-		}
-
-		if($q4 == '1') {
-			$score += 1;
-		}
-
-		if($q5 == '1') {
-			$score += 1;
-		}
-
-		$data = array (
-				'app_id' =>  1, //$this->input->post('')
-				'examtype' => 'Verbal Meaning', 
-				'result' => $score
-			);
-		$result = $this->examination_model->saveScore($data);
-		print_r($result);
-	}
-
-	public function check_reasoning() {
-		$q1 = $this->input->post('verbal_q1');
-		$q2 = $this->input->post('verbal_q2');
-		$q3 = $this->input->post('verbal_q3');
-		$q4 = $this->input->post('verbal_q4');
-		$q5 = $this->input->post('verbal_q5');
-
-		if($q1 == '1') {
-			$score = 1;
-		}
-
-		if($q2 == '1') {
-			$score += 1;
-		}
-
-		if($q3 == '1') {
-			$score += 1;
-		}
-
-		if($q4 == '1') {
-			$score += 1;
-		}
-
-		if($q5 == '1') {
-			$score += 1;
-		}
-
-		$data = array (
-				'app_id' =>  1, //$this->input->post('')
-				'examtype' => 'Reasoning', 
-				'result' => $score
-			);
-		$result = $this->examination_model->saveScore($data);
-		print_r($result);
+		print_r($score);
 	}
 }
 ?>

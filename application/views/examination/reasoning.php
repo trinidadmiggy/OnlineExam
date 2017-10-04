@@ -34,7 +34,8 @@
 						<div class="container-fluid">
 							<div class="col-lg-12">
 								<div class="row">
-									<form id="onlineExam" name="onlineExam" method="post" action="<?= site_url('#')?>"  >
+									<form method="post" action="<?= site_url('check_answer/technical')?>"  >
+										<input type="hidden" name="examtype_id" value="2" />
 										<?php foreach($result as $r) { ?>
 										<br />
 										<label>
@@ -45,31 +46,31 @@
 											<ol type="1">
 												<li>
 													<label>
-														<input type="radio" class="minimal" name="reasoning_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?><?php echo $r['option1'];?>">
+														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
 														<?php echo $r['option1'];?>
 													</label>
 												</li>
 												<li>
 													<label>
-														<input type="radio" class="minimal" name="reasoning_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>">
+														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>" required>
 														<?php echo $r['option2'];?>
 													</label>
 												</li>
 												<li>
 													<label>
-														<input type="radio" class="minimal" name="reasoning_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>">
+														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>" required>
 														<?php echo $r['option3'];?>
 													</label>
 												</li>
 												<li>
 													<label>
-														<input type="radio" class="minimal" name="reasoning_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>">
+														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>" required>
 														<?php echo $r['option4'];?>
 													</label>
 												</li>
 												<li>
 													<label>
-														<input type="radio" class="minimal" name="reasoning_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option5'];?>">
+														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option5'];?>" required>
 														<?php echo $r['option5'];?>
 													</label>
 												</li>
@@ -95,6 +96,12 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="direct-chat-text pull-left follow-scroll" style="margin: 0;">
+					<span class="info-box-number" id="time"></span>
+				</div>
+				<input type="hidden" id="timeValue" value="20"/>
 			</div>
 		</div>
 	</section>

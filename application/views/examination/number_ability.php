@@ -25,7 +25,7 @@
 					<div class="box-header with-border">
 						<h2 style="margin:0">Number Ability</h2>
 						<h5 title="Click here for example">
-							<a data-toggle="modal" data-target="#exampleModal" style="text-decoration: none; color:black; cursor:help;">
+							<a data-toggle="modal" data-target="#exampleModal" style="text-decoration: none; color:black; cursor:pointer;">
 								<u><b>Instructions.</b></u> This test meausres your ability to make rapid numerical and estimates.
 							</a>
 						</h5>
@@ -39,12 +39,12 @@
 						<a href="essay">7</a>
 						<div class="container-fluid">
 							<div class="col-lg-12">
-								<div class="row">
+								<div class="row" >
 									<form id="onlineExam" name="personalityTest" method="post" action="<?= site_url('#')?>" >
 										<?php foreach($result as $r) { ?>
-										<div class="questions col-lg-6">
+										<div class="questions col-lg-6" >
 											<br/>
-											<label>
+											<label style="margin: -6px;">
 												<?php echo $r['question_id'];?>) <?php echo $r['question']; ?>
 											</label>
 											<br />
@@ -53,13 +53,13 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
+																<input type="radio" class="minimal" name="number_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>" required>
+																<input type="radio" class="minimal" name="number_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>" required>
 																<?php echo $r['option2'];?>
 															</label>
 														</li>
@@ -67,13 +67,13 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>" required>
+																<input type="radio" class="minimal" name="number_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>" required>
 																<?php echo $r['option3'];?>
 															</label>
 														</li>	
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>" required>
+																<input type="radio" class="minimal" name="number_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>" required>
 																<?php echo $r['option4'];?>
 															</label>
 														</li>
@@ -101,6 +101,12 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="direct-chat-text pull-left follow-scroll" style="margin: 0;">
+					<span class="info-box-number" id="time"></span>
+				</div>
+				<input type="hidden" id="timeValue" value="6"/>
 			</div>
 		</div>
 	</section>

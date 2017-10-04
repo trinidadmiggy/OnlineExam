@@ -16,7 +16,7 @@
 					<div class="box-header with-border" >
 						<h3 style="margin:0">Verbal Meaning</h3>
 						<h5 style="margin:0" >
-							<a data-toggle="modal" data-target="#exampleModal" style="text-decoration: none; color:black; cursor:help;">
+							<a data-toggle="modal" data-target="#exampleModal" style="text-decoration: none; color:black; cursor:pointer;">
 								Instructions: Each item in this part of the test presents a word, followed by five alternatives. You are to choose from the five words the one that means the same or most nearly the same as the word at the beginning. Mark your answer by putting an X in the box on the answer sheet containing the number of the alternative you have chosen.	
 							</a>
 						</h5>
@@ -31,7 +31,8 @@
 						<div class="container-fluid">
 							<div class="col-lg-12">
 								<div class="row">
-									<form method="POST" action="#">
+									<form method="POST" action="<?= site_url('check_answer/technical')?>">
+										<input type="hidden" name="examtype_id" value="1" />
 										<?php foreach($result as $r) { ?>
 										<div class="questions col-lg-6">
 											<br/>
@@ -44,19 +45,19 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>" required>
 																<?php echo $r['option2'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>" required>
 																<?php echo $r['option3'];?>
 															</label>
 														</li>	
@@ -64,13 +65,13 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>" required>
 																<?php echo $r['option4'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="verbal_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option5'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option5'];?>" required>
 																<?php echo $r['option5'];?>
 															</label>
 														</li>
@@ -98,6 +99,12 @@
 						</div>
 					</div>	
 				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="direct-chat-text pull-left follow-scroll" style="margin: 0;">
+					<span class="info-box-number" id="time"></span>
+				</div>
+				<input type="hidden" id="timeValue" value="8"/>
 			</div>
 		</div>
 		<!-- Instruction Modal -->

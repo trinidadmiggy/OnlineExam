@@ -6,8 +6,6 @@
 			Questronix Online Examination
 		</h1>
 	</section>
-
-	
 	<section class="content">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
@@ -45,21 +43,18 @@
 						<a href="ipiaptitude">5</a>
 						<a href="manchester">6</a>
 						<a href="essay">7</a>
-						<form id="personalityTest" name="personalityTest" method="post" >
-							<table id="example" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th style="display: none;"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<textarea class="form-control" style="width: 350px; height: 150px" required="required"></textarea>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+						<form method="post"  action="<?= site_url('#')?>">
+							<input type="hidden" name="examtype_id" value="7" />
+							<?php $essay = array(); ?>
+							<?php $no = 1; foreach($result as $r) { ?>
+							<div class="form-group">
+								<label>
+									<?php echo $no++;?>) <?php echo $r['question']; ?>
+								</label>
+								<textarea class="form-control" name="essay_<?php echo $r['question_id'];?>" rows="5" placeholder="Enter ..."></textarea>
+							</div>
+							<?php } ?>
+							<input type="submit" class="btn btn-primary pull-right" value="Submit" />
 						</form>
 					</div>
 					<div class="box-footer box-comments">

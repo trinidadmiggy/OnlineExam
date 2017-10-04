@@ -2,11 +2,14 @@
 
 class Examination_model extends CI_Model {
 
-    public function saveScore($data) {
-    	$this->db->set('datestarted', 'NOW()', FALSE);
+    public function takeExam($data) {
+        $this->db->set('datestarted', 'NOW()', FALSE);
+        $this->db->insert('applicantexamresults', $data);
+    }
+    public function saveScore($score, $app_id) {
     	$this->db->set('dateended', 'NOW()', FALSE);
-    	$this->db->insert('applicantexamresults', $data);
-    	return $this->db->insert_id();
+        $this->db->where('app_id', $app_id);
+        $this->db->update('applicantexamresults', $score);
     }
     public function getQuestion($id){
         $this->db->select('*');
@@ -16,12 +19,8 @@ class Examination_model extends CI_Model {
         return $query = $this->db->get()->result_array();
     }
 
-    public function getQuestion1($page, $id){
-        $offset = 10*$page;
-        $limit = 10;
-        $sql = "select * from question_bank where examtype_id = $id limit $offset ,$limit";
-        $result = $this->db->query($sql)->result();
-        return $result;
+    public function checkUserExam($app_id, $examtype_id) {
+
     }
 }
 ?>

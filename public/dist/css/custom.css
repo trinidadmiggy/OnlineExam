@@ -66,6 +66,14 @@
 	display: inline;
 }
 
+.rating-border {
+	font-size: 25px;
+	padding-left: 4px; 
+	padding-right: 4px;
+	border: 1px solid black ;
+	display: inline;
+}
+
 .questions.col-lg-6:hover {
 	background-color:rgb(230, 230, 230);
 }
