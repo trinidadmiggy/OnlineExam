@@ -1,11 +1,72 @@
 <?php
 class Check_answer extends CI_Controller {
-
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('examination_model');
 	}
 
+	public function compute($score, $description, $examtype_id)
+	{
+		$session_data = $this->session->userdata('logged_in');
+		$app_id = $session_data['app_id'];
+		$computeScore = array(
+			'score' => $score,
+			'description' => $description
+		);
+		$this->examination_model->saveScore($computeScore,$app_id, $examtype_id);
+	}
+
+	public function saveAns($question_id, $app_answer) {
+		$session_data = $this->session->userdata('logged_in');
+		$app_id = $session_data['app_id'];
+		$ans = array(
+			'app_id' => $app_id,
+			'question_id' => $question_id,
+			'app_answer' => $app_answer
+		);
+		$this->examination_model->saveAnswers($ans);
+	}
+
+	public function interpret($score) {
+		$description = "";
+		if($score >= 1 && $score <= 3)
+		{
+			$description = "Very Low";
+		}
+		else if ($score >= 4 && $score <= 9)
+		{
+			$description = "Low";
+		}
+		else if ($score >= 10 && $score <= 23)
+		{
+			$description = "Below Average";
+		}
+		else if ($score >= 24 && $score <= 39)
+		{
+			$description = "Low Average";
+		}
+		else if ($score >= 40 && $score <= 59)
+		{
+			$description = "Average";
+		}
+		else if ($score >= 60 && $score <= 74)
+		{
+			$description = "High Average";
+		}
+		else if ($score >= 75 && $score <= 89)
+		{
+			$description = "Above Average";
+		}
+		else if ($score >= 90 && $score <= 96)
+		{
+			$description = "Superior";
+		}
+		else if ($score >= 97 && $score <= 99)
+		{
+			$description = "Very Superior";
+		}
+		return $description;
+	}
 	public function technical() {
 		$score = 0;
 		$examtype_id = $this->input->post('examtype_id');
@@ -13,13 +74,15 @@ class Check_answer extends CI_Controller {
 
 		foreach($questions as $question)
 		{
+			$this->saveAns($question['question_id'], $this->input->post('q_'.$question['question_id']));
 			if($this->input->post('q_'.$question['question_id']) == $question['answer']) 
 			{
 				$score = $score + 1;
 			}
 		}
 
-		print_r($score);
+		$description = $this->interpret($score);
+		$this->compute($score, $description, $examtype_id);
 	}
 
 	public function manchester() {
@@ -31,95 +94,97 @@ class Check_answer extends CI_Controller {
 		{
 			for($i = 1; $i <= 15; $i++)
 			{
-				if($this->input->post('manchester_q'.$q_no) == "A") 
+				if($this->input->post('manchester_q'.$i) == "A") 
 				{
 					$mpq["$i"] = 5;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "B")
+				else if($this->input->post('manchester_q'.$i) == "B")
 				{
 					$mpq["$i"] = 4;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "C")
+				else if($this->input->post('manchester_q'.$i) == "C")
 				{
 					$mpq["$i"] = 3;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "D")
+				else if($this->input->post('manchester_q'.$i) == "D")
 				{
 					$mpq["$i"] = 2;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "E")
+				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 1;
 				}
-			}
 
+			}
 			for($i = 16; $i <= 30; $i++)
 			{
-				if($this->input->post('manchester_q'.$q_no) == "A") 
+				if($this->input->post('manchester_q'.$i) == "A") 
 				{
 					$mpq["$i"] = 1;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "B")
+				else if($this->input->post('manchester_q'.$i) == "B")
 				{
 					$mpq["$i"] = 2;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "C")
+				else if($this->input->post('manchester_q'.$i) == "C")
 				{
 					$mpq["$i"] = 3;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "D")
+				else if($this->input->post('manchester_q'.$i) == "D")
 				{
 					$mpq["$i"] = 4;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "E")
+				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 5;
 				}
+
 			}
 
 			for($i = 31; $i <= 45; $i++)
 			{
-				if($this->input->post('manchester_q'.$q_no) == "A") 
+				if($this->input->post('manchester_q'.$i) == "A") 
 				{
 					$mpq["$i"] = 5;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "B")
+				else if($this->input->post('manchester_q'.$i) == "B")
 				{
 					$mpq["$i"] = 4;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "C")
+				else if($this->input->post('manchester_q'.$i) == "C")
 				{
 					$mpq["$i"] = 3;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "D")
+				else if($this->input->post('manchester_q'.$i) == "D")
 				{
 					$mpq["$i"] = 2;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "E")
+				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 1;
 				}
+
 			}
 
 			for($i = 46; $i <= 60; $i++)
 			{
-				if($this->input->post('manchester_q'.$q_no) == "A") 
+				if($this->input->post('manchester_q'.$i) == "A") 
 				{
 					$mpq["$i"] = 1;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "B")
+				else if($this->input->post('manchester_q'.$i) == "B")
 				{
 					$mpq["$i"] = 2;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "C")
+				else if($this->input->post('manchester_q'.$i) == "C")
 				{
 					$mpq["$i"] = 3;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "D")
+				else if($this->input->post('manchester_q'.$i) == "D")
 				{
 					$mpq["$i"] = 4;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "E")
+				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 5;
 				}
@@ -127,53 +192,53 @@ class Check_answer extends CI_Controller {
 
 			for($i = 61; $i <= 75; $i++)
 			{
-				if($this->input->post('manchester_q'.$q_no) == "A") 
+				if($this->input->post('manchester_q'.$i) == "A") 
 				{
 					$mpq["$i"] = 5;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "B")
+				else if($this->input->post('manchester_q'.$i) == "B")
 				{
 					$mpq["$i"] = 4;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "C")
+				else if($this->input->post('manchester_q'.$i) == "C")
 				{
 					$mpq["$i"] = 3;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "D")
+				else if($this->input->post('manchester_q'.$i) == "D")
 				{
 					$mpq["$i"] = 2;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "E")
+				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 1;
 				}
+
 			}
 
 			for($i = 76; $i <= 90; $i++)
 			{
-				if($this->input->post('manchester_q'.$q_no) == "A") 
+				if($this->input->post('manchester_q'.$i) == "A") 
 				{
 					$mpq["$i"] = 1;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "B")
+				else if($this->input->post('manchester_q'.$i) == "B")
 				{
 					$mpq["$i"] = 2;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "C")
+				else if($this->input->post('manchester_q'.$i) == "C")
 				{
 					$mpq["$i"] = 3;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "D")
+				else if($this->input->post('manchester_q'.$i) == "D")
 				{
 					$mpq["$i"] = 4;
 				}
-				else if($this->input->post('manchester_q'.$q_no) == "E")
+				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 5;
-				}
-
+				}	
 			}
-			$q_no++;
+			print_r($mpq);
 		}
 
 		$primaryDimensions = array();
@@ -185,6 +250,7 @@ class Check_answer extends CI_Controller {
 			for($x = $y; $x <= 90; $x = $x + 15)
 			{	
 				$sum =  $sum + $mpq[$x];
+				
 			}
 
 			if($y == 1)
@@ -792,8 +858,6 @@ class Check_answer extends CI_Controller {
 			}
 		}
 		print_r($primaryDimensions);
-
-
 		$bigFive = array();
 
 		$bigFive["f1"] = ((3 * $primaryDimensions["S1"]) + (3 * $primaryDimensions["S2"]) + (3 * $primaryDimensions["S3"]) + (2 * $primaryDimensions["S4"]) + 
@@ -804,209 +868,258 @@ class Check_answer extends CI_Controller {
 		$bigFive["f5"] = ((5 * $primaryDimensions["S13"]) - (2 * $primaryDimensions["S6"]) - (6 * $primaryDimensions["S14"])) + 72;
 		print_r($bigFive);
 
+		$factors = array();
 		if($bigFive["f1"] >= 0 && $bigFive["f1"] <= 16)
 		{
-
+			$factors['Creativity'] = 1;
 		}
 		else if($bigFive["f1"] >= 17 && $bigFive["f1"] <= 25)
 		{
-
+			$factors['Creativity'] = 2;
 		}
 		else if($bigFive["f1"] >= 26 && $bigFive["f1"] <= 35)
 		{
-			
+			$factors['Creativity'] = 3;
 		}
 		else if($bigFive["f1"] >= 36 && $bigFive["f1"] <= 44)
 		{
-			
+			$factors['Creativity'] = 4;
 		}
 		else if($bigFive["f1"] >= 45 && $bigFive["f1"] <= 54)
 		{
-			
+			$factors['Creativity'] = 5;
 		}
 		else if($bigFive["f1"] >= 55 && $bigFive["f1"] <= 63)
 		{
-			
+			$factors['Creativity'] = 6;
 		}
 		else if($bigFive["f1"] >= 64 && $bigFive["f1"] <= 73)
 		{
-			
+			$factors['Creativity'] = 7;
 		}
 		else if($bigFive["f1"] >= 74 && $bigFive["f1"] <= 82)
 		{
-			
+			$factors['Creativity'] = 8;
 		}
 		else if($bigFive["f1"] >= 83 && $bigFive["f1"] <= 92)
 		{
-			
+			$factors['Creativity'] = 9;
 		}
 		else if($bigFive["f1"] >= 93)
 		{
-			
+			$factors['Creativity'] = 10;
 		}
 
 		if($bigFive["f2"] >= 0 && $bigFive["f2"] <= 24)
 		{
-
+			$factors['Agreeableness'] = 1;
 		}
 		else if($bigFive["f2"] >= 25 && $bigFive["f2"] <= 31)
 		{
-
+			$factors['Agreeableness'] = 2;
 		}
 		else if($bigFive["f2"] >= 32 && $bigFive["f2"] <= 39)
 		{
-			
+			$factors['Agreeableness'] = 3;
 		}
 		else if($bigFive["f2"] >= 40 && $bigFive["f2"] <= 47)
 		{
-			
+			$factors['Agreeableness'] = 4;
 		}
 		else if($bigFive["f2"] >= 48 && $bigFive["f2"] <= 54)
 		{
-			
+			$factors['Agreeableness'] = 5;
 		}
 		else if($bigFive["f2"] >= 55 && $bigFive["f2"] <= 62)
 		{
-			
+			$factors['Agreeableness'] = 6;
 		}
 		else if($bigFive["f2"] >= 63 && $bigFive["f2"] <= 70)
 		{
-			
+			$factors['Agreeableness'] = 7;
 		}
 		else if($bigFive["f2"] >= 71 && $bigFive["f2"] <= 77)
 		{
-			
+			$factors['Agreeableness'] = 8;
 		}
 		else if($bigFive["f2"] >= 78 && $bigFive["f2"] <= 85)
 		{
-			
+			$factors['Agreeableness'] = 9;
 		}
 		else if($bigFive["f2"] >= 86)
 		{
-			
+			$factors['Agreeableness'] = 10;
 		}
 
 		if($bigFive["f3"] >= 0 && $bigFive["f3"] <= 16)
 		{
-
+			$factors['Achievement'] = 1;
 		}
 		else if($bigFive["f3"] >= 17 && $bigFive["f3"] <= 25)
 		{
-
+			$factors['Achievement'] = 2;
 		}
 		else if($bigFive["f3"] >= 26 && $bigFive["f3"] <= 35)
 		{
-			
+			$factors['Achievement'] = 3;
 		}
 		else if($bigFive["f3"] >= 36 && $bigFive["f3"] <= 44)
 		{
-			
+			$factors['Achievement'] = 4;
 		}
 		else if($bigFive["f3"] >= 45 && $bigFive["f3"] <= 54)
 		{
-			
+			$factors['Achievement'] = 5;
 		}
 		else if($bigFive["f3"] >= 55 && $bigFive["f3"] <= 63)
 		{
-			
+			$factors['Achievement'] = 6;
 		}
 		else if($bigFive["f3"] >= 64 && $bigFive["f3"] <= 73)
 		{
-			
+			$factors['Achievement'] = 7;
 		}
 		else if($bigFive["f3"] >= 74 && $bigFive["f3"] <= 82)
 		{
-			
+			$factors['Achievement'] = 8;
 		}
 		else if($bigFive["f3"] >= 83 && $bigFive["f3"] <= 92)
 		{
-			
+			$factors['Achievement'] = 9;
 		}
 		else if($bigFive["f3"] >= 93)
 		{
-			
+			$factors['Achievement'] = 10;
 		}
 
 		if($bigFive["f4"] >= 0 && $bigFive["f4"] <= 20)
 		{
-
+			$factors['Extroversion'] = 1;
 		}
 		else if($bigFive["f4"] >= 21 && $bigFive["f4"] <= 28)
 		{
-
+			$factors['Extroversion'] = 2;
 		}
 		else if($bigFive["f4"] >= 29 && $bigFive["f4"] <= 37)
 		{
-			
+			$factors['Extroversion'] = 3;
 		}
 		else if($bigFive["f4"] >= 38 && $bigFive["f4"] <= 45)
 		{
-			
+			$factors['Extroversion'] = 4;
 		}
 		else if($bigFive["f4"] >= 46 && $bigFive["f4"] <= 54)
 		{
-			
+			$factors['Extroversion'] = 5;
 		}
 		else if($bigFive["f4"] >= 55 && $bigFive["f4"] <= 62)
 		{
-			
+			$factors['Extroversion'] = 6;
 		}
 		else if($bigFive["f4"] >= 63 && $bigFive["f4"] <= 71)
 		{
-			
+			$factors['Extroversion'] = 7;
 		}
 		else if($bigFive["f4"] >= 72 && $bigFive["f4"] <= 79)
 		{
-			
+			$factors['Extroversion'] = 8;
 		}
 		else if($bigFive["f4"] >= 80 && $bigFive["f4"] <= 88)
 		{
-			
+			$factors['Extroversion'] = 9;
 		}
 		else if($bigFive["f4"] >= 89)
 		{
-			
+			$factors['Extroversion'] = 10;
 		}
 
-		if($bigFive["f4"] >= 0 && $bigFive["f4"] <= 19)
+		if($bigFive["f5"] >= 0 && $bigFive["f5"] <= 19)
 		{
+			$factors['Resilience'] = 1;
+		}
+		else if($bigFive["f5"] >= 20 && $bigFive["f5"] <= 28)
+		{
+			$factors['Resilience'] = 2;
+		}
+		else if($bigFive["f5"] >= 29 && $bigFive["f5"] <= 37)
+		{
+			$factors['Resilience'] = 3;
+		}
+		else if($bigFive["f5"] >= 38 && $bigFive["f5"] <= 46)
+		{
+			$factors['Resilience'] = 4;
+		}
+		else if($bigFive["f5"] >= 47 && $bigFive["f5"] <= 54)
+		{
+			$factors['Resilience'] = 5;
+		}
+		else if($bigFive["f5"] >= 55 && $bigFive["f5"] <= 63)
+		{
+			$factors['Resilience'] = 6;
+		}
+		else if($bigFive["f5"] >= 64 && $bigFive["f5"] <= 72)
+		{
+			$factors['Resilience'] = 7;
+		}
+		else if($bigFive["f5"] >= 78 && $bigFive["f5"] <= 80)
+		{
+			$factors['Resilience'] = 8;
+		}
+		else if($bigFive["f5"] >= 81 && $bigFive["f5"] <= 89)
+		{
+			$factors['Resilience'] = 9;
+		}
+		else if($bigFive["f5"] >= 90 )
+		{
+			$factors['Resilience'] = 10;
+		}
+		print_r($factors);
 
-		}
-		else if($bigFive["f4"] >= 20 && $bigFive["f4"] <= 28)
-		{
-
-		}
-		else if($bigFive["f4"] >= 29 && $bigFive["f4"] <= 37)
-		{
-			
-		}
-		else if($bigFive["f4"] >= 38 && $bigFive["f4"] <= 46)
-		{
-			
-		}
-		else if($bigFive["f4"] >= 47 && $bigFive["f4"] <= 54)
-		{
-			
-		}
-		else if($bigFive["f4"] >= 55 && $bigFive["f4"] <= 63)
-		{
-			
-		}
-		else if($bigFive["f4"] >= 64 && $bigFive["f4"] <= 72)
-		{
-			
-		}
-		else if($bigFive["f4"] >= 78 && $bigFive["f4"] <= 80)
-		{
-			
-		}
-		else if($bigFive["f4"] >= 81 && $bigFive["f4"] <= 89)
-		{
-			
-		}
-		else if($bigFive["f4"] >= 90 )
-		{
-			
+		$session_data = $this->session->userdata('logged_in');
+		$app_id = $session_data['app_id'];
+		$manchester_data = array();
+		foreach($factors as $factor => $score) {
+			if($score == 1)
+			{
+				$remarks = "Very Low";
+			}
+			else if ($score == 2)
+			{
+				$remarks = "Low";
+			}
+			else if ($score == 3)
+			{
+				$remarks = "Below Average";
+			}
+			else if ($score == 4)
+			{
+				$remarks = "Low Average";
+			}
+			else if ($score == 5)
+			{
+				$remarks = "Average";
+			}
+			else if ($score == 6)
+			{
+				$remarks = "High Average";
+			}
+			else if ($score == 7)
+			{
+				$remarks = "Above Average";
+			}
+			else if ($score == 8)
+			{
+				$remarks == Superior;
+			}
+			else if ($score == 9)
+			{
+				$remarks = "Very Superior";
+			}
+			$manchester_data = array(
+				'score' => $score,
+				'remarks' => $remarks
+			);
+			$this->examination_model->saveManchester($app_id, $factor,$manchester_data);
 		}
 	}
 }

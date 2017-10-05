@@ -91,11 +91,11 @@ ul li {
 											</label>
 											<br />
 											<div class="radio">
-												<ol type="1">
+												<ol type="a">
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" checked>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A">
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
