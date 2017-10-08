@@ -41,6 +41,7 @@
 							<div class="col-lg-12">
 								<div class="row" >
 									<form method="post" action="<?= site_url('hr/check_answer/technical')?>" >
+										<input type="hidden" name="examtype_id" value="4" />
 										<?php foreach($result as $r) { ?>
 										<div class="questions col-lg-6" >
 											<br/>
@@ -53,13 +54,13 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="number_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required checked>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="number_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>" required>
 																<?php echo $r['option2'];?>
 															</label>
 														</li>
@@ -67,13 +68,13 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="number_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>" required>
 																<?php echo $r['option3'];?>
 															</label>
 														</li>	
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="number_q<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>" required>
 																<?php echo $r['option4'];?>
 															</label>
 														</li>

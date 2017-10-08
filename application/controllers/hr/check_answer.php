@@ -5,15 +5,15 @@ class Check_answer extends CI_Controller {
 		$this->load->model('examination_model');
 	}
 
-	public function compute($score, $description, $examtype_id)
+	public function compute($score, $remarks, $examtype_id)
 	{
 		$session_data = $this->session->userdata('logged_in');
 		$app_id = $session_data['app_id'];
 		$computeScore = array(
 			'score' => $score,
-			'description' => $description
+			'remarks' => $remarks
 		);
-		$this->examination_model->saveScore($computeScore,$app_id, $examtype_id);
+		return $this->examination_model->saveScore($computeScore,$app_id, $examtype_id);
 	}
 
 	public function saveAns($question_id, $app_answer) {
@@ -67,6 +67,56 @@ class Check_answer extends CI_Controller {
 		}
 		return $description;
 	}
+	public function checkIfTakenManchester() {
+		$session_data = $this->session->userdata('logged_in');
+		$app_id = $session_data['app_id'];
+		$citm = $this->examination_model->checkIfTakenManchester($app_id);
+		if($citm) {
+			return true;
+			redirect('applicant/examination/manchester', 'refresh');
+		}
+		else
+		{
+			return false;
+			redirect('applicant/examination/index', 'refresh');
+		}
+	}
+
+	public function checkIfTakenExam($examtype_id) {
+		$session_data = $this->session->userdata('logged_in');
+		$app_id = $session_data['app_id'];
+		$cite = $this->examination_model->checkIfTakenExam($app_id, $examtype_id);
+		if($cite) {
+			switch ($examtype_id) {
+				case 1:
+				redirect('applicant/examination/reasoning', 'refresh');
+				break;
+				case 2:
+				redirect('applicant/examination/letterseries', 'refresh');
+				break;
+				case 3:
+				redirect('applicant/examination/numberability', 'refresh');
+				break;
+				case 4:
+				redirect('applicant/examination/ipiaptitude', 'refresh');
+				break;
+				case 6:
+				redirect('applicant/examination/essay', 'refresh');
+				break;
+				case 7:
+				redirect('applicant/examination/reasoning', 'refresh');
+				break;
+				default:
+				redirect('applicant/examination/index', 'refresh');
+			}
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
 	public function technical() {
 		$score = 0;
 		$examtype_id = $this->input->post('examtype_id');
@@ -79,10 +129,14 @@ class Check_answer extends CI_Controller {
 			{
 				$score = $score + 1;
 			}
-		}
 
+		}
 		$description = $this->interpret($score);
-		$this->compute($score, $description, $examtype_id);
+		if($this->compute($score, $description, $examtype_id)) {
+			$this->checkIfTakenExam($examtype_id);
+		} else {
+			console.log("error in computation");
+		}
 	}
 
 	public function manchester() {
@@ -238,7 +292,6 @@ class Check_answer extends CI_Controller {
 					$mpq["$i"] = 5;
 				}	
 			}
-			print_r($mpq);
 		}
 
 		$primaryDimensions = array();
@@ -246,13 +299,10 @@ class Check_answer extends CI_Controller {
 		for($y = 1; $y <= 15; $y++)
 		{	
 			$sum = 0;
-			echo $y."<hr/>";
 			for($x = $y; $x <= 90; $x = $x + 15)
 			{	
-				$sum =  $sum + $mpq[$x];
-				
+				$sum =  $sum + $mpq[$x];	
 			}
-
 			if($y == 1)
 			{
 				if($sum >= 0 && $sum <=11) 
@@ -857,7 +907,6 @@ class Check_answer extends CI_Controller {
 				}
 			}
 		}
-		print_r($primaryDimensions);
 		$bigFive = array();
 
 		$bigFive["f1"] = ((3 * $primaryDimensions["S1"]) + (3 * $primaryDimensions["S2"]) + (3 * $primaryDimensions["S3"]) + (2 * $primaryDimensions["S4"]) + 
@@ -866,7 +915,6 @@ class Check_answer extends CI_Controller {
 		$bigFive["f3"] = ((2 * $primaryDimensions["S8"]) + (4 * $primaryDimensions["S10"]) + (4 * $primaryDimensions["S11"]) + (4 * $primaryDimensions["S12"]) + (2 * $primaryDimensions["S13"])) - 38;
 		$bigFive["f4"] = ((2 * $primaryDimensions["S5"]) + (6 * $primaryDimensions["S7"]) - (3 * $primaryDimensions["S8"]) - (3 * $primaryDimensions["S9"])) + 43;
 		$bigFive["f5"] = ((5 * $primaryDimensions["S13"]) - (2 * $primaryDimensions["S6"]) - (6 * $primaryDimensions["S14"])) + 72;
-		print_r($bigFive);
 
 		$factors = array();
 		if($bigFive["f1"] >= 0 && $bigFive["f1"] <= 16)
@@ -1073,7 +1121,6 @@ class Check_answer extends CI_Controller {
 		{
 			$factors['Resilience'] = 10;
 		}
-		print_r($factors);
 
 		$session_data = $this->session->userdata('logged_in');
 		$app_id = $session_data['app_id'];
@@ -1119,7 +1166,10 @@ class Check_answer extends CI_Controller {
 				'score' => $score,
 				'remarks' => $remarks
 			);
-			$this->examination_model->saveManchester($app_id, $factor,$manchester_data);
+			$result = $this->examination_model->saveManchester($app_id, $factor,$manchester_data);
+		}
+		if($result) {
+			redirect('applicant/examination/essay', 'refresh');
 		}
 	}
 }

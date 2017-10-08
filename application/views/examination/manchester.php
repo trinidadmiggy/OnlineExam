@@ -95,7 +95,7 @@ ul li {
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A">
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" checked>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>

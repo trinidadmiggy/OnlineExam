@@ -51,7 +51,7 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>">
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" checked>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>

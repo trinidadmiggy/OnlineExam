@@ -46,7 +46,7 @@
 											<ol type="1">
 												<li>
 													<label>
-														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
+														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" checked>
 														<?php echo $r['option1'];?>
 													</label>
 												</li>
