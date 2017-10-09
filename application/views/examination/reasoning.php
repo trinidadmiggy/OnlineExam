@@ -25,12 +25,6 @@
 						</h5>
 					</div>
 					<div class="box-body">
-						<a href="reasoning">2</a>
-						<a href="letterseries">3</a>
-						<a href="numberability">4</a>
-						<a href="ipiaptitude">5</a>
-						<a href="manchester">6</a>
-						<a href="essay">7</a>
 						<div class="container-fluid">
 							<div class="col-lg-12">
 								<div class="row">

@@ -4,7 +4,7 @@
   </div>
   <div class="login-box-body">
     <?php session_destroy(); echo validation_errors(); ?>
-    <form method="POST" action="<?= site_url('login')?>">
+    <form class="login-form" method="POST" action="<?= site_url('login')?>">
       <div class="form-group has-feedback">
         <input type="email" name="email" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon glyphicon-user form-control-feedback"></span>

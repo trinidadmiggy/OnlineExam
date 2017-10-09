@@ -100,22 +100,17 @@ class Check_answer extends CI_Controller {
 				case 4:
 				redirect('applicant/examination/ipiaptitude', 'refresh');
 				break;
+				case 5:
+				redirect('applicant/examination/manchester', 'refresh');
+				break;
 				case 6:
 				redirect('applicant/examination/essay', 'refresh');
-				break;
-				case 7:
-				redirect('applicant/examination/reasoning', 'refresh');
 				break;
 				default:
 				redirect('applicant/examination/index', 'refresh');
 			}
 			return true;
 		}
-		else
-		{
-			return false;
-		}
-
 	}
 	public function technical() {
 		$score = 0;
@@ -129,16 +124,40 @@ class Check_answer extends CI_Controller {
 			{
 				$score = $score + 1;
 			}
-
 		}
 		$description = $this->interpret($score);
 		if($this->compute($score, $description, $examtype_id)) {
 			$this->checkIfTakenExam($examtype_id);
-		} else {
-			console.log("error in computation");
-		}
+		} 
 	}
 
+	public function essay() {
+		$session_data = $this->session->userdata('logged_in');
+		$app_id = $session_data['app_id'];
+		$examtype_id = $this->input->post('examtype_id');
+		$questions = $this->examination_model->getQuestion($examtype_id);
+
+		foreach($questions as $question)
+		{
+			$success= true;
+			$essay = array(
+				'answer' =>  $this->input->post('essay_'.$question['question_id'])
+			);
+			if($this->examination_model->saveEssay($app_id, $question['question_id'], $essay)) {
+				$success= true;
+			}
+			else
+			{
+				$success= false;
+				break;
+			}
+		}
+		if($success) {
+			redirect('applicant/examination/thankyou', 'refresh');
+		} else {
+			print_r("Error");
+		}
+	}
 	public function manchester() {
 		$score = 0;
 		$q_no=1;
@@ -192,7 +211,6 @@ class Check_answer extends CI_Controller {
 				{
 					$mpq["$i"] = 5;
 				}
-
 			}
 
 			for($i = 31; $i <= 45; $i++)

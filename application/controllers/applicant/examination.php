@@ -23,12 +23,10 @@ class Examination extends CI_Controller{
 		$citm = $this->examination_model->checkIfTakenManchester($app_id);
 		if($citm) {
 			return true;
-			redirect('applicant/examination/manchester', 'refresh');
 		}
 		else
 		{
-			return false;
-			redirect('applicant/examination/index', 'refresh');
+			redirect('applicant/examination/essay', 'refresh');
 		}
 	}
 
@@ -68,7 +66,7 @@ class Examination extends CI_Controller{
 			'app_id' => $this->app_id,
 			'examtype_id' => $examtype_id	
 		);
-		$this->examination_model->takeTechnical($takeTechnical);
+		$this->examination_model->takeTechnical($takeTechnical, $this->app_id, $examtype_id);
 	}
 
 //////////////////
@@ -151,7 +149,7 @@ class Examination extends CI_Controller{
 					'app_id' => $app_id,
 					'factor' => $factor
 				);
-				$this->examination_model->takeManchester($startManchester);
+				$this->examination_model->takeManchester($startManchester, $app_id);
 			}
 
 			$data['result'] = $this->examination_model->getQuestion($id);
@@ -162,11 +160,40 @@ class Examination extends CI_Controller{
 	}
 	public function essay(){
 		$id = 7;
-		$data['result'] = $this->examination_model->getQuestion($id);
-		$this->load->view('examination/includes/header',$this->getSession());
-		$this->load->view('examination/essay', $data);
+		$session_data = $this->session->userdata('logged_in');
+		$app_id = $session_data['app_id'];
+		
+		if($this->examination_model->checkIfTakenEssay($app_id)) {
+			$data['result'] = $this->examination_model->getQuestion($id);
+
+			foreach($data['result'] as $essay)
+			{
+				$startEssay = array(
+					'app_id' => $app_id,
+					'question_id' => $essay['question_id']
+				);
+				$this->examination_model->takeEssay($startEssay, $app_id);
+			}
+			$this->load->view('examination/includes/header',$this->getSession());
+			$this->load->view('examination/essay', $data);
+			$this->load->view('examination/includes/footer');
+		} else {
+			redirect('applicant/examination/thankyou', 'refresh');
+		}
+
+	}
+
+	public function thankyou(){
+		$this->load->view('examination/includes/header');
+		$this->load->view('examination/thank_you');
 		$this->load->view('examination/includes/footer');
-		$this->takeTechnical($id);
+	}
+
+	public function appans(){
+		$session_data = $this->session->userdata('logged_in');
+		$app_id = $session_data['app_id'];
+		$data['answers'] = $this->examination_model->getAnswers($app_id);
+		$this->load->view('examination/appans', $data);
 	}
 }
 

@@ -43,7 +43,7 @@
 						<a href="ipiaptitude">5</a>
 						<a href="manchester">6</a>
 						<a href="essay">7</a>
-						<form method="post"  action="<?= site_url('hr/check_answer/technical')?>">
+						<form method="post"  action="<?= site_url('hr/check_answer/essay')?>">
 							<input type="hidden" name="examtype_id" value="7" />
 							<?php $essay = array(); ?>
 							<?php $no = 1; foreach($result as $r) { ?>
@@ -57,19 +57,13 @@
 							<input type="submit" class="btn btn-primary pull-right" value="Submit" />
 						</form>
 					</div>
-					<div class="box-footer box-comments">
-						<div class="box-comment">
-							<div class="sra">
-								<span class="license-border">S</span>
-								<span class="license-border">R</span>
-								<span class="license-border">A</span>
-							</div>
-							<div class="license-text" style="border-left:2px solid black;height:32px">
-								PRINTED UNDER LICENSE OF SCIENCE RESEARCH ASSOCIATES INC. COPYRIGHT 1964, SCIENCE RESEARCH INC. 259 EAST ERIE, CHICAGO ILLINOIS 60611. ALL RIGHTS RESERVED. Printed in the Philippines.
-							</div>
-						</div>
-					</div>
 				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="direct-chat-text pull-left follow-scroll" style="margin: 0;">
+					<span class="info-box-number" id="time"></span>
+				</div>
+				<input type="hidden" id="timeValue" value="15"/>
 			</div>
 		</div>
 	</section>
