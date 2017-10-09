@@ -117,20 +117,6 @@
 		display: none;
 	}
 	.page-break	{ display: block; page-break-before: always; }
-	.bg-danger {
-		background-color: #f2dede !important;
-		-webkit-print-color-adjust:exact;
-	}
-
-
-
-	.bg-success {
-		background-color: #dff0d8 !important;
-		-webkit-print-color-adjust:exact;
-	}
-
-
-
 }
 
 @media print {
