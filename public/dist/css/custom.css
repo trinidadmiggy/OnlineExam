@@ -1,3 +1,16 @@
+.widget {
+	position: relative;
+	margin-bottom: 1.875rem;
+	padding: 15px 20px;
+	background: #fff;
+	border-radius: 0.2rem;
+}
+
+.form-control-label {
+	padding: 0.375rem 0.75rem;
+	margin-bottom: 0;
+}
+
 .multiplechoice {
 	-moz-column-count: 2;
 	-webkit-column-count: 2;
