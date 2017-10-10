@@ -102,6 +102,7 @@
                 $('#jobTitle').val(data[0].job_title);  
                 $('#jobDesc').val(data[0].job_description);  
                 $('#image').attr('src', '<?=base_url()?>'+ data[0].image);
+                $('#jobImage').val(data[0].image);  
                 $('#status').val(data[0].status);   
                 $('#job_id').val(data[0].job_id);  
                 $('#insert').val("Update");  
