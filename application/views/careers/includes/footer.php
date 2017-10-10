@@ -44,7 +44,6 @@
 
 	$(document).ready(function () {
         table = $('#table').DataTable({
-
                     "processing": true, //Feature control the processing indicator.
                     "serverSide": true, //Feature control DataTables' server-side processing mode.
                     "order": [], //Initial no order.
@@ -73,27 +72,45 @@
                     },
                     { "data": "status" },
                     {
+                        "data": "job_id",
                         "orderable": false, 
                         "render": function (data, type, row) {
-                         return "<button type='button' id='button2' class='btn btn-sm btn-warning' title='Edit'><i class='fa fa-edit'></i></button>";
+                         return "<button type='button' id='"+ data +"' class='btn btn-sm btn-warning edit-job' title='Edit'><i class='fa fa-edit'></i></button>";
                      }
                  },
                  {
+                    "data": "job_id",
                     "orderable": false, 
                     "render": function (data, type, row) {
-                     return "<button runat='server' type='button' class='btn btn-sm btn-danger' title='Archive'><i class='fa fa-trash'></i></button>";
+                     return "<button runat='server' type='button' id='"+ data +"' class='btn btn-sm btn-danger' title='Archive'><i class='fa fa-trash'></i></button>";
                  }
              },
              ]
-
          });
     });
 
 </script>
 <script type="text/javascript">
-    $('#table tbody').on( 'click', '#button2', function () {
-        var data = table.row( $(this).parents('tr') ).data();
-        alert( data[0] +"'s salary is: "+ data[ 1 ] );
+    $('#table tbody').on( 'click', '.edit-job', function () {
+        var job_id = $(this).attr("id");
+        $.ajax({
+            url: "<?php echo site_url('hr/careers/updateGetJobs') ?>",
+            method:"POST",
+            data:{job_id:job_id},
+            dataType:"json", 
+            success:function(data) {
+                $('#jobTitle').val(data[0].job_title);  
+                $('#jobDesc').val(data[0].job_description);  
+                $('#image').attr('src', '<?=base_url()?>'+ data[0].image);
+                $('#status').val(data[0].status);   
+                $('#job_id').val(data[0].job_id);  
+                $('#insert').val("Update");  
+                $('#editJob').modal('show');
+            }
+        })
+/*        var data = table.row( $(this).parents('tr') ).data();
+        alert( data.job_title +"'s salary is: "+ data.job_id );
+        $('#addJob').modal('show');*/
     } );
     $('#button1').on('click', function() {
        $('#addJob').modal('show')

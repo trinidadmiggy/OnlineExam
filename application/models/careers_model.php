@@ -58,6 +58,15 @@ class Careers_model extends CI_Model {
     	return $this->db->count_all_results();
     }
 
+    public function updateGetJob($job_id) {
+        $this->db->select('*');
+        $this->db->from('jobs');
+        $this->db->where('job_id', $job_id);
+
+        return $query = $this->db->get()->result_array();
+    }
+
+
     public function addJob($dataJob) {
         $this->db->insert('jobs',$dataJob);
         return $this->db->insert_id();

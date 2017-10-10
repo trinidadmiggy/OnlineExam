@@ -22,8 +22,12 @@ class Careers extends CI_Controller {
 		$this->load->view('careers/includes/footer');
 		
 	}
-
+	function updateGetJobs() {
+		$updateJob = $this->careers_model->updateGetJob($this->input->post('job_id'));
+		echo json_encode($updateJob);
+	}
 	function jobs() {
+		
 		$list = $this->careers_model->get_datatables();
 		$data = array();
 		$no = $_POST['start'];
