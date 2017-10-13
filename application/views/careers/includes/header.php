@@ -25,7 +25,6 @@
   	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
   	<!-- Mathjax -->
   	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-
   	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>

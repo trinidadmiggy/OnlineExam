@@ -17,6 +17,7 @@ class Examination extends CI_Controller{
 		$this->load->model('examination_model');
 
 	}
+
 	public function checkIfTakenManchester() {
 		$session_data = $this->session->userdata('logged_in');
 		$app_id = $session_data['app_id'];
@@ -78,14 +79,31 @@ class Examination extends CI_Controller{
 	}
 
 	public function verbal(){
-		$id = 1;
-		if($this->checkIfTakenExam($id) == false) {
-			$data['result'] = $this->examination_model->getQuestion($id);
-			$this->load->view('examination/includes/header',$this->getSession());
-			$this->load->view('examination/verbal_meaning', $data);
-			$this->load->view('examination/includes/footer');
-			$this->takeTechnical($id);
+		$time = $this->examination_model->getEssayTime($this->app_id);
+		foreach ($time as $ended) {
+			$time = $ended['ended'];
 		}
+		$datetime = new DateTime();
+		$datetime->add(new DateInterval('P6M'));
+		$now = $datetime->format('Y-m-d H:i:s');
+		$asd = date_create($time)->format('Y-m-d H:i:s');
+		if($now > $asd)
+		{
+			echo "<script>alert('You cannot take exam')</script>";
+			redirect('applicant/examination/index', 'refresh');
+		}
+		else
+		{
+			$id = 1;
+			if($this->checkIfTakenExam($id) == false) {
+				$data['result'] = $this->examination_model->getQuestion($id);
+				$this->load->view('examination/includes/header',$this->getSession());
+				$this->load->view('examination/verbal_meaning', $data);
+				$this->load->view('examination/includes/footer');
+				$this->takeTechnical($id);
+			}
+		}
+
 	}
 
 	public function reasoning(){
@@ -162,7 +180,7 @@ class Examination extends CI_Controller{
 		$id = 7;
 		$session_data = $this->session->userdata('logged_in');
 		$app_id = $session_data['app_id'];
-		
+
 		if($this->examination_model->checkIfTakenEssay($app_id)) {
 			$data['result'] = $this->examination_model->getQuestion($id);
 
@@ -189,12 +207,7 @@ class Examination extends CI_Controller{
 		$this->load->view('examination/includes/footer');
 	}
 
-	public function appans(){
-		$session_data = $this->session->userdata('logged_in');
-		$app_id = $session_data['app_id'];
-		$data['answers'] = $this->examination_model->getAnswers($app_id);
-		$this->load->view('examination/appans', $data);
-	}
+
 }
 
 ?>

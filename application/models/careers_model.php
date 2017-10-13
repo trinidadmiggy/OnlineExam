@@ -3,7 +3,7 @@ class Careers_model extends CI_Model {
 
 	var $table = 'jobs';
     var $column_order = array(null, 'job_title', null, 'images', 'status'); //set column field database for datatable orderable
-    var $column_search = array('job_title', 'job_description', 'images', 'status'); //set column field database for datatable searchable 
+    var $column_search = array('job_title', 'status'); //set column field database for datatable searchable 
     var $order = array('job_id' => 'desc'); // default order 
 
     public function __construct() {
@@ -58,12 +58,10 @@ class Careers_model extends CI_Model {
     	return $this->db->count_all_results();
     }
 
-    public function updateGetJob($job_id) {
-        $this->db->select('*');
-        $this->db->from('jobs');
-        $this->db->where('job_id', $job_id);
 
-        return $query = $this->db->get()->result_array();
+    public function get_job($job_id)
+    {
+        return $this->db->get_where('jobs',array('job_id'=>$job_id))->row_array();
     }
 
 
@@ -72,14 +70,15 @@ class Careers_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function updateJob() {
+    public function updateJob($job_id,$params)
+    {
         $this->db->where('job_id',$job_id);
         return $this->db->update('jobs',$params);
     }
 
-    public function archiveJob() {
-        $this->db->where('job_id',$job_id);
-        return $this->db->update('jobs',$params);
-    }
+    public function postStatus($job_id,$params) {
+       $this->db->where('job_id',$job_id);
+       return $this->db->update('jobs',$params);
+   }
 }
 ?>

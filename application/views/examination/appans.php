@@ -27,7 +27,7 @@
   	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
   	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   </head>
-  <body class="hold-transition skin-blue">
+  <body class="hold-transition skin-blue" >
   	<div class="wrapper">
   		<div class="content-wrapper">
   			<section class="content-header">

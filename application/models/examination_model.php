@@ -11,10 +11,14 @@ class Examination_model extends CI_Model {
     }
 
     public function getAnswers($app_id){
-        $this->db->select('ans.app_id, ans.question_id, ans.app_answer, qb.question, qb.examtype_id, qb.option1, qb.option2, qb.option3, qb.option4, qb.answer');
+        $this->db->select('ans.app_id, ans.question_id, ans.app_answer, qb.question, qb.examtype_id, 
+            qb.option1, qb.option2, qb.option3, qb.option4, qb.answer, at.datestarted, at.dateended, at.score, at.remarks');
         $this->db->from('applicant_answers as ans');
         $this->db->join('question_bank as qb', 'qb.question_id = ans.question_id');
+        $this->db->join('exam_type as et', 'et.examtype_id = qb.examtype_id');
+        $this->db->join('applicant_technical as at', 'at.examtype_id = et.examtype_id');
         $this->db->where('ans.app_id', $app_id);
+        $this->db->where('at.app_id', $app_id);
         return $query = $this->db->get()->result_array();
     }
 
@@ -176,7 +180,15 @@ public function checkIfTakenEssay($app_id) {
     }
 }
 
+public function getEssayTime($app_id) {
+    $this -> db -> select('app_id, ended');
+    $this -> db -> from('applicant_essay');
+    $this -> db -> where('app_id', 1);
+    $this -> db -> where('answer is NOT NULL');
+    $this->db->order_by("ended", "desc");
+    $this->db->limit(1);
 
-
+    return $query = $this->db->get()->result_array();
+}
 }
 ?>

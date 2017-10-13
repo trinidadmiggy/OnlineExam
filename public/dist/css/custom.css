@@ -107,18 +107,18 @@
 .correct:before {
 	color: green !important;
 }
-
 @media print {
-	html, body {
-		border: 1px solid white;
-		height: 99%;
-		page-break-after: avoid;
-		page-break-before: avoid;
-	}
 	@page {
-		size: letter;
+		size:A4; 
 		margin: 1.5cm;
 	}
+
+	.element::-webkit-scrollbar { width: 0 !important }
+	.no-print, .no-print *
+	{
+		display: none !important;
+	}
+
 	.wrong:before {
 		color: red !important;
 	}
@@ -126,10 +126,25 @@
 	.correct:before {
 		color: green !important;
 	}
+	.bg-danger {
+		background-color: #f2dede !important;
+		-webkit-print-color-adjust: exact;
+	}
+	.bg-success {
+		background-color: #dff0d8 !important;
+		-webkit-print-color-adjust: exact;
+	}
 	header nav, footer {
 		display: none;
 	}
-	.page-break	{ display: block; page-break-before: always; }
+	h3 {
+		margin: 0px;
+	}
+	.page-break	{ 
+		display: block; 
+		page-break-before: always;
+		padding: 5px; 
+	}
 }
 
 @media print {
@@ -146,14 +161,13 @@
 		margin: 0;
 		padding: 0;
 	}
-	.table,
-	.table td,
-	.table th {
-		background: #fff !important;
-		border: none !important;
+	.table {
+		background-color: transparent;
+		border-spacing: 0;
+		border-collapse: collapse;
 	}
-	.table td {
-		border-top: 1px solid #999999 !important;
+	.table-bordered {
+		border: 1px solid black;
 	}
 	.hidden-print {
 		display: none !important;

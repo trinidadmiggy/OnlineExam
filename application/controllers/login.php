@@ -28,7 +28,7 @@ class Login extends CI_Controller
    } else if($this->level == "hr") {
 
    }
-   redirect('hr/asdasd', 'refresh');
+   redirect('hr/careers', 'refresh');
  }
 
 }

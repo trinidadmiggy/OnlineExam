@@ -15,6 +15,8 @@
 <script src="<?=base_url()?>public/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url()?>public/dist/js/demo.js"></script>
+
+
 <!-- page script -->
 <script>
  (function($) {
@@ -41,7 +43,6 @@
 
 <script type="text/javascript">
 	var table;
-
 	$(document).ready(function () {
         table = $('#table').DataTable({
                     "processing": true, //Feature control the processing indicator.
@@ -62,12 +63,13 @@
                     { 
                         "data": "job_description",
                         "orderable": false, 
+                        "width": "50%"  
                     },
                     { 
                         "data": "image",
                         "orderable": false,
                         "render": function ( data, type, row ) {
-                            return "<img src='<?=base_url()?>"+ data + "' alt='no image' class='img-rounded' width='100' />";
+                            return "<img src='<?=base_url()?>"+ data + "' alt='no image' onError=this.onerror=null;this.src='<?=base_url()?>public/dist/img/no-image.jpg' class='img-rounded' width='100' />";  
                         }
                     },
                     { "data": "status" },
@@ -82,13 +84,12 @@
                     "data": "job_id",
                     "orderable": false, 
                     "render": function (data, type, row) {
-                     return "<button runat='server' type='button' id='"+ data +"' class='btn btn-sm btn-danger' title='Archive'><i class='fa fa-trash'></i></button>";
-                 }
-             },
-             ]
-         });
+                        return "<button runat='server' type='button' id='"+ data +"' class='btn btn-sm btn-danger post-job' onClick='window.location.reload()' title='Archive'><i class='fa fa-share-square-o'></i></button>";
+                    }
+                },
+                ]
+            });
     });
-
 </script>
 <script type="text/javascript">
     $('#table tbody').on( 'click', '.edit-job', function () {
@@ -99,23 +100,105 @@
             data:{job_id:job_id},
             dataType:"json", 
             success:function(data) {
-                $('#jobTitle').val(data[0].job_title);  
-                $('#jobDesc').val(data[0].job_description);  
-                $('#image').attr('src', '<?=base_url()?>'+ data[0].image);
-                $('#jobImage').val(data[0].image);  
-                $('#status').val(data[0].status);   
-                $('#job_id').val(data[0].job_id);  
+                $('#jobTitle').val(data.job_title);  
+                $('#jobDesc').val(data.job_description);  
+                $('#image').attr('src', '<?=base_url()?>'+ data.image);
+                $('#jobImagePath').val(data.image);  
+                $('#status').val(data.status);   
+                $('#job_id').val(data.job_id);  
                 $('#insert').val("Update");  
                 $('#editJob').modal('show');
             }
         })
-/*        var data = table.row( $(this).parents('tr') ).data();
-        alert( data.job_title +"'s salary is: "+ data.job_id );
-        $('#addJob').modal('show');*/
-    } );
-    $('#button1').on('click', function() {
-       $('#addJob').modal('show')
-   });
+    });
+    $('#table tbody').on( 'click', '.post-job', function () {
+        var job_id = $(this).attr("id");
+        var data = table.row( $(this).parents('tr') ).data();
+        var status = $('#status').val
+        $.ajax({
+            url: "<?php echo site_url('hr/careers/postStatus') ?>",
+            method:"POST",
+            data:{job_id:job_id, status:data.status},
+            dataType:"json"
+        })
+    });
 </script>
+
+
+
+
+<script type="text/javascript">
+    var tbl;
+    $(document).ready(function () {
+        tbl = $('#app_exams').DataTable({
+                    "processing": true, //Feature control the processing indicator.
+                    "serverSide": true, //Feature control DataTables' server-side processing mode.
+                    "order": [], //Initial no order.
+
+                    // Load data for the table's content from an Ajax source
+                    "ajax": {
+                        "url": "<?php echo site_url('hr/app_exams/getApplicant') ?>",
+                        "type": "POST", 
+                    },
+
+                    "columns": [
+                    { 
+                        "data": "app_id",
+                        "orderable": false, 
+                        "visible": false,
+                    },
+                    {
+                        "data": "app_id",
+                        "orderable": false, 
+                        "render": function (data, type, row) {
+                            return "<button type='button' id='"+ data +"' class='btn btn-sm btn-primary app_details' title='Applicant Details'><i class='fa fa-info'></i></button>";
+                        }
+                    },
+                    { 
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return data.lname +",  "+ data.fname +" "+ data.mname;
+                        }
+                    },
+                    {
+                        "data": "app_id",
+                        "orderable": false, 
+                        "render": function (data, type, row) {
+                            return "<button type='button' id='"+ data +"' class='btn btn-sm btn-secondary view-exam' title='View Exam'><i class='fa fa-print'></i></button>";
+                        }
+                    },
+                    ]
+                });
+
+
+    });
+</script>
+<script>
+    $('#app_exams tbody').on( 'click', '.app_details', function () {
+        var app_id = $(this).attr("id");
+        $.ajax({
+            url: "<?php echo site_url('hr/app_exams/getAppDetails') ?>",
+            method:"POST",
+            data:{app_id:app_id},
+            dataType:"json", 
+            success:function(data) {
+                $('#name').val(data.lname +", "+ data.fname +" "+ data.mname);
+                $('#birthdate').val(data.birthdate);  
+                $('#address').val(data.address);
+                $('#contact').val(data.mobile);  
+                $('#email').val(data.email);   
+                $('#applicantDetails').modal('show');
+            }
+        })
+    });
+
+    $('#app_exams tbody').on( 'click', '.view-exam', function () {
+        var app_id = $(this).attr("id");
+        window.location = "<?= base_url()?>hr/app_exams/appans/" + app_id;
+    });
+</script>
+
+
+
 </body>
 </html>
