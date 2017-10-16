@@ -23,6 +23,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
   	folder instead of downloading all of them to reduce the load. -->
   	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
+  	<link rel="stylesheet" href="<?=base_url()?>public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   	<!-- Mathjax -->
   	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
   	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

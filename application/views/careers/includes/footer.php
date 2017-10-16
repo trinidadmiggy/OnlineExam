@@ -16,10 +16,29 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url()?>public/dist/js/demo.js"></script>
 
+<script src="<?=base_url()?>public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
-<!-- page script -->
+
 <script>
- (function($) {
+  $(function () {
+    $('.textarea').wysihtml5({
+      toolbar: {
+    "font-styles": false, // Font styling, e.g. h1, h2, etc.
+    "emphasis": true, // Italics, bold, etc.
+    "lists": true, // (Un)ordered lists, e.g. Bullets, Numbers.
+    "html": false, // Button which allows you to edit the generated HTML.
+    "link": false, // Button to insert a link.
+    "image": false, // Button to insert an image.
+    "color": false, // Button to change color of font
+    "blockquote": false, // Blockquote
+    "size": "sm" // options are xs, sm, lg
+}
+});
+})
+</script>
+
+<script>
+   (function($) {
     var element = $('.follow-scroll'),
     originalY = element.offset().top;
     
@@ -77,10 +96,10 @@
                         "data": "job_id",
                         "orderable": false, 
                         "render": function (data, type, row) {
-                         return "<button type='button' id='"+ data +"' class='btn btn-sm btn-warning edit-job' title='Edit'><i class='fa fa-edit'></i></button>";
-                     }
-                 },
-                 {
+                           return "<button type='button' id='"+ data +"' class='btn btn-sm btn-warning edit-job' title='Edit'><i class='fa fa-edit'></i></button>";
+                       }
+                   },
+                   {
                     "data": "job_id",
                     "orderable": false, 
                     "render": function (data, type, row) {
@@ -101,7 +120,8 @@
             dataType:"json", 
             success:function(data) {
                 $('#jobTitle').val(data.job_title);  
-                $('#jobDesc').val(data.job_description);  
+                $('iframe').contents().find('.wysihtml5-editor').html(data.job_description);
+
                 $('#image').attr('src', '<?=base_url()?>'+ data.image);
                 $('#jobImagePath').val(data.image);  
                 $('#status').val(data.status);   

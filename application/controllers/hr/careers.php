@@ -58,7 +58,7 @@ class Careers extends CI_Controller {
 	 	$this->load->library('form_validation');
 
 	 	$this->form_validation->set_rules('jobTitle','Job Title','required|alpha');
-	 	$this->form_validation->set_rules('jobDesc','Job Description','alpha_numeric');
+	 	$this->form_validation->set_rules('jobDesc','Job Description','required');
 
 	 	$config['upload_path']   = './public/dist/img/jobs/'; 
 	 	$config['allowed_types'] = 'jpeg|jpg|png|JPG'; 
@@ -81,8 +81,7 @@ class Careers extends CI_Controller {
 	 	}
 	 	else
 	 	{            
-	 		$data['_view'] = 'job/add';
-	 		$this->load->view('layouts/main',$data);
+
 	 	}
 	 } 
 
@@ -98,7 +97,7 @@ class Careers extends CI_Controller {
 	  	if(isset($data['job']['job_id']))
 	  	{
 	  		$this->form_validation->set_rules('jobTitle','Job Title','required|alpha');
-	  		$this->form_validation->set_rules('jobDesc','Job Description','alpha_numeric');
+	  		$this->form_validation->set_rules('jobDesc','Job Description','required');
 	  		/*	  		$this->form_validation->set_rules('image','Image','alpha_numeric|required');*/
 	  		$this->form_validation->set_rules('status','Status','required');
 
@@ -114,10 +113,10 @@ class Careers extends CI_Controller {
 	  		}
 	  		if($this->form_validation->run())     
 	  		{   
-	  			$params = array(
+	  			$params = array(	
 	  				'job_Title' => $this->input->post('jobTitle'),
 	  				'image' => $image,
-	  				'status' => 'Active',
+	  				'status' => 'Not Posted',
 	  				'job_description' => $this->input->post('jobDesc'),
 	  			);
 
@@ -126,8 +125,7 @@ class Careers extends CI_Controller {
 	  		}
 	  		else
 	  		{
-	  			$data['_view'] = 'job/edit';
-	  			$this->load->view('layouts/dsdsdsmain',$data);
+
 	  		} 
 	  	} else
 	  	show_error('The job you are trying to edit does not exist.');

@@ -26,7 +26,7 @@
   	<!-- Mathjax -->
   	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
   	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <!--  onload="window.print(); window.location = '<?= base_url()?>hr/app_exams/'" -->
+    <!--  onload="document.title = 'Examination - <?php echo $app_details['lname']; echo ", "; echo $app_details['fname'];  echo " "; echo $app_details['mname'];?>';setTimeout(function() {window.print(); window.location = '<?= base_url()?>hr/app_exams/'}, 1000); -->
 
     <style type="text/css">
     #exam {
@@ -40,8 +40,8 @@
   }
 </style>
 </head>
-<body class="hold-transition skin-blue" id="exam" onload="document.title = 'Examination - <?php echo $app_details['lname']; echo ", "; echo $app_details['fname'];  echo " "; echo $app_details['mname'];?>';setTimeout(function() {window.print(); window.location = '<?= base_url()?>hr/app_exams/'}, 500); ">
- <div class="wrapper print-this">
+<body class="hold-transition skin-blue" id="exam" onload="document.title = 'Examination - <?php echo $app_details['lname']; echo ", "; echo $app_details['fname'];  echo " "; echo $app_details['mname'];?>';setTimeout(function() {window.print(); window.location = '<?= base_url()?>hr/app_exams/'}, 1000);">
+<div class="wrapper print-this">
   <div class="content-wrapper">
    <section class="content">
     <div class="row ">
@@ -82,7 +82,7 @@
               <tbody>
                 <tr>
                   <td>Started: <label><?php echo date('M d, Y h:i.s a', strtotime($value['datestarted'])); ?></label></td>
-                  <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 38 <br/> <?php echo $value['remarks']; ?></h3></th>
+                  <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 38</h3></th>
                   </tr>
                   <tr>
                     <td>Ended: <label><?php echo date('M d, Y h:i.s a', strtotime($value['dateended'])); ?></label></td>
@@ -120,7 +120,7 @@
                 <tbody>
                   <tr>
                     <td>Started: <label><?php echo date('M d, Y h:i.s a', strtotime($value['datestarted'])); ?></label></td>
-                    <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 24 <br/> <?php echo $value['remarks']; ?></h3></th>
+                    <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 24</h3></th>
                     </tr>
                     <tr>
                       <td>Ended: <label><?php echo date('M d, Y h:i.s a', strtotime($value['dateended'])); ?></label></td>
@@ -156,7 +156,7 @@
                   <tbody>
                     <tr>
                       <td>Started: <label><?php echo date('M d, Y h:i.s a', strtotime($value['datestarted'])); ?></label></td>
-                      <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 26 <br/> <?php echo $value['remarks']; ?></h3></th>
+                      <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 26 </h3></th>
                       </tr>
                       <tr>
                         <td>Ended: <label><?php echo date('M d, Y h:i.s a', strtotime($value['dateended'])); ?></label></td>
@@ -194,7 +194,7 @@
                     <tbody>
                       <tr>
                         <td>Started: <label><?php echo date('M d, Y h:i.s a', strtotime($value['datestarted'])); ?></label></td>
-                        <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 28 <br/> <?php echo $value['remarks']; ?></h3></th>
+                        <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 28</h3></th>
                         </tr>
                         <tr>
                           <td>Ended: <label><?php echo date('M d, Y h:i.s a', strtotime($value['dateended'])); ?></label></td>
@@ -232,7 +232,7 @@
                       <tbody>
                         <tr>
                           <td>Started: <label><?php echo date('M d, Y h:i.s a', strtotime($value['datestarted'])); ?></label></td>
-                          <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 54 <br/> <?php echo $value['remarks']; ?></h3></th>
+                          <th rowspan="2"><h3 align="center"><i><?php echo $value['score']; ?>/ 54</h3></th>
                           </tr>
                           <tr>
                             <td>Ended: <label><?php echo date('M d, Y h:i.s a', strtotime($value['dateended'])); ?></label></td>
@@ -259,6 +259,30 @@
                         </div>
                       </div>
                       <?php } } ?>
+
+                      <div class="col-lg-12 col-print-12 page-break">
+                        <?php $essayNo = 1; foreach($essay as $ess => $val) { if($essayNo == 1) {  ?> 
+                        <table class="table table-bordered">
+                          <tbody>
+                            <tr>
+                              <th rowspan="2"><h3 align="center">Essay</h3></th>
+                              <td>Started: <label><?php echo date('M d, Y h:i a', strtotime($val['started'])); ?></label></td>
+                            </tr>
+                            <tr>
+                              <td>Ended: <label><?php echo date('M d, Y h:i a', strtotime($val['ended'])); ?></label></td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <?php }?>
+                        <label style="margin: -6px;">
+                          <?php echo $essayNo; ?>) <?php echo $val['question'];?>  
+                        </label>
+                        <div class="radio">
+                          <?php echo $val['answer'] ?>
+                        </div>
+                        <?php $essayNo++;} ?>
+                      </div>
                     </div>
                   </div>
                 </div>

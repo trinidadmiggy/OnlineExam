@@ -22,6 +22,14 @@ class Examination_model extends CI_Model {
         return $query = $this->db->get()->result_array();
     }
 
+    public function getEssay($app_id){
+        $this->db->select('qb.question, es.answer, es.started, es.ended');
+        $this->db->from('applicant_essay es');
+        $this->db->join('question_bank as qb', 'qb.question_id = es.question_id');
+        $this->db->where('app_id', $app_id);
+        return $query = $this->db->get()->result_array();
+    }
+
 
     /*Record start time*/
     public function takeTechnical($startTechnical,$app_id, $examtype_id) {
@@ -128,6 +136,7 @@ public function checkIfTakenExam($app_id, $examtype_id) {
     $this -> db -> where('app_id', $app_id);
     $this -> db -> where('examtype_id', $examtype_id);
     $this -> db -> where('remarks is NOT NULL');
+    $this -> db -> where('DATE_ADD(CURRENT_DATE , INTERVAL 6 MONTH) > dateended');
     $this -> db -> limit(1);
 
     $query = $this -> db -> get();
@@ -140,6 +149,18 @@ public function checkIfTakenExam($app_id, $examtype_id) {
     {
         return FALSE;
     }
+}
+
+public function sixMonths($app_id, $examtype_id) {
+    $this -> db -> select('app_id, examtype_id, dateended');
+    $this -> db -> from('applicant_technical');
+    $this -> db -> where('app_id', $app_id);
+    $this -> db -> where('examtype_id', $examtype_id);
+    $this -> db -> where('remarks is NOT NULL');
+    $this->db->order_by("dateended", "desc");
+    $this -> db -> limit(1);
+
+    return $query = $this->db->get()->result_array();
 }
 
 public function checkIfTakenManchester($app_id) {
@@ -183,9 +204,20 @@ public function checkIfTakenEssay($app_id) {
 public function getEssayTime($app_id) {
     $this -> db -> select('app_id, ended');
     $this -> db -> from('applicant_essay');
-    $this -> db -> where('app_id', 1);
+    $this -> db -> where('app_id', $app_id);
     $this -> db -> where('answer is NOT NULL');
     $this->db->order_by("ended", "desc");
+    $this->db->limit(1);
+
+    return $query = $this->db->get()->result_array();
+}
+
+public function getManchesterTime($app_id) {
+    $this -> db -> select('app_id, end');
+    $this -> db -> from('applicant_manchester');
+    $this -> db -> where('app_id', $app_id);
+    $this -> db -> where('remarks is NOT NULL');
+    $this->db->order_by("end", "desc");
     $this->db->limit(1);
 
     return $query = $this->db->get()->result_array();

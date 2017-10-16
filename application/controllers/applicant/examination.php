@@ -14,7 +14,12 @@ class Examination extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('examination_model');
+		
+		if ($this->session->userdata('logged_in') == NULL) {
+			redirect('login');
+		} else {
+			$this->load->model('examination_model');
+		}
 
 	}
 
@@ -31,35 +36,62 @@ class Examination extends CI_Controller{
 		}
 	}
 
+	public function sixMonths($app_id, $examtype_id) {
+		$time = $this->examination_model->getEssayTime($app_id);
+		foreach ($time as $ended) {
+			$time = $ended['ended'];
+		}
+		$datetime = new DateTime();
+		$datetime->add(new DateInterval('P6M'));
+		$now = $datetime->format('Y-m-d H:i:s');
+		if($time == null) {
+			return true;
+		} else {
+			$examTime = date_create($time)->format('Y-m-d H:i:s');
+			if($now > $examTime) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+	}
 	public function checkIfTakenExam($examtype_id) {
 		$session_data = $this->session->userdata('logged_in');
 		$app_id = $session_data['app_id'];
 		$cite = $this->examination_model->checkIfTakenExam($app_id, $examtype_id);
-		if($cite) {
-			switch ($examtype_id) {
-				case 1:
-				redirect('applicant/examination/reasoning', 'refresh');
-				break;
-				case 2:
-				redirect('applicant/examination/letterseries', 'refresh');
-				break;
-				case 3:
-				redirect('applicant/examination/numberability', 'refresh');
-				break;
-				case 4:
-				redirect('applicant/examination/ipiaptitude', 'refresh');
-				break;
-				case 5:
-				redirect('applicant/examination/manchester', 'refresh');
-				break;
-				case 6:
-				redirect('applicant/examination/essay', 'refresh');
-				break;
-				default:
-				redirect('applicant/examination/index', 'refresh');
+		
+		if($this->sixMonths($app_id, $examtype_id)) {
+			if($cite) {
+				switch ($examtype_id) {
+					case 1:
+					redirect('applicant/examination/reasoning', 'refresh');
+					break;
+					case 2:
+					redirect('applicant/examination/letterseries', 'refresh');
+					break;
+					case 3:
+					redirect('applicant/examination/numberability', 'refresh');
+					break;
+					case 4:
+					redirect('applicant/examination/ipiaptitude', 'refresh');
+					break;
+					case 5:
+					redirect('applicant/examination/manchester', 'refresh');
+					break;
+					case 6:
+					redirect('applicant/examination/essay', 'refresh');
+					break;
+					default:
+					redirect('applicant/examination/index', 'refresh');
+				}
+				return true; 
 			}
-			return true; 
+		} else {
+			echo "<script>alert('You cannot take exam within 6 Months')</script>";
+			redirect('applicant/examination/index', 'refresh');
 		}
+
 	}
 
 	public function takeTechnical($examtype_id) {
@@ -71,39 +103,20 @@ class Examination extends CI_Controller{
 	}
 
 //////////////////
-	public function index(){
-
+	public function index() {
 		$this->load->view('examination/includes/header',$this->getSession());
 		$this->load->view('examination/general_instructions');
 		$this->load->view('examination/includes/footer');
 	}
-
 	public function verbal(){
-		$time = $this->examination_model->getEssayTime($this->app_id);
-		foreach ($time as $ended) {
-			$time = $ended['ended'];
+		$id = 1;
+		if($this->checkIfTakenExam($id) == false)  {
+			$data['result'] = $this->examination_model->getQuestion($id);
+			$this->load->view('examination/includes/header',$this->getSession());
+			$this->load->view('examination/verbal_meaning', $data);
+			$this->load->view('examination/includes/footer');
+			$this->takeTechnical($id);
 		}
-		$datetime = new DateTime();
-		$datetime->add(new DateInterval('P6M'));
-		$now = $datetime->format('Y-m-d H:i:s');
-		$asd = date_create($time)->format('Y-m-d H:i:s');
-		if($now > $asd)
-		{
-			echo "<script>alert('You cannot take exam')</script>";
-			redirect('applicant/examination/index', 'refresh');
-		}
-		else
-		{
-			$id = 1;
-			if($this->checkIfTakenExam($id) == false) {
-				$data['result'] = $this->examination_model->getQuestion($id);
-				$this->load->view('examination/includes/header',$this->getSession());
-				$this->load->view('examination/verbal_meaning', $data);
-				$this->load->view('examination/includes/footer');
-				$this->takeTechnical($id);
-			}
-		}
-
 	}
 
 	public function reasoning(){
@@ -152,6 +165,7 @@ class Examination extends CI_Controller{
 		$id = 6;
 		$session_data = $this->session->userdata('logged_in');
 		$app_id = $session_data['app_id'];
+
 		if($this->checkIfTakenManchester())  {
 			$factors = array(
 				'Creativity' => 'Creativity' ,
@@ -176,6 +190,7 @@ class Examination extends CI_Controller{
 			$this->load->view('examination/includes/footer');
 		}
 	}
+
 	public function essay(){
 		$id = 7;
 		$session_data = $this->session->userdata('logged_in');
@@ -198,7 +213,6 @@ class Examination extends CI_Controller{
 		} else {
 			redirect('applicant/examination/thankyou', 'refresh');
 		}
-
 	}
 
 	public function thankyou(){

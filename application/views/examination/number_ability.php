@@ -83,7 +83,7 @@
 											</div>
 										</div>
 										<?php } ?>
-										<input type="submit" class="btn btn-primary pull-right" value="Submit" />
+										<input type="submit" class="btn btn-primary pull-right" onClick="return confirm('Are you sure you want to submit this examination? Once submitted, you cannot go back to this exam.')" value="Submit" />
 									</form>
 								</div>
 							</div>

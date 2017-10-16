@@ -37,12 +37,6 @@
 						<h2 style="margin:0">Essay</h2>
 					</div>
 					<div class="box-body">
-						<a href="reasoning">2</a>
-						<a href="letterseries">3</a>
-						<a href="numberability">4</a>
-						<a href="ipiaptitude">5</a>
-						<a href="manchester">6</a>
-						<a href="essay">7</a>
 						<form method="post"  action="<?= site_url('hr/check_answer/essay')?>">
 							<input type="hidden" name="examtype_id" value="7" />
 							<?php $essay = array(); ?>
@@ -53,7 +47,7 @@
 								</label>
 								<textarea class="form-control" name="essay_<?php echo $r['question_id'];?>" rows="5" placeholder="Enter ..."></textarea>
 							</div>
-							<?php } ?>
+							<?php if($r['question_id'] == 263) { break;} } ?>
 							<input type="submit" class="btn btn-primary pull-right" value="Submit" />
 						</form>
 					</div>

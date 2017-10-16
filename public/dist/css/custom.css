@@ -107,6 +107,11 @@
 .correct:before {
 	color: green !important;
 }
+.page-break	{ 
+	display: block; 
+	page-break-before: always;
+	padding: 5px; 
+}
 @media print {
 	@page {
 		size:A4; 
