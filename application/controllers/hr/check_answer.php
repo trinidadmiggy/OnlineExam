@@ -1174,7 +1174,7 @@ class Check_answer extends CI_Controller {
 			}
 			else if ($score == 8)
 			{
-				$remarks == Superior;
+				$remarks == "Superior";
 			}
 			else if ($score == 9)
 			{
