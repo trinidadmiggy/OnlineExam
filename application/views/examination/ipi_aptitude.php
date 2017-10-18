@@ -13,7 +13,19 @@
 			<div class="col-lg-8 col-lg-offset-2">
 				<div class="box-exam">
 					<div class="progress" style="margin:0;">
-						<div class="prog progress-bar progress-bar-warning" style="width: 14.286%">
+						<div class="progress-bar progress-bar-warning" style="width: 14.286%">
+							Verbal Meaning
+						</div>
+						<div class="progress-bar progress-bar-warning" style="width: 14.286%">
+							Reasoning
+						</div>
+						<div class="progress-bar progress-bar-warning" style="width: 14.286%">
+							Letter Series
+						</div>
+						<div class="progress-bar progress-bar-warning" style="width: 14.286%">
+							Number Ability
+						</div>
+						<div class="prog progress-bar progress-bar-primary" style="width: 0%">
 							IPI Aptitude
 						</div>
 					</div>
@@ -21,12 +33,6 @@
 						<h3 style="margin:0">IPI Aptitude</h3>
 					</div>	
 					<div class="box-body">
-						<a href="reasoning">2</a>
-						<a href="letterseries">3</a>
-						<a href="numberability">4</a>
-						<a href="ipiaptitude">5</a>
-						<a href="manchester">6</a>
-						<a href="essay">7</a>
 						<div class="container-fluid">
 							<div class="col-lg-12">
 								<div class="row">
@@ -81,13 +87,8 @@
 					</div>
 					<div class="box-footer box-comments">
 						<div class="box-comment">
-							<div class="sra">
-								<span class="license-border">S</span>
-								<span class="license-border">R</span>
-								<span class="license-border">A</span>
-							</div>
-							<div class="license-text" style="border-left:2px solid black;height:32px">
-								PRINTED UNDER LICENSE OF SCIENCE RESEARCH ASSOCIATES INC. COPYRIGHT 1964, SCIENCE RESEARCH INC. 259 EAST ERIE, CHICAGO ILLINOIS 60611. ALL RIGHTS RESERVED. Printed in the Philippines.
+							<div class="license-text" style="margin:0; font-size: 18px !important;">
+								Copyright: Unknown
 							</div>
 						</div>
 					</div>	

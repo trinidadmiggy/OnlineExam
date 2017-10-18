@@ -32,24 +32,6 @@ class Login extends CI_Controller
  }
 
 }
-public function send_email($email) 
-{
-  $emailconfig = array(
-    'protocol' => 'smtp',
-    'smtp_host' => 'ssl://smtp.googlemail.com',
-    'smtp_port' => 465,
-    'smtp_user' => 'qpsdummy@gmail.com',
-    'smtp_pass' => 'dummyqps'
-  );
-  $this->load->library('email', $emailconfig);
-  $this->email->set_newline("\r\n");
-
-  $this->email->from('qpsdummy@gmail.com', 'Qps Dummy');
-  $this->email->to($email);
-  $this->email->subject("Questronix");
-  $this->email->message("Success!!");
-  $this->email->send();
-}
 
 function check_database($password)
 {
@@ -63,7 +45,6 @@ function check_database($password)
  if($applicant)
  {
    $this->level = "applicant";
-   /*  $this->send_email($email);*/
    $sess_array = array();
    foreach($applicant as $row)
    {

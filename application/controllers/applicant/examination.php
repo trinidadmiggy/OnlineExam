@@ -18,6 +18,7 @@ class Examination extends CI_Controller{
 		if ($this->session->userdata('logged_in') == NULL) {
 			redirect('login');
 		} else {
+			$this->getSession();
 			$this->load->model('examination_model');
 		}
 
@@ -216,7 +217,7 @@ class Examination extends CI_Controller{
 	}
 
 	public function thankyou(){
-		$this->load->view('examination/includes/header');
+		$this->load->view('examination/includes/header', $this->getSession());
 		$this->load->view('examination/thank_you');
 		$this->load->view('examination/includes/footer');
 	}

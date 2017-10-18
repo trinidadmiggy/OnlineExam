@@ -20,123 +20,110 @@
   <link rel="stylesheet" href="<?=base_url()?>public/plugins/iCheck/all.css">
   
   <link rel="stylesheet" href="<?=base_url()?>public/dist/css/custom.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-    folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 
-<!-- Google Font -->
-<link rel="stylesheet"
-href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
 
-<style type="text/css">
-.parallax-window {
-  min-height: 400px;
-  background: transparent;
-}
-.parallax-mirror {
-  z-index:1 !important;
-}
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <style>
+  section.module.parallax-1 {
+    background-image: url("<?=base_url()?>public/dist/img/meeting.jpg");
+  }
 </style>
 </head>
 <body class="hold-transition skin-black sidebar-mini">
   <div class="wrapper">
     <header class="main-header">
-      <a href="../index2.html" class="logo">
+      <a class="logo">
         <span class="logo-mini"><b>Q</b>NX</span>
-        <span class="logo-lg"><b>Questronix</b> </span>
+        <span class="logo-lg"><small>Q U E S T R O N I X</small> </span>
       </a>
       <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         </a>
-      </nav>
-    </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="#" class="img-circle" alt="#">
-          </div>
-          <div class="pull-left info">
-          </div>
-        </div>
-        <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">Examination</li>
-          <li>
-            <a href="<?=base_url()?>applicant/examination/">
-              <i class="fa fa-th"></i> <span>Examination</span>
-            </a>
-          </li>
-          <li class="header">Careers</li>
-          <li>
-            <a href="<?=base_url()?>applicant/jobs/">
-              <i class="fa fa-th"></i> <span>Careers</span>
-            </a>
-          </li>
-          <li class="header">Logout</li>
-          <li>
-            <a href="<?= site_url('home/logout')?>">
-              <i class="fa fa-sign-out"></i> <span>Logout</span>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu">
+              <a href="#" >
+                Hi! <span class="hidden-xs">Alexander Pierce</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <div class="pull-right">
+
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown user user-menu">
+             <a href="<?= site_url('home/logout')?>" title="logout">
+              <i class="fa fa-sign-out" ></i>
             </a>
           </li>
         </ul>
-      </section>
-      <!-- /.sidebar -->
-    </aside>
-    <div class="content-wrapper">
-      <section class="content">
-        <div class="parallax-window" data-parallax="scroll" data-image-src="<?=base_url()?>public/dist/img/multo.jpg" data-natural-width="1400" data-natural-height="350">
-          <div id="subheader">
-            <div id="sub_content">
-              <h1>24 results in your zone</h1>
-              <div><i class="icon_pin"></i> 135 Newtownards Road, Belfast, BT4 1AB</div>
-            </div><!-- End sub_content -->
-          </div><!-- End subheader -->
-        </div>
-        <div class="row">
-          <div id="job">
-            <div class="col-lg-12">
-              <?php  foreach($jobs as $job) { ?>
-              <div class="col-lg-6">
-                <div class="strip_list wow fadeIn" data-wow-delay="0.1s">
-                  <div class="row">
-                    <div class="col-md-9 col-sm-9">
-                      <div class="desc">
-                        <div class="thumb_strip">
-                         <img src="<?=base_url(); echo $job['image']?>" alt="" onError="this.onerror=null;this.src='<?=base_url()?>public/dist/img/no-image.jpg'" >
-                       </div>
-                       <h3><?php echo $job['job_title']; ?></h3>
-                       <div class="type">
-                        <?php echo $job['jd']; ?> 
-                      </div>
+      </div>
+    </nav>
+  </header>
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu" data-widget="tree">
+        <li>
+          <a href="<?=base_url()?>applicant/examination/">
+            <i class="fa fa-pencil-square-o"></i> <span>Examination</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?=base_url()?>applicant/jobs/">
+            <i class="fa fa-briefcase"></i> <span>Careers</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+  <div class="content-wrapper">
+    <section class="module parallax parallax-1">
+      <div class="parallax-container">
+        <h1>Careers</h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="row">
+        <div id="job">
+          <div class="col-lg-12">
+            <?php foreach($jobs as $job) { ?>
+            <div class="col-lg-6">
+              <div class="strip_list wow fadeIn" data-wow-delay="0.1s">
+                <div class="row">
+                  <div class="col-md-9 col-sm-9">
+                    <div class="desc">
+                      <div class="thumb_strip">
+                       <img src="<?=base_url(); echo $job['image']?>" alt="" onError="this.onerror=null;this.src='<?=base_url()?>public/dist/img/no-job.jpg'" >
+                     </div>
+                     <h3><?php echo $job['job_title']; ?></h3>
+                     <div class="type">
+                      <?php echo $job['jd']; ?> 
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-3">
-                    <div class="go_to">
-                      <div>
-                       <input type="button" id="<?php echo $job['job_id']; ?>" class="btn btn-primary btn-sm pull-right apply" value="Read More...">
-                     </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                  <div class="go_to">
+                    <div>
+                     <input type="button" id="<?php echo $job['job_id']; ?>" class="btn btn-primary btn-sm pull-right apply" value="Read More...">
                    </div>
                  </div>
                </div>
              </div>
            </div>
-           <?php } ?>
          </div>
+         <?php } ?>
        </div>
      </div>
-   </section>
- </div>
- <!-- Apply Modal -->
- <div class="modal fade" id="apply" tabindex="-1">
+   </div>
+ </section>
+</div>
+<!-- Apply Modal -->
+<div class="modal fade" id="apply" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -193,29 +180,31 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
 <script src="<?=base_url()?>public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
 <script>
-  $('.parallax-window').parallax({imageSrc: '<?=base_url()?>public/dist/img/multo.jpg'});
-  $('#job').on( 'click', '.apply', function () {
-    var job_id = $(this).attr("id");
-    $.ajax({
-      url: "<?php echo site_url('applicant/jobs/getJobDetails') ?>",
-      method:"POST",
-      data:{job_id:job_id},
-      dataType:"json", 
-      success:function(data) {
-        $("#job_id").val(data[0].job_id); 
-        $("#job_title").text(data[0].job_title); 
-        $("#jd").append(data[0].job_description);
-        $("#essay").text(data[1].question + " " + data[0].job_title);
-        $("#essayid").val(data[1].question_id);  
-        $('#apply').modal('show');
-      }
-    })
-  });
+/*  $('.parallax-window').parallax({imageSrc: '<?=base_url()?>public/dist/img/multo.jpg'});
+*/
 
-  $('#app_exams tbody').on( 'click', '.view-exam', function () {
-    var app_id = $(this).attr("id");
-    window.location = "<?= base_url()?>hr/app_exams/appans/" + app_id;
-  });
+$('#job').on( 'click', '.apply', function () {
+  var job_id = $(this).attr("id");
+  $.ajax({
+    url: "<?php echo site_url('applicant/jobs/getJobDetails') ?>",
+    method:"POST",
+    data:{job_id:job_id},
+    dataType:"json", 
+    success:function(data) {
+      $("#job_id").val(data[0].job_id); 
+      $("#job_title").text(data[0].job_title); 
+      $("#jd").append(data[0].job_description);
+      $("#essay").text(data[1].question + " " + data[0].job_title);
+      $("#essayid").val(data[1].question_id);  
+      $('#apply').modal('show');
+    }
+  })
+});
+
+$('#app_exams tbody').on( 'click', '.view-exam', function () {
+  var app_id = $(this).attr("id");
+  window.location = "<?= base_url()?>hr/app_exams/appans/" + app_id;
+});
 </script>
 
 </html>

@@ -16,25 +16,19 @@
 					<div class="box-header with-border" >
 						<h3 style="margin:0">Verbal Meaning</h3>
 						<h5 style="margin:0" >
-							<a data-toggle="modal" data-target="#exampleModal" style="text-decoration: none; color:black; cursor:pointer;">
+							<a data-toggle="modal" data-target="#exampleModal" title="Click for Example" style="text-decoration: none; color:black; cursor:pointer;">
 								Instructions: Each item in this part of the test presents a word, followed by five alternatives. You are to choose from the five words the one that means the same or most nearly the same as the word at the beginning. Mark your answer by putting an X in the box on the answer sheet containing the number of the alternative you have chosen.	
 							</a>
 						</h5>
 					</div>	
 					<div class="box-body">
-						<a href="reasoning">2</a>
-						<a href="letterseries">3</a>
-						<a href="numberability">4</a>
-						<a href="ipiaptitude">5</a>
-						<a href="manchester">6</a>
-						<a href="essay">7</a>
 						<div class="container-fluid">
 							<div class="col-lg-12">
 								<div class="row">
 									<form method="POST" action="<?= site_url('hr/check_answer/technical')?>">
 										<input type="hidden" name="examtype_id" value="1" />
 										<?php foreach($result as $r) { ?>
-										<div class="questions col-lg-6">
+										<div class="questions col-lg-6" style="padding: 0px">
 											<br/>
 											<label>
 												<?php echo $r['question_id'];?>) <?php echo $r['question']; ?>
@@ -42,7 +36,7 @@
 											<br />
 											<div class="radio">
 												<ol type="1">
-													<div class="col-lg-6">
+													<div class="exam-font col-lg-6">
 														<li>
 															<label>
 																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" checked>
@@ -62,7 +56,7 @@
 															</label>
 														</li>	
 													</div>
-													<div class="col-lg-6">
+													<div class="exam-font exam col-lg-6">
 														<li>
 															<label>
 																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>" >

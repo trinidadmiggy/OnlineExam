@@ -26,47 +26,55 @@
   	<!-- Mathjax -->
   	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-  	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+  	<link rel="stylesheet"
+  	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  </head>
+  <body class="hold-transition skin-black sidebar-mini">
+  	<div class="wrapper">
+  		<header class="main-header">
+  			<a class="logo">
+  				<span class="logo-mini"><b>Q</b>NX</span>
+  				<span class="logo-lg"><small>Q U E S T R O N I X</small> </span>
+  			</a>
+  			<nav class="navbar navbar-static-top">
+  				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+  				</a>
+  				<div class="navbar-custom-menu">
+  					<ul class="nav navbar-nav">
+  						<li class="dropdown user user-menu">
+  							<a href="#" >
+  								Hi! <span class="hidden-xs"><?php echo $fname." ".$lname;  ?></span>
+  							</a>
+  							<ul class="dropdown-menu">
+  								<li>
+  									<div class="pull-right">
 
-<!-- Google Font -->
-<link rel="stylesheet"
-href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
-<body class="hold-transition skin-blue">
-	<div class="wrapper">
-		<header class="main-header">
-			<!-- <img class="img-thumbnail qnxlogo" src="../../dist/img/qnxlogo.jpg" /> -->
-			<a href="#" class="qnxlogo">
-				<span class="logo-mini"><b>QNX</b></span>
-				<!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b>Questronix</b></span>
-			</a>
-		</header>
-		<aside class="main-sidebar">
-			<!-- sidebar: style can be found in sidebar.less -->
-			<section class="sidebar">
-				<!-- sidebar menu: : style can be found in sidebar.less -->
-				<ul class="sidebar-menu" data-widget="tree">
-					<li>
-						<a href="#">
-							<i class="fa fa-briefcase"></i> <span>Careers</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-book"></i> <span>Online Examination</span>
-						</a>
-					</li>
-					<li>
-						<a href="<?= site_url('home/logout')?>">
-							<i class="fa fa-sign-out"></i> <span>Logout</span>
-						</a>
-					</li>
-				</ul>
-			</section>
-		</aside>
+  									</div>
+  								</li>
+  							</ul>
+  						</li>
+  						<li class="dropdown user user-menu">
+  							<a href="<?= site_url('home/logout')?>" title="logout">
+  								<i class="fa fa-sign-out" ></i>
+  							</a>
+  						</li>
+  					</ul>
+  				</div>
+  			</nav>
+  		</header>
+  		<aside class="main-sidebar">
+  			<section class="sidebar">
+  				<ul class="sidebar-menu" data-widget="tree">
+  					<li>
+  						<a href="<?=base_url()?>applicant/examination/">
+  							<i class="fa fa-pencil-square-o"></i> <span>Examination</span>
+  						</a>
+  					</li>
+  					<li>
+  						<a href="<?=base_url()?>applicant/jobs/">
+  							<i class="fa fa-briefcase"></i> <span>Careers</span>
+  						</a>
+  					</li>
+  				</ul>
+  			</section>
+  		</aside>

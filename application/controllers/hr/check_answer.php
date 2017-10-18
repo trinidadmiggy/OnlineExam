@@ -130,33 +130,45 @@ class Check_answer extends CI_Controller {
 			$this->checkIfTakenExam($examtype_id);
 		} 
 	}
+	public function send_email($email, $message) 
+	{
+		$emailconfig = array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'qpsdummy@gmail.com',
+			'smtp_pass' => 'dummyqps'
+		);
+		$this->load->library('email', $emailconfig);
+		$this->email->set_newline("\r\n");
 
+		$this->email->from('qpsdummy@gmail.com', 'Qps Dummy');
+		$this->email->to($email);
+		$this->email->subject("Questronix Online Examination");
+		$this->email->message($message);
+		$this->email->send();
+	}
 	public function essay() {
 		$session_data = $this->session->userdata('logged_in');
 		$app_id = $session_data['app_id'];
+		$email = $session_data['email'];
+		$fname = $session_data['fname'];
+		$mname = $session_data['mname'];
+		$lname = $session_data['lname'];
 		$examtype_id = $this->input->post('examtype_id');
 		$questions = $this->examination_model->getQuestion($examtype_id);
 
 		foreach($questions as $question)
 		{
-			$success= true;
 			$essay = array(
 				'answer' =>  $this->input->post('essay_'.$question['question_id'])
 			);
-			if($this->examination_model->saveEssay($app_id, $question['question_id'], $essay)) {
-				$success= true;
-			}
-			else
-			{
-				$success= false;
-				break;
-			}
+			$this->examination_model->saveEssay($app_id, $question['question_id'], $essay);
 		}
-		if($success) {
-			redirect('applicant/examination/thankyou', 'refresh');
-		} else {
-			print_r("Error");
-		}
+
+		$this->send_email($email, 'Thank You for taking the online examination of Questionix Corporation. The HR Department will now evaluate your application. Please do not forget to choose for the job application in the careers section.');
+		$this->send_email('hrqnxdummy@gmail.com', $fname . " " . $mname . " " . $lname . " has submitted his/her online examination.");
+		redirect('applicant/examination/thankyou', 'refresh');
 	}
 	public function manchester() {
 		$score = 0;
