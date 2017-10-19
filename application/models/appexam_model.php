@@ -61,5 +61,33 @@ class Appexam_model extends CI_Model {
     public function getAppDetails($app_id) {
         return $this->db->get_where('applicantinfo',array('app_id'=>$app_id))->row_array();
     }
+
+    public function checkIfTakenExam($app_id) {
+        $this -> db -> select('app_id, examtype_id');
+        $this -> db -> from('applicant_technical');
+        $this -> db -> where('app_id', $app_id);
+        $this -> db -> where('remarks is NOT NULL');
+        $technical = $this -> db -> get();
+
+        $this -> db -> select('app_id');
+        $this -> db -> from('applicant_manchester');
+        $this -> db -> where('app_id', $app_id);
+        $this -> db -> where('remarks is NOT NULL');
+        $manchester = $this -> db -> get();
+
+        $this -> db -> select('app_id');
+        $this -> db -> from('applicant_essay');
+        $this -> db -> where('app_id', $app_id);
+        $this -> db -> where('answer is NOT NULL');
+        $essay = $this -> db -> get();
+
+        if($technical->num_rows() < 5 && $manchester->num_rows() == 0 && $essay->num_rows() == 0) {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }
 ?>

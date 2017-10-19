@@ -38,7 +38,7 @@
 </script>
 
 <script>
-   (function($) {
+ (function($) {
     var element = $('.follow-scroll'),
     originalY = element.offset().top;
     
@@ -96,10 +96,10 @@
                         "data": "job_id",
                         "orderable": false, 
                         "render": function (data, type, row) {
-                           return "<button type='button' id='"+ data +"' class='btn btn-sm btn-warning edit-job' title='Edit'><i class='fa fa-edit'></i></button>";
-                       }
-                   },
-                   {
+                         return "<button type='button' id='"+ data +"' class='btn btn-sm btn-warning edit-job' title='Edit'><i class='fa fa-edit'></i></button>";
+                     }
+                 },
+                 {
                     "data": "job_id",
                     "orderable": false, 
                     "render": function (data, type, row) {
@@ -167,6 +167,7 @@
                         "orderable": false, 
                         "visible": false,
                     },
+
                     {
                         "data": "app_id",
                         "orderable": false, 
@@ -181,12 +182,18 @@
                         }
                     },
                     {
-                        "data": "app_id",
+                        "data": null,
                         "orderable": false, 
                         "render": function (data, type, row) {
-                            return "<button type='button' id='"+ data +"' class='btn btn-sm btn-secondary view-exam' title='View Exam'><i class='fa fa-print'></i></button>";
+                            if(data.exam_status) {
+                                return "<button type='button' id='"+ data.app_id +"' class='btn btn-sm btn-secondary view-exam' title='Print/Save Exam'><i class='fa fa-print'></i></button>";
+                            } else {
+                                return "<button type='button' id='"+ data.app_id +"' class='btn btn-sm btn-danger view-exam' title='Applicant has not yet taken the examination or has not yet finished with the examination' disabled><i class='fa fa-exclamation-triangle' ></i></button>";
+                            }
+                            
                         }
                     },
+
                     ]
                 });
 
