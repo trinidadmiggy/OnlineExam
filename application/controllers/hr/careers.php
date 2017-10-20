@@ -1,21 +1,28 @@
 <?php 
 
 class Careers extends CI_Controller {
-
+	public function getSession() {
+		$session_data = $this->session->userdata('employee_login');
+		$sess['email'] = $session_data['email'];
+		$sess['fname'] = $session_data['fname'];
+		$sess['mname'] = $session_data['mname'];
+		$sess['lname'] = $session_data['lname'];
+		$sess['employee_id'] = $session_data['employee_id'];
+		return $sess;
+	}
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->model('careers_model');
+		$this->getSession();
 	}
 
 	public function index() {
 		if ($this->session->userdata('employee_login') == NULL) {
 			redirect('login');
 		} else {
-/*			$str = $this->session->userdata('logged in');
-			$fname['fname'] = $str['firstname'];
-			$fname['lname'] = $str['lastname'];*/
-			$this->load->view('careers/includes/header');
+			
+			$this->load->view('careers/includes/header', $this->getSession());
 			$this->load->view('careers/careers_management');
 			$this->load->view('careers/includes/footer');
 		}
@@ -57,9 +64,9 @@ class Careers extends CI_Controller {
 	 {   
 	 	$this->load->library('form_validation');
 
-	 	$this->form_validation->set_rules('jobTitle','Job Title','required|alpha');
+	 	$this->form_validation->set_rules('jobTitle','Job Title','required|alpha|is_unique[jobs.job_title]'); /*is_unique[jobs.job_title]*/
 	 	$this->form_validation->set_rules('jobDesc','Job Description','required');
-
+	 	$this->form_validation->set_message('is_unique', 'The job you are trying to add already exists');
 	 	$config['upload_path']   = './public/dist/img/jobs/'; 
 	 	$config['allowed_types'] = 'jpeg|jpg|png|JPG'; 
 	 	$this->load->library('upload', $config);
@@ -80,8 +87,11 @@ class Careers extends CI_Controller {
 	 		redirect('hr/careers');
 	 	}
 	 	else
-	 	{            
+	 	{   
 
+	 		$this->session->set_flashdata('addupload_error', $this->upload->display_errors());
+	 		$this->session->set_flashdata('addform_error', validation_errors());
+	 		redirect('hr/careers');
 	 	}
 	 } 
 
@@ -98,21 +108,21 @@ class Careers extends CI_Controller {
 	  	{
 	  		$this->form_validation->set_rules('jobTitle','Job Title','required|alpha');
 	  		$this->form_validation->set_rules('jobDesc','Job Description','required');
-	  		/*	  		$this->form_validation->set_rules('image','Image','alpha_numeric|required');*/
 	  		$this->form_validation->set_rules('status','Status','required');
 
 	  		$config['upload_path']   = './public/dist/img/jobs/'; 
 	  		$config['allowed_types'] = 'jpeg|jpg|png|JPG'; 
 	  		$this->load->library('upload', $config);
 
-	  		if(! $this->upload->do_upload('jobImage')) {
-	  			$image= $this->input->post('jobImagePath');
+	  		if(!$this->upload->do_upload('jobImage')) {
+	  			$image = $this->input->post('jobImagePath');
 	  		} else {
 	  			$dataImage =  $this->upload->data();
-	  			$image= "public/dist/img/jobs/". $dataImage['raw_name'] . $dataImage['file_ext'];
+	  			$image = "public/dist/img/jobs/". $dataImage['raw_name'] . $dataImage['file_ext'];
+	  			
 	  		}
-	  		if($this->form_validation->run())     
-	  		{   
+
+	  		if($this->form_validation->run()) {   
 	  			$params = array(	
 	  				'job_Title' => $this->input->post('jobTitle'),
 	  				'image' => $image,
@@ -122,13 +132,15 @@ class Careers extends CI_Controller {
 
 	  			$this->careers_model->updateJob($data['job']['job_id'],$params);            
 	  			redirect('hr/careers');
-	  		}
-	  		else
-	  		{
-
+	  		} else {
+	  			$this->session->set_flashdata('editform_error', validation_errors());
+	  			$this->session->set_flashdata('id', $this->input->post('job_id'));
+	  			redirect('hr/careers');
 	  		} 
-	  	} else
-	  	show_error('The job you are trying to edit does not exist.');
+	  	} else {
+	  		show_error('The job you are trying to edit does not exist.');
+	  	}
+	  	
 	  }
 
 	  public function postStatus()
@@ -154,5 +166,5 @@ class Careers extends CI_Controller {
 	  	show_error('The job you are trying to edit does not exist.');
 	  }
 	}
-	
+
 	?>

@@ -18,11 +18,39 @@
 
 <script src="<?=base_url()?>public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
-
 <script>
-  $(function () {
-    $('.textarea').wysihtml5({
-      toolbar: {
+    $(document).ready(function() {
+        <?php if($this->session->flashdata('addform_error') || $this->session->flashdata('addupload_error')) { ?>
+            document.getElementById("addError").style.display = "block";
+            $('#addJob').modal('show');
+            <?php } else if($this->session->flashdata('editform_error') || $this->session->flashdata('editupload_error')) { ?>
+             document.getElementById("editError").style.display = "block";
+             var job_id = <?php echo $this->session->flashdata('id') ?>;
+             $.ajax({
+                url: "<?php echo site_url('hr/careers/updateGetJobs') ?>",
+                method:"POST",
+                data:{job_id:job_id},
+                dataType:"json", 
+                success:function(data) {
+                    $('#jobTitle').val(data.job_title);  
+                    $('iframe').contents().find('.wysihtml5-editor').html(data.job_description);
+                    $('#image').attr('src', '<?=base_url()?>'+ data.image);
+                    $('#jobImagePath').val(data.image);  
+                    $('#status').val(data.status);   
+                    $('#job_id').val(data.job_id);  
+                    $('#insert').val("Update");  
+                    $('#editJob').modal('show');
+                }
+            })
+             <?php } ?>
+         });
+     </script>
+
+
+     <script>
+      $(function () {
+        $('.textarea').wysihtml5({
+          toolbar: {
     "font-styles": false, // Font styling, e.g. h1, h2, etc.
     "emphasis": true, // Italics, bold, etc.
     "lists": true, // (Un)ordered lists, e.g. Bullets, Numbers.
@@ -34,14 +62,14 @@
     "size": "sm" // options are xs, sm, lg
 }
 });
-})
+    })
 </script>
 
 <script>
- (function($) {
+   (function($) {
     var element = $('.follow-scroll'),
     originalY = element.offset().top;
-    
+
     // Space between element and top of screen (when scrolling)
     var topMargin = 20;
     
@@ -96,10 +124,10 @@
                         "data": "job_id",
                         "orderable": false, 
                         "render": function (data, type, row) {
-                         return "<button type='button' id='"+ data +"' class='btn btn-sm btn-warning edit-job' title='Edit'><i class='fa fa-edit'></i></button>";
-                     }
-                 },
-                 {
+                           return "<button type='button' id='"+ data +"' class='btn btn-sm btn-warning edit-job' title='Edit'><i class='fa fa-edit'></i></button>";
+                       }
+                   },
+                   {
                     "data": "job_id",
                     "orderable": false, 
                     "render": function (data, type, row) {
@@ -121,7 +149,6 @@
             success:function(data) {
                 $('#jobTitle').val(data.job_title);  
                 $('iframe').contents().find('.wysihtml5-editor').html(data.job_description);
-
                 $('#image').attr('src', '<?=base_url()?>'+ data.image);
                 $('#jobImagePath').val(data.image);  
                 $('#status').val(data.status);   

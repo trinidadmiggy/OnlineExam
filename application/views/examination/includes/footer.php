@@ -51,10 +51,7 @@
         matchFontHeight: false,
         linebreaks: { automatic: true } 
       }, 
-      SVG: { 
-        linebreaks: { automatic:true } 
-      }, 
-      displayAlign: "left"
+      displayAlign: "left",
     });
   </script>
   <script>

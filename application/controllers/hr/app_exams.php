@@ -1,6 +1,15 @@
 <?php 
 
 class App_exams extends CI_Controller {
+	public function getSession() {
+		$session_data = $this->session->userdata('employee_login');
+		$sess['email'] = $session_data['email'];
+		$sess['fname'] = $session_data['fname'];
+		$sess['mname'] = $session_data['mname'];
+		$sess['lname'] = $session_data['lname'];
+		$sess['employee_id'] = $session_data['employee_id'];
+		return $sess;
+	}
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,7 +21,7 @@ class App_exams extends CI_Controller {
 		if ($this->session->userdata('employee_login') == NULL) {
 			redirect('login');
 		} else {
-			$this->load->view('careers/includes/header');
+			$this->load->view('careers/includes/header', $this->getSession());
 			$this->load->view('careers/applicant_exams');
 			$this->load->view('careers/includes/footer');
 		}

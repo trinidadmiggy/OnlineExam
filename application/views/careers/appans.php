@@ -27,67 +27,12 @@
   	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
   	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <!--  onload="document.title = 'Examination - <?php echo $app_details['lname']; echo ", "; echo $app_details['fname'];  echo " "; echo $app_details['mname'];?>';setTimeout(function() {window.print(); window.location = '<?= base_url()?>hr/app_exams/'}, 1000); -->
-<!-- 
-    <style>
-    /* Center the loader */
-    #loader {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      z-index: 1;
-      width: 150px;
-      height: 150px;
-      margin: -75px 0 0 -75px;
-      border: 16px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 16px solid #3498db;
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 2s linear infinite;
-      animation: spin 2s linear infinite;
-    }
-
-    @-webkit-keyframes spin {
-      0% { -webkit-transform: rotate(0deg); }
-      100% { -webkit-transform: rotate(360deg); }
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Add animation to "page content" */
-    .animate-bottom {
-      position: relative;
-      -webkit-animation-name: animatebottom;
-      -webkit-animation-duration: 1s;
-      animation-name: animatebottom;
-      animation-duration: 1s
-    }
-
-    @-webkit-keyframes animatebottom {
-      from { bottom:-100px; opacity:0 } 
-      to { bottom:0px; opacity:1 }
-    }
-
-    @keyframes animatebottom { 
-      from{ bottom:-100px; opacity:0 } 
-      to{ bottom:0; opacity:1 }
-    }
 
 
-
-  </style> -->
-
-
-  <style>
+<style>
   #exam {
     display: none;
   }
-  /* Downloaded from https://www.codeseek.co/ */
-  /* Variables de couleurs */
-  /*Fonts*/
   @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
   /* Main Css */
   html {
@@ -110,8 +55,6 @@
     animation: in ease 1s forwards;
     font-family: 'Roboto', sans-serif;
   }
-
-
 
   /* Objets */
   .printer-main {
@@ -217,17 +160,15 @@
     border-radius: 2px;
     background: #FFFEF3;
     z-index: 1;
-    text-align:center;
-    font-weight:bold;
-    font-size:11pt;
-    box-shadow: 2px 2px 1px #888888;
+   box-shadow: 13px 13px 10px -11px rgba(0,0,0,0.39);
   }
 
   img {
     position: relative;
-    top: -300px;
-    left: 43px;
-    width: 60px;
+    top: -330px;
+    left: 20px;
+    height: 135px;
+    width: 110px;
     opacity: 0;
     z-index: 2;
   }
@@ -375,13 +316,12 @@
       <div class="printer-separator"></div>
       <div class="body-print"></div>
       <div class="exit-part">
-        <div class="paper">
-          Generating PDF
-        </div>
+        <div class="paper" style="text-align: center;">Examination</div>
+        <img src="<?=base_url()?>public/dist/img/scribble-1.png" />
       </div>
     </div>
   </div>
-  <div class="wrapper"  style="display:none;" id="exam" class="animate-bottom">
+  <div class="wrapper"  style="display:none;" id="exam" class="animate-bottom" style="color:white;">
     <div class="content-wrapper">
       <div class="row ">
         <div class="box-exam">	
@@ -648,7 +588,6 @@
         <script src="<?=base_url()?>public/dist/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="<?=base_url()?>public/dist/js/demo.js"></script>
-        <!-- page script -->
         <script>
 
           var myVar;
@@ -657,6 +596,7 @@
             $('.paper').toggleClass('active-paper');
             $('img').toggleClass('active-logo');
             $('.button-1').toggleClass('flashing');
+
             myVar = setTimeout(showPage, 3000);
           }
 
@@ -670,48 +610,35 @@
 
 
         </script>
-<!--         <script>
-          var myVar;
 
-          function myFunction() {
-            myVar = setTimeout(showPage, 3000);
-          }
 
-          function showPage() {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("exam").style.display = "block";
-            setTimeout(function() {window.print(); window.location = '<?= base_url()?>hr/app_exams/'}, 500);
-          }
-        </script>
-      -->
-
-      <script>
-       if (window.MathJax) {
-        MathJax.Hub.Queue(
-         ["Typeset",MathJax.Hub]
-         );
-      }
-      MathJax.Hub.Config({
-        messageStyle: "none",
-        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-        showMathMenu : false,
-        "HTML-CSS": { 
-         scale: 110, 
-         minScaleAdjust: 50,
-         noReflows: false,
-         matchFontHeight: false,
-         linebreaks: { automatic: true } 
-       }, 
-       SVG: { 
-         linebreaks: { automatic:true } 
-       }, 
-       displayAlign: "left"
-     });
-   </script>
-   <script>
-     (function($) {
-      var element = $('.follow-scroll'),
-      originalY = element.offset().top;
+        <script>
+         if (window.MathJax) {
+          MathJax.Hub.Queue(
+           ["Typeset",MathJax.Hub]
+           );
+        }
+        MathJax.Hub.Config({
+          messageStyle: "none",
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+          showMathMenu : false,
+          "HTML-CSS": { 
+           scale: 110, 
+           minScaleAdjust: 50,
+           noReflows: false,
+           matchFontHeight: false,
+           linebreaks: { automatic: true } 
+         }, 
+         SVG: { 
+           linebreaks: { automatic:true } 
+         }, 
+         displayAlign: "left"
+       });
+     </script>
+     <script>
+       (function($) {
+        var element = $('.follow-scroll'),
+        originalY = element.offset().top;
 
     // Space between element and top of screen (when scrolling)
     var topMargin = 20;
