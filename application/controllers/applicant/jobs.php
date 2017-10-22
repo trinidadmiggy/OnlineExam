@@ -1,5 +1,14 @@
 <?php 
 class Jobs extends CI_Controller {
+	public function getSession() {
+		$session_data = $this->session->userdata('logged_in');
+		$this->app_id = $session_data['app_id'];
+		$sess['email'] = $session_data['email'];
+		$sess['fname'] = $session_data['fname'];
+		$sess['mname'] = $session_data['mname'];
+		$sess['lname'] = $session_data['lname'];
+		return $sess;
+	}
 	public function __construct()
 	{
 		parent::__construct();
@@ -10,7 +19,11 @@ class Jobs extends CI_Controller {
 		}
 	}
 	public function index() {
-		$data['jobs'] = $this->jobs_model->get_job();
+		$data = array(
+			'jobs' => $this->jobs_model->get_job(),
+			'sess' => $this->getSession()
+		);
+
 		$this->load->view('jobs/job_postings', $data);
 	}
 

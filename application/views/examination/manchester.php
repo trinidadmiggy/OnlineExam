@@ -92,19 +92,19 @@ ul li {
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" checked>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" required>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="B" >
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="B" required>
 																<?php echo $r['option2'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="C" >
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="C" required>
 																<?php echo $r['option3'];?>
 															</label>
 														</li>	
@@ -112,13 +112,13 @@ ul li {
 													<div class="col-lg-6 exam">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="D" >
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="D" required>
 																<?php echo $r['option4'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="E" >
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="E" required>
 																<?php echo $r['option5'];?>
 															</label>
 														</li>

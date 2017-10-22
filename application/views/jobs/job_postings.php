@@ -32,7 +32,7 @@
   }
 </style>
 </head>
-<body class="hold-transition skin-black sidebar-mini">
+<body class="hold-transition skin-black sidebar-mini sidebar-collapse">
   <div class="wrapper">
     <header class="main-header">
       <a class="logo">
@@ -46,7 +46,7 @@
           <ul class="nav navbar-nav">
             <li class="dropdown user user-menu">
               <a href="#" >
-                Hi! <span class="hidden-xs">Alexander Pierce</span>
+                Hi! <span class="hidden-xs"><?php echo $sess['fname']." ". $sess['lname'];  ?></span>
               </a>
               <ul class="dropdown-menu">
                 <li>

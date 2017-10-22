@@ -37,10 +37,10 @@
 										</label>
 										<br/>
 										<div class="multiplechoice radio">
-											<ol type="1">
+											<ol type="1" > 
 												<li>
 													<label>
-														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" checked>
+														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
 														<?php echo $r['option1'];?>
 													</label>
 												</li>

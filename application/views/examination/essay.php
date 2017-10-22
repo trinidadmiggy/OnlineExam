@@ -45,7 +45,7 @@
 								<label>
 									<?php echo $no++;?>) <?php echo $r['question']; ?>
 								</label>
-								<textarea class="form-control" name="essay_<?php echo $r['question_id'];?>" rows="5" placeholder="Enter ..."></textarea>
+								<textarea class="form-control" name="essay_<?php echo $r['question_id'];?>" rows="5" placeholder="Answer here..." required></textarea>
 							</div>
 							<?php if($r['question_id'] == 263) { break;} } ?>
 							<input type="submit" class="btn btn-primary pull-right" value="Submit" />
