@@ -45,7 +45,7 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" checked required>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
@@ -80,7 +80,7 @@
 											</div>
 										</div>
 										<?php } ?>
-										<input type="submit" class="btn btn-primary pull-right" onClick="return confirm('Are you sure you want to submit this examination? Once submitted, you cannot go back to this exam.')" value="Submit" />
+										<input type="submit" class="btn btn-primary pull-right"  value="Submit" />
 									</form>
 								</div>
 							</div>

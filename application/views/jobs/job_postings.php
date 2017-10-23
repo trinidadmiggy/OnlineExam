@@ -193,7 +193,7 @@ $('#job').on( 'click', '.apply', function () {
     success:function(data) {
       $("#job_id").val(data[0].job_id); 
       $("#job_title").text(data[0].job_title); 
-      $("#jd").append(data[0].job_description);
+      $("#jd").html(data[0].job_description);
       $("#essay").text(data[1].question + " " + data[0].job_title);
       $("#essayid").val(data[1].question_id);  
       $('#apply').modal('show');

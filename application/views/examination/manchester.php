@@ -92,7 +92,7 @@ ul li {
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" checked required>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
@@ -127,7 +127,7 @@ ul li {
 											</div>
 										</div>
 										<?php $q_no++; } ?>
-										<input type="submit" class="btn btn-primary pull-right" onClick="return confirm('Are you sure you want to submit this examination? Once submitted, you cannot go back to this exam.')" value="Submit" />
+										<input type="submit" class="btn btn-primary pull-right" value="Submit" />
 									</form>
 								</div>
 							</div>

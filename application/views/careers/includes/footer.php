@@ -128,10 +128,15 @@
                        }
                    },
                    {
-                    "data": "job_id",
+                    "data": null,
                     "orderable": false, 
                     "render": function (data, type, row) {
-                        return "<button runat='server' type='button' id='"+ data +"' class='btn btn-sm btn-danger post-job' onClick='window.location.reload()' title='Archive'><i class='fa fa-share-square-o'></i></button>";
+                        if(data.status == "Posted") {
+                            return "<button runat='server' type='button' id='"+ data.job_id +"' class='btn btn-sm btn-danger post-job' onClick='window.location.reload()' title='Unpost'><i class='fa fa-share-square-o'></i></button>";
+                        } else {
+                            return "<button runat='server' type='button' id='"+ data.job_id +"' class='btn btn-sm btn-danger post-job' onClick='window.location.reload()' title='Post'><i class='fa fa-share-square-o'></i></button>";
+                        }
+
                     }
                 },
                 ]
