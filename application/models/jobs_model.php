@@ -56,7 +56,7 @@ class Jobs_model extends CI_Model {
 			return true;
 		}
 	}
-	public function checkApplicantJobs($job_id, $app_id) {
+	public function checkApplicantJobs($app_id, $job_id) {
 		return $this->db->get_where('applicant_appliedjob',array('app_id' => $app_id, 'job_id' => $job_id))->row_array();
 	}
 

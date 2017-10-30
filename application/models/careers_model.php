@@ -3,7 +3,7 @@ class Careers_model extends CI_Model {
 
 	var $table = 'jobs';
     var $column_order = array(null, 'job_title', null, 'images', 'status'); //set column field database for datatable orderable
-    var $column_search = array('job_title', 'status'); //set column field database for datatable searchable 
+    var $column_search = array('job_title', 'job_description', 'status'); //set column field database for datatable searchable 
     var $order = array('job_id' => 'desc'); // default order 
 
     public function __construct() {

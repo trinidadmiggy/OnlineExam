@@ -1,3 +1,8 @@
+table.dataTable tbody td {
+	word-break: break-word;
+	vertical-align: top;
+}
+
 /* 2.2 List page*/
 .strip_list{
 	background-color:#fff;

@@ -80,6 +80,9 @@ ul li {
 							<div class="col-lg-12">
 								<div class="row">
 									<form method="POST" action="<?= site_url('hr/check_answer/manchester')?>">
+										<div class="alert alert-danger" id="error" style="display: none;">
+											<?php echo $this->session->flashdata('error'); ?>
+										</div>
 										<?php $q_no = 1; foreach($result as $r) {  ?>
 										<div class="questions col-lg-6" style="margin-bottom: 10px;">
 											<br/>
@@ -92,7 +95,7 @@ ul li {
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" checked required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" required>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
@@ -148,6 +151,13 @@ ul li {
 				</div>
 			</div>
 			<div class="col-lg-1">
+				<a data-toggle="modal" data-target="#exampleModal" title="Click for Example" style="text-decoration: none; color:black; cursor:pointer;">
+					<div class="direct-chat-msg">
+						<div class="direct-chat-text pull-left animated tada" style="margin: 0;">
+							<b>Example Here</b>
+						</div>
+					</div>
+				</a>
 				<div class="direct-chat-text pull-left follow-scroll" style="margin: -6px;">
 					<span class="info-box-number" id="time"></span>
 				</div>

@@ -24,9 +24,9 @@
             document.getElementById("addError").style.display = "block";
             $('#addJob').modal('show');
             <?php } else if($this->session->flashdata('editform_error') || $this->session->flashdata('editupload_error')) { ?>
-             document.getElementById("editError").style.display = "block";
-             var job_id = <?php echo $this->session->flashdata('id') ?>;
-             $.ajax({
+               document.getElementById("editError").style.display = "block";
+               var job_id = <?php echo $this->session->flashdata('id') ?>;
+               $.ajax({
                 url: "<?php echo site_url('hr/careers/updateGetJobs') ?>",
                 method:"POST",
                 data:{job_id:job_id},
@@ -42,15 +42,18 @@
                     $('#editJob').modal('show');
                 }
             })
-             <?php } ?>
-         });
-     </script>
+               $('#myModal').on('hidden.bs.modal', function () {
+                   location.reload();
+               })
+               <?php } ?>
+           });
+       </script>
 
 
-     <script>
-      $(function () {
-        $('.textarea').wysihtml5({
-          toolbar: {
+       <script>
+          $(function () {
+            $('.textarea').wysihtml5({
+              toolbar: {
     "font-styles": false, // Font styling, e.g. h1, h2, etc.
     "emphasis": true, // Italics, bold, etc.
     "lists": true, // (Un)ordered lists, e.g. Bullets, Numbers.
@@ -62,13 +65,13 @@
     "size": "sm" // options are xs, sm, lg
 }
 });
-    })
-</script>
+        })
+    </script>
 
-<script>
-   (function($) {
-    var element = $('.follow-scroll'),
-    originalY = element.offset().top;
+    <script>
+     (function($) {
+        var element = $('.follow-scroll'),
+        originalY = element.offset().top;
 
     // Space between element and top of screen (when scrolling)
     var topMargin = 20;
@@ -95,6 +98,7 @@
                     "processing": true, //Feature control the processing indicator.
                     "serverSide": true, //Feature control DataTables' server-side processing mode.
                     "order": [], //Initial no order.
+                    
 
                     // Load data for the table's content from an Ajax source
                     "ajax": {
@@ -124,10 +128,10 @@
                         "data": "job_id",
                         "orderable": false, 
                         "render": function (data, type, row) {
-                           return "<button type='button' id='"+ data +"' class='btn btn-sm btn-warning edit-job' title='Edit'><i class='fa fa-edit'></i></button>";
-                       }
-                   },
-                   {
+                         return "<button type='button' id='"+ data +"' class='btn btn-sm btn-warning edit-job' title='Edit'><i class='fa fa-edit'></i></button>";
+                     }
+                 },
+                 {
                     "data": null,
                     "orderable": false, 
                     "render": function (data, type, row) {

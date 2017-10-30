@@ -20,14 +20,14 @@
 	<link rel="stylesheet" href="<?=base_url()?>public/plugins/iCheck/all.css">
 	
 	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/custom.css">
+  <link rel="stylesheet" href="<?=base_url()?>public/plugins/animate.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
   	folder instead of downloading all of them to reduce the load. -->
   	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
   	<!-- Mathjax -->
   	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-  	<link rel="stylesheet"
-  	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="<?=base_url()?>public/dist/css/sourcesans.css">
   </head>
   <body class="hold-transition skin-black sidebar-mini sidebar-collapse">
   	<div class="wrapper">

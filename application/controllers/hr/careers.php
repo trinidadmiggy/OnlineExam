@@ -64,7 +64,7 @@ class Careers extends CI_Controller {
 	 {   
 	 	$this->load->library('form_validation');
 
-	 	$this->form_validation->set_rules('jobTitle','Job Title','required|alpha_numeric_spaces|is_unique[jobs.job_title]'); /*is_unique[jobs.job_title]*/
+	 	$this->form_validation->set_rules('jobTitle','Job Title','required|is_unique[jobs.job_title]'); /*is_unique[jobs.job_title]*/
 	 	$this->form_validation->set_rules('jobDesc','Job Description','required');
 	 	$this->form_validation->set_message('is_unique', 'The job you are trying to add already exists');
 	 	$config['upload_path']   = './public/dist/img/jobs/'; 
@@ -106,7 +106,7 @@ class Careers extends CI_Controller {
 	  	$data['job'] = $this->careers_model->get_job($this->input->post('job_id'));
 	  	if(isset($data['job']['job_id']))
 	  	{
-	  		$this->form_validation->set_rules('jobTitle','Job Title','required|alpha_numeric_spaces');
+	  		$this->form_validation->set_rules('jobTitle','Job Title','required');
 	  		$this->form_validation->set_rules('jobDesc','Job Description','required');
 	  		$this->form_validation->set_rules('status','Status','required');
 

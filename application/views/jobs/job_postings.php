@@ -11,20 +11,15 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?=base_url()?>public/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="<?=base_url()?>public/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="<?=base_url()?>public/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="<?=base_url()?>public/bower_components/Ionicons/css/ionicons.min.css"> -->
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url()?>public/dist/css/AdminLTE.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="<?=base_url()?>public/plugins/iCheck/all.css">
   
   <link rel="stylesheet" href="<?=base_url()?>public/dist/css/custom.css">
 
   <link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
 
-  <link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="<?=base_url()?>public/dist/css/sourcesans.css">
 
   <style>
   section.module.parallax-1 {
@@ -98,32 +93,31 @@
                   <div class="col-md-9 col-sm-9">
                     <div class="desc">
                       <div class="thumb_strip">
-                       <img src="<?=base_url(); echo $job['image']?>" alt="" onError="this.onerror=null;this.src='<?=base_url()?>public/dist/img/no-job.jpg'" >
-                     </div>
-                     <h3><?php echo $job['job_title']; ?></h3>
-                     <div class="type">
-                      <?php echo $job['jd']; ?> 
+                        <img src="<?=base_url(); echo $job['image']?>" onError="this.onerror=null;this.src='<?=base_url()?>public/dist/img/no-job.jpg'" >
+                      </div>
+                      <h3><?php echo $job['job_title']; ?></h3>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-3 col-sm-3">
-                  <div class="go_to">
-                    <div>
-                     <input type="button" id="<?php echo $job['job_id']; ?>" class="btn btn-primary btn-sm pull-right apply" value="Read More...">
+                  <div class="col-md-3 col-sm-3">
+                    <div class="go_to">
+                      <div>
+                       <input type="button" id="<?php echo $job['job_id']; ?>" class="btn btn-primary btn-sm pull-right apply" value="Read More...">
+                     </div>
                    </div>
                  </div>
                </div>
              </div>
            </div>
+           <?php } ?>
          </div>
-         <?php } ?>
        </div>
      </div>
-   </div>
- </section>
-</div>
-<!-- Apply Modal -->
-<div class="modal fade" id="apply" tabindex="-1">
+   </section>
+ </div>
+
+
+ <!-- Apply Modal -->
+ <div class="modal fade" id="apply" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -132,11 +126,17 @@
           <strong><span id="job_title"></span></strong>
         </h4>
       </div>
-      <div class="modal-body">
-        <form method="post" action="<?= site_url('applicant/jobs/answerEssay')?>">
+      <form method="post" action="<?= site_url('applicant/jobs/apply')?>">
+        <div class="modal-body">
           <div class="form-horizontal">
             <div class="form-group">
               <div class="col-lg-12">
+                <div class="alert alert-danger" id="error" style="display: none;">
+                  <?php echo $this->session->flashdata('error'); ?>
+                </div>
+                <div class="alert alert-success" id="applied" style="display: none;">
+                  <?php echo $this->session->flashdata('applied'); ?>
+                </div>
                 <h4 style="padding: 0">Job Description</h4>
                 <input type="hidden" id="job_id" name="job_id" />
                 <div style="font-weight: 400;" id="jd"></div>
@@ -144,7 +144,7 @@
                 <hr/>
                 <input type="hidden" id="essayid" name="essayid" />
                 <label class="form-control-label" id="essay"></label>
-                <textarea class="form-control textarea"  name="essayAns" rows="5" required></textarea>
+                <textarea class="form-control textarea"  name="essayAns" id="essayAns" rows="5" minlength="50" style="resize: none;" required ></textarea>
               </div>
             </div>
           </div>         
@@ -164,47 +164,35 @@
 <script src="<?=base_url()?>public/dist/js/parallax.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?=base_url()?>public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="<?=base_url()?>public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?=base_url()?>public//bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="<?=base_url()?>public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?=base_url()?>public/bower_components/fastclick/lib/fastclick.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="<?=base_url()?>public/plugins/iCheck/icheck.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>public/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?=base_url()?>public/dist/js/demo.js"></script>
-<script src="<?=base_url()?>public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
-<script>
-/*  $('.parallax-window').parallax({imageSrc: '<?=base_url()?>public/dist/img/multo.jpg'});
-*/
 
-$('#job').on( 'click', '.apply', function () {
-  var job_id = $(this).attr("id");
-  $.ajax({
-    url: "<?php echo site_url('applicant/jobs/getJobDetails') ?>",
-    method:"POST",
-    data:{job_id:job_id},
-    dataType:"json", 
-    success:function(data) {
-      $("#job_id").val(data[0].job_id); 
-      $("#job_title").text(data[0].job_title); 
-      $("#jd").html(data[0].job_description);
-      $("#essay").text(data[1].question + " " + data[0].job_title);
-      $("#essayid").val(data[1].question_id);  
-      $('#apply').modal('show');
-    }
-  })
-});
+<script type="text/javascript">
 
-$('#app_exams tbody').on( 'click', '.view-exam', function () {
-  var app_id = $(this).attr("id");
-  window.location = "<?= base_url()?>hr/app_exams/appans/" + app_id;
-});
+  $(document).ready(function() {
+    $('#job').on( 'click', '.apply', function () {
+      var job_id = $(this).attr("id");
+      $.ajax({
+        url: "<?php echo site_url('applicant/jobs/getJobDetails') ?>",
+        method:"POST",
+        data:{job_id:job_id},
+        dataType:"json", 
+        success:function(data) {
+          $("#job_id").val(data[0].job_id); 
+          $("#job_title").text(data[0].job_title); 
+          document.getElementById("jd").innerHTML = data[0].job_description;
+          $("#essay").text(data[1].question + " " + data[0].job_title);
+          $("#essayid").val(data[1].question_id);  
+          $('#apply').modal('show');
+        }
+      })
+    });
+  });
 </script>
 
 </html>

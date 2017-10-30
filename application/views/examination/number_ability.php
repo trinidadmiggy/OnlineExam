@@ -26,7 +26,7 @@
 						<h2 style="margin:0">Number Ability</h2>
 						<h5 title="Click here for example">
 							<a data-toggle="modal" data-target="#exampleModal" style="text-decoration: none; color:black; cursor:pointer;">
-								<u><b>Instructions.</b></u> This test meausres your ability to make rapid numerical and estimates.
+								<u><b>Instructions.</b></u> This test measures your ability to make rapid numerical and estimates.
 							</a>
 						</h5>
 					</div>
@@ -36,6 +36,9 @@
 								<div class="row" >
 									<form method="post" action="<?= site_url('hr/check_answer/technical')?>" >
 										<input type="hidden" name="examtype_id" value="4" />
+										<div class="alert alert-danger" id="error" style="display: none;">
+											<?php echo $this->session->flashdata('error'); ?>
+										</div>
 										<?php foreach($result as $r) { ?>
 										<div class="questions col-lg-6" >
 											<br/>
@@ -48,7 +51,7 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" checked required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
@@ -98,6 +101,13 @@
 				</div>
 			</div>
 			<div class="col-lg-2">
+				<a data-toggle="modal" data-target="#exampleModal" title="Click for Example" style="text-decoration: none; color:black; cursor:pointer;">
+					<div class="direct-chat-msg">
+						<div class="direct-chat-text pull-left animated tada" style="margin: 0;">
+							<b>Example Here</b>
+						</div>
+					</div>
+				</a>
 				<div class="direct-chat-text pull-left follow-scroll" style="margin: 0;">
 					<span class="info-box-number" id="time"></span>
 				</div>

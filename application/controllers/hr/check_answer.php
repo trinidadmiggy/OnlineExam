@@ -113,24 +113,39 @@ class Check_answer extends CI_Controller {
 		}
 	}
 	public function technical() {
+
+
 		$score = 0;
 		$examtype_id = $this->input->post('examtype_id');
 		$questions = $this->examination_model->getQuestion($examtype_id);
-
 		foreach($questions as $question)
 		{
-			$this->saveAns($question['question_id'], $this->input->post('q_'.$question['question_id']));
-			if($this->input->post('q_'.$question['question_id']) == $question['answer']) 
-			{
-				$score = $score + 1;
-			}
+			$this->form_validation->set_rules('q_'.$question['question_id'],'#'.$question['question_id'],'required');
+			$this->form_validation->set_message('required', '%s is blank. Please choose an answer.');
 		}
-		$description = $this->interpret($score);
-		if($this->compute($score, $description, $examtype_id)) {
-			$this->checkIfTakenExam($examtype_id);
-		} 
+
+		if($this->form_validation->run())     
+		{   
+			foreach($questions as $question)
+			{
+				$this->saveAns($question['question_id'], $this->input->post('q_'.$question['question_id']));
+				if($this->input->post('q_'.$question['question_id']) == $question['answer']) 
+				{
+					$score = $score + 1;
+				}
+			}
+			$description = $this->interpret($score);
+			if($this->compute($score, $description, $examtype_id)) {
+				$this->checkIfTakenExam($examtype_id);
+			} 
+		}
+		else
+		{   
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('applicant/examination/'.$this->input->post('type'));
+		}
 	}
-	public function send_email($email, $message) 
+	public function send_email($subject, $email, $message) 
 	{
 		$emailconfig = array(
 			'protocol' => 'smtp',
@@ -144,10 +159,11 @@ class Check_answer extends CI_Controller {
 
 		$this->email->from('qpsdummy@gmail.com', 'Qps Dummy');
 		$this->email->to($email);
-		$this->email->subject("Questronix Online Examination");
+		$this->email->subject($subject);
 		$this->email->message($message);
 		$this->email->send();
 	}
+
 	public function essay() {
 		$session_data = $this->session->userdata('logged_in');
 		$app_id = $session_data['app_id'];
@@ -166,10 +182,13 @@ class Check_answer extends CI_Controller {
 			$this->examination_model->saveEssay($app_id, $question['question_id'], $essay);
 		}
 
-		$this->send_email($email, 'Thank You for taking the online examination of Questionix Corporation. The HR Department will now evaluate your application. Please do not forget to choose for the job application in the careers section.');
-		$this->send_email('hrqnxdummy@gmail.com', $fname . " " . $mname . " " . $lname . " has submitted his/her online examination.");
+		$this->send_email('Questionix Online Examination',$email, 'Thank You for taking the online examination of Questionix Corporation. The HR Department will now evaluate your application. Please do not forget to choose for the job application in the careers section.');
+
+
+		$this->send_email('Examination:' . $fname . " " . $mname . " " . $lname,'hrqnxdummy@gmail.com', $fname . " " . $mname . " " . $lname . " has submitted his/her online examination.");
 		redirect('applicant/examination/thankyou', 'refresh');
 	}
+
 	public function manchester() {
 		$score = 0;
 		$q_no=1;

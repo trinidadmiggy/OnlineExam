@@ -38,6 +38,9 @@
 								<div class="row">
 									<form method="POST" action="<?= site_url('hr/check_answer/technical')?>">
 										<input type="hidden" name="examtype_id" value="5" />
+										<div class="alert alert-danger" id="error" style="display: none;">
+											<?php echo $this->session->flashdata('error'); ?>
+										</div>
 										<?php $no=1; foreach($result as $r) { ?>
 										<div class="questions col-lg-6">
 											<br/>
@@ -50,7 +53,7 @@
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" checked required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>

@@ -6,7 +6,10 @@
 	</section>
 	<section class="content">
 		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
+			<div class="col-lg-2">
+
+			</div>
+			<div class="col-lg-8">
 				<div class="box-exam">
 					<div class="progress" style="margin:0;">
 						<div class="prog progress-bar progress-bar-warning" style="width: 14.286%">
@@ -27,6 +30,10 @@
 								<div class="row">
 									<form method="POST" action="<?= site_url('hr/check_answer/technical')?>">
 										<input type="hidden" name="examtype_id" value="1" />
+										<input type="hidden" name="type" value="verbal" />
+										<div class="alert alert-danger" id="error" style="display: none;">
+											<?php echo $this->session->flashdata('error'); ?>
+										</div>
 										<?php foreach($result as $r) { ?>
 										<div class="questions col-lg-6" style="padding: 0px">
 											<br/>
@@ -39,7 +46,7 @@
 													<div class="exam-font col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" checked required>
+																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>" required>
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
@@ -95,7 +102,14 @@
 				</div>
 			</div>
 			<div class="col-lg-2">
-				<div class="direct-chat-text pull-left follow-scroll" style="margin: 0;">
+				<a data-toggle="modal" data-target="#exampleModal" title="Click for Example" style="text-decoration: none; color:black; cursor:pointer;">
+					<div class="direct-chat-msg">
+						<div class="direct-chat-text pull-left animated tada" style="margin: 0;">
+							<b>Example Here</b>
+						</div>
+					</div>
+				</a>
+				<div class="direct-chat-text pull-left follow-scroll" style="margin: 0; ">
 					<span class="info-box-number" id="time"></span>
 				</div>
 				<input type="hidden" id="timeValue" value="8"/>

@@ -57,7 +57,7 @@
                                     <label for="normal-field" class="col-lg-4 form-control-label" style="text-align: right">Description</label>
                                     <div class="col-lg-7">
                                        <!--  <textarea class="form-control" name="jobDesc" required="required" rows="5"></textarea> -->
-                                       <textarea class="textarea" name="jobDesc" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                       <textarea class="textarea" name="jobDesc" minlength="50" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                    </div>
                                </div>
                                <div class="form-group row">
@@ -102,7 +102,7 @@
                     <div class="form-group row" runat="server">
                         <label for="normal-field" class="col-lg-4 form-control-label" style="text-align: right">Description</label>
                         <div class="col-lg-7">
-                            <textarea class="textarea" name="jobDesc" id="jobDesc" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                            <textarea class="textarea" name="jobDesc" id="jobDesc"  minlength="50" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                        </div>
                    </div>
                    <div class="form-group row" runat="server">
