@@ -17,15 +17,7 @@
 <script src="<?=base_url()?>public/dist/js/demo.js"></script>
 <!-- page script -->
 
-<script>
-  $(document).ready(function() {
-    <?php if($this->session->flashdata('error')) { ?>
-      document.getElementById("error").style.display = "block";
-      <?php } ?>
-    });
-  </script>
-
-  <script type="text/javascript">
+<script type="text/javascript">
       //iCheck for checkbox and radio inputs
       $('input[type="radio"].minimal').iCheck({
         checkboxClass: 'icheckbox_minimal-blue',

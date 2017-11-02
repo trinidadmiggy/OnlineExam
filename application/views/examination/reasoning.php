@@ -158,7 +158,7 @@
 						taining the 3 has been marked with an X. Are there any questions?
 						<br/>
 						<br/>
-						You will be given twenty minutes to work on this part. If you are not certain of an aswer, mark the answer you think might be correct and go on the next item. Work as rapidly and as accurately as you can. If you finish before the time is called, go back over the questions <b>in this section only. Do not go on to another section or back to a  previous one.</b>
+						You will be given twenty minutes to work on this part. If you are not certain of an answer, mark the answer you think might be correct and go on the next item. Work as rapidly and as accurately as you can. If you finish before the time is called, go back over the questions <b>in this section only. Do not go on to another section or back to a  previous one.</b>
 						<h4>DO NOT TURN THIS PAGE UNTIL TO DO SO.</h4>
 					</div>
 				</div>

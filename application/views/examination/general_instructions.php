@@ -16,7 +16,7 @@
 					<div class="box-body">
 						<form method="post"  action="<?= site_url('applicant/examination/verbal')?>">
 							<div>
-								&emsp;This is a test to measure your aptitude for learning and performing the job of a computer programming and systems analysis.
+								&emsp;This is a test to measure your aptitudes for learning and performing the job of a computer programming and systems analysis.
 								There are five parts to the test and each part will be timed seperately. You are to mark all you answers on the seperate sheet provided. MAKE NO MARKS IN THIS TEST BOOKLET. Notice the band across the middle of the answer sheet and the large numbers printed in it. These numbers indicate the page of questions in the test booklet over the answer pad so that only the right-hand column of the answer spaces is exposed. The edge of the test booklet should follow the line on the answer sheet marking off the first column, and the page number on the test booklet shouuld match the number in the middle of the column. When you have completed one page of a test and turn the page, slip the answer sheet out so that the next column of answer spaces is exposed. Always make certain that the large numbers on the test booklet page and answer sheet column are the same.
 							</div>
 							<br />	

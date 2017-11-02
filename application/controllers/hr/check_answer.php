@@ -120,30 +120,16 @@ class Check_answer extends CI_Controller {
 		$questions = $this->examination_model->getQuestion($examtype_id);
 		foreach($questions as $question)
 		{
-			$this->form_validation->set_rules('q_'.$question['question_id'],'#'.$question['question_id'],'required');
-			$this->form_validation->set_message('required', '%s is blank. Please choose an answer.');
-		}
-
-		if($this->form_validation->run())     
-		{   
-			foreach($questions as $question)
+			$this->saveAns($question['question_id'], $this->input->post('q_'.$question['question_id']));
+			if($this->input->post('q_'.$question['question_id']) == $question['answer']) 
 			{
-				$this->saveAns($question['question_id'], $this->input->post('q_'.$question['question_id']));
-				if($this->input->post('q_'.$question['question_id']) == $question['answer']) 
-				{
-					$score = $score + 1;
-				}
+				$score = $score + 1;
 			}
-			$description = $this->interpret($score);
-			if($this->compute($score, $description, $examtype_id)) {
-				$this->checkIfTakenExam($examtype_id);
-			} 
 		}
-		else
-		{   
-			$this->session->set_flashdata('error', validation_errors());
-			redirect('applicant/examination/'.$this->input->post('type'));
-		}
+		$description = $this->interpret($score);
+		if($this->compute($score, $description, $examtype_id)) {
+			$this->checkIfTakenExam($examtype_id);
+		} 
 	}
 	public function send_email($subject, $email, $message) 
 	{
@@ -182,7 +168,7 @@ class Check_answer extends CI_Controller {
 			$this->examination_model->saveEssay($app_id, $question['question_id'], $essay);
 		}
 
-		$this->send_email('Questionix Online Examination',$email, 'Thank You for taking the online examination of Questionix Corporation. The HR Department will now evaluate your application. Please do not forget to choose for the job application in the careers section.');
+		$this->send_email('Questionix Online Examination',$email, 'Thank You for taking the online examination of Questronix Corporation. The HR Department will now evaluate your application. Please do not forget to choose a job in the careers section.');
 
 
 		$this->send_email('Examination:' . $fname . " " . $mname . " " . $lname,'hrqnxdummy@gmail.com', $fname . " " . $mname . " " . $lname . " has submitted his/her online examination.");

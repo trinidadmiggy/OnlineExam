@@ -38,9 +38,6 @@
 								<div class="row">
 									<form method="POST" action="<?= site_url('hr/check_answer/technical')?>">
 										<input type="hidden" name="examtype_id" value="5" />
-										<div class="alert alert-danger" id="error" style="display: none;">
-											<?php echo $this->session->flashdata('error'); ?>
-										</div>
 										<?php $no=1; foreach($result as $r) { ?>
 										<div class="questions col-lg-6">
 											<br/>

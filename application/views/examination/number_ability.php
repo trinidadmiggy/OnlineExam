@@ -36,6 +36,7 @@
 								<div class="row" >
 									<form method="post" action="<?= site_url('hr/check_answer/technical')?>" >
 										<input type="hidden" name="examtype_id" value="4" />
+										<input type="hidden" name="type" value="numberability" />
 										<div class="alert alert-danger" id="error" style="display: none;">
 											<?php echo $this->session->flashdata('error'); ?>
 										</div>
@@ -178,7 +179,7 @@
 				</div>
 				<div class="form-group">
 					<p>
-						&emsp;The correct answer to Sample 1 is "D," or 51, and an X has been marked in that box on the answer sheet. Sample 2 calls for an approximate answer. From among thos listed, the alternative that is <b>closes estimate</b> to the correct answer is "C," or 30. This alternative has been marked on the answer sheet.
+						&emsp;The correct answer to Sample 1 is "D," or 51, and an X has been marked in that box on the answer sheet. Sample 2 calls for an approximate answer. From among those listed, the alternative that is <b>closest estimate</b> to the correct answer is "C," or 30. This alternative has been marked on the answer sheet.
 					</p>
 					<p>
 						&emsp;Remember, you are to calculate or estimate the correct answers to the problems <b>mentally</b>. The time limit is very short, so you should not waste time working out the answers with a pencil. <b>Make no marks in the test booklet.</b>
@@ -187,7 +188,7 @@
 						Are there any questions?
 					</p>
 					<p>
-						&emsp;When you are given the signal to begin, turn the page and begin work. THere are three pages of problems in this part. You will be given <b>six</b> minutes to complete this part of the test. If you finish before time is called, go back and check your answers on this <b>section only.</b>
+						&emsp;When you are given the signal to begin, turn the page and begin work. There are three pages of problems in this part. You will be given <b>six</b> minutes to complete this part of the test. If you finish before time is called, go back and check your answers on this <b>section only.</b>
 					</p>
 					<h4>DO NOT TURN THIS PAGE UNTIL TO DO SO.</h4>
 				</div>

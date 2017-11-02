@@ -126,6 +126,9 @@
           <strong><span id="job_title"></span></strong>
         </h4>
       </div>
+      <div class="alert alert-danger" id="error" style="display: none;">
+        <?php echo $this->session->flashdata('error');?>
+      </div>
       <form method="post" action="<?= site_url('applicant/jobs/apply')?>">
         <div class="modal-body">
           <div class="form-horizontal">
@@ -137,9 +140,9 @@
                 <div class="alert alert-success" id="applied" style="display: none;">
                   <?php echo $this->session->flashdata('applied'); ?>
                 </div>
-                <h4 style="padding: 0">Job Description</h4>
+                <h4 style="padding: 0;">Job Description</h4>
                 <input type="hidden" id="job_id" name="job_id" />
-                <div style="font-weight: 400;" id="jd"></div>
+                <div style="font-weight: 400; overflow-wrap: break-word;" id="jd"></div>
                 <label class="form-control-label" ></label>
                 <hr/>
                 <input type="hidden" id="essayid" name="essayid" />
@@ -171,6 +174,20 @@
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>public/dist/js/adminlte.min.js"></script>
 
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var input = document.getElementById('essayAns');
+    input.addEventListener('keydown', function(e) {      
+     var input = e.target;
+     var val = input.value;
+     var end = input.selectionEnd;
+     if(e.keyCode == 32 && (val[end - 5] == " " || val[end] == " ")) {
+       e.preventDefault();
+       return false;
+     }      
+   });
+  });
+</script>
 
 <script type="text/javascript">
 
