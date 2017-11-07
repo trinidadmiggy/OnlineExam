@@ -22,11 +22,11 @@ class Login extends CI_Controller
   else
   {
     if($this->level == "applicant"){
-     redirect('applicant/examination/index', 'refresh');
+     redirect('applicant/jobs', 'refresh');
    } else if($this->level == "hr") {
 
    }
-   redirect('hr/careers', 'refresh');
+   redirect('hr/app_exams', 'refresh');
  }
 
 }

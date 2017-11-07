@@ -203,6 +203,8 @@ class Check_answer extends CI_Controller {
 				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 1;
+				} else if($this->input->post('manchester_q'.$i) == ""){
+					$mpq["$i"] = 0;
 				}
 
 			}
@@ -227,6 +229,8 @@ class Check_answer extends CI_Controller {
 				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 5;
+				} else if($this->input->post('manchester_q'.$i) == ""){
+					$mpq["$i"] = 0;
 				}
 			}
 
@@ -251,6 +255,8 @@ class Check_answer extends CI_Controller {
 				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 1;
+				} else if($this->input->post('manchester_q'.$i) == ""){
+					$mpq["$i"] = 0;
 				}
 
 			}
@@ -276,6 +282,8 @@ class Check_answer extends CI_Controller {
 				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 5;
+				} else if($this->input->post('manchester_q'.$i) == ""){
+					$mpq["$i"] = 0;
 				}
 			}
 
@@ -300,6 +308,8 @@ class Check_answer extends CI_Controller {
 				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 1;
+				} else if($this->input->post('manchester_q'.$i) == ""){
+					$mpq["$i"] = 0;
 				}
 
 			}
@@ -325,6 +335,8 @@ class Check_answer extends CI_Controller {
 				else if($this->input->post('manchester_q'.$i) == "E")
 				{
 					$mpq["$i"] = 5;
+				} else if($this->input->post('manchester_q'.$i) == ""){
+					$mpq["$i"] = 0;
 				}	
 			}
 		}

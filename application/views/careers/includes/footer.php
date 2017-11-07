@@ -186,6 +186,7 @@
 <script type="text/javascript">
     var tbl;
     $(document).ready(function () {
+
         tbl = $('#app_exams').DataTable({
                     "processing": true, //Feature control the processing indicator.
                     "serverSide": true, //Feature control DataTables' server-side processing mode.
@@ -211,11 +212,14 @@
                             return "<button type='button' id='"+ data +"' class='btn btn-sm btn-primary app_details' title='Applicant Details'><i class='fa fa-info'></i></button>";
                         }
                     },
-                    { 
-                        "data": null,
-                        "render": function (data, type, row) {
-                            return data.lname +",  "+ data.fname +" "+ data.mname;
-                        }
+                    {
+                        "data": "lname"
+                    },
+                    {
+                        "data": "mname"
+                    },
+                    {
+                        "data": "fname"
                     },
                     {
                         "data": null,

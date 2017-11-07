@@ -13,7 +13,9 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th width="10px"></th>
-                                                    <th>Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>First Name</th>
+                                                    <th>Middle Name</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>

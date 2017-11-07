@@ -16,24 +16,18 @@
 	<link rel="stylesheet" href="<?=base_url()?>public/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/AdminLTE.css">
-	<!-- iCheck for checkboxes and radio inputs -->
+	
 	<link rel="stylesheet" href="<?=base_url()?>public/plugins/iCheck/all.css">
 	
 	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/custom.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-  	folder instead of downloading all of them to reduce the load. -->
-  	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
-  	<link rel="stylesheet" href="<?=base_url()?>public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  	<!-- Mathjax -->
-  	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-  	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 
-<link rel="stylesheet" href="<?=base_url()?>public/dist/css/sourcesans.css">
+	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
+	<link rel="stylesheet" href="<?=base_url()?>public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+	<!-- Mathjax -->
+	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+
+	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/sourcesans.css">
 
 </head>
 <body class="hold-transition skin-black	sidebar-mini sidebar-collapse">
@@ -77,11 +71,11 @@
 							<i class="fa fa-pencil-square-o"></i><span>Applicant Examination</span>
 						</a>
 					</li>
-					<li>
+<!-- 					<li>
 						<a href="<?=base_url()?>hr/careers">
 							<i class="fa fa-briefcase"></i> <span>Careers Management</span>
 						</a>
-					</li>
+					</li> -->
 				</ul>
 			</section>
 		</aside>

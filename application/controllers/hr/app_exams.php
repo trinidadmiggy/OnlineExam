@@ -62,7 +62,8 @@ class App_exams extends CI_Controller {
 		$data = array(
 			'answers' => $this->examination_model->getAnswers($app_id),
 			'essay' => $this->examination_model->getEssay($app_id),
-			'app_details' =>$this->appexam_model->getAppDetails($app_id)
+			'app_details' => $this->appexam_model->getAppDetails($app_id),
+			'job_essay' => $this->appexam_model->getJobEssay($app_id)
 		);
 		$this->load->view('careers/appans', $data);
 	}

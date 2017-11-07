@@ -45,10 +45,10 @@
 								<label>
 									<?php echo $no++;?>) <?php echo $r['question']; ?>
 								</label>
-								<textarea class="form-control" name="essay_<?php echo $r['question_id'];?>" minlength="50" rows="5" placeholder="Answer here..." style="resize: none;"  required></textarea>
+								<textarea class="form-control" name="essay_<?php echo $r['question_id'];?>" maxlength="1000" rows="5" placeholder="Answer here..." style="resize: none;" ></textarea>
 							</div>
 							<?php if($r['question_id'] == 263) { break;} } ?>
-							<input type="submit" class="btn btn-primary pull-right" value="Submit" />
+							<input type="submit" class="btn btn-primary pull-right" onClick="return confirm('Are you sure you want to submit this examination? Once submitted, you cannot go back to this exam.')" value="Submit" />
 						</form>
 					</div>
 				</div>

@@ -147,7 +147,7 @@
                 <hr/>
                 <input type="hidden" id="essayid" name="essayid" />
                 <label class="form-control-label" id="essay"></label>
-                <textarea class="form-control textarea"  name="essayAns" id="essayAns" rows="5" minlength="50" style="resize: none;" required ></textarea>
+                <textarea class="form-control textarea"  name="essayAns" id="essayAns" rows="5" maxlength="1000" style="resize: none;" required ></textarea>
               </div>
             </div>
           </div>         

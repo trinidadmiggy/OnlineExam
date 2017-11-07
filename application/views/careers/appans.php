@@ -25,8 +25,8 @@
   	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
   	<!-- Mathjax -->
   	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-  	 <link rel="stylesheet" href="<?=base_url()?>public/dist/css/sourcesans.css">
-      <link rel="stylesheet" href="<?=base_url()?>public/dist/css/roboto.css">
+    <link rel="stylesheet" href="<?=base_url()?>public/dist/css/sourcesans.css">
+    <link rel="stylesheet" href="<?=base_url()?>public/dist/css/roboto.css">
     <!--  onload="document.title = 'Examination - <?php echo $app_details['lname']; echo ", "; echo $app_details['fname'];  echo " "; echo $app_details['mname'];?>';setTimeout(function() {window.print(); window.location = '<?= base_url()?>hr/app_exams/'}, 1000); -->
 
 
@@ -367,6 +367,12 @@
         <?php } ?>
         <div class="col-lg-4 col-print-4">
           <label style="margin: -6px;">
+            <?php if ($value['app_answer'] == null) {?>
+            <span class="bg-warning">
+              <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
+              <span class="fa fa-exclamation blank"></"></span>
+            </span>
+            <?php } else { ?>
             <?php if ($value['answer'] != $value['app_answer']) { ?>
             <span class="bg-danger">
               <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
@@ -377,10 +383,14 @@
               <?php echo $value['question_id'];?>) <?php echo $value['question'];?> 
               <span class="glyphicon glyphicon-ok correct"></span>
             </span>
-            <?php } ?>
+            <?php } } ?>
           </label>
           <div class="radio">
-            <?php echo $value['answer'] ?>
+            <?php if($value['app_answer'] == null) { ?>
+            <i>Did not answer</i>
+            <?php } else { ?>
+            <?php echo $value['app_answer'] ?>
+            <?php } ?>
           </div>
         </div>
 
@@ -404,6 +414,12 @@
           </table>
           <?php } ?>
           <label>
+            <?php if ($value['app_answer'] == null) {?>
+            <span class="bg-warning">
+              <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
+              <span class="fa fa-exclamation blank"></"></span>
+            </span>
+            <?php } else { ?>
             <?php if ($value['answer'] != $value['app_answer']) { ?>
             <span class="bg-danger">
               <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
@@ -414,10 +430,14 @@
               <?php echo $value['question_id'];?>) <?php echo $value['question'];?> 
               <span class="glyphicon glyphicon-ok correct"></span>
             </span>
-            <?php } ?>
+            <?php } } ?>
           </label>
           <div class="radio">
-            <?php echo $value['answer'] ?>
+            <?php if($value['app_answer'] == null) { ?>
+            <i>Did not answer</i>
+            <?php } else { ?>
+            <?php echo $value['app_answer'] ?>
+            <?php } ?>
           </div>
 
           <?php } else if($value['examtype_id'] == 3) { $l++; ?> 
@@ -441,9 +461,15 @@
             <?php } ?>
             <div class="col-lg-6 col-print-6">
               <label style="margin: -6px;">
+                <?php if ($value['app_answer'] == null) {?>
+                <span class="bg-warning">
+                  <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
+                  <span class="fa fa-exclamation blank"></"></span>
+                </span>
+                <?php } else { ?>
                 <?php if ($value['answer'] != $value['app_answer']) { ?>
                 <span class="bg-danger">
-                  <?php echo $value['question_id'];?>) <?php echo $value['question'];?>  
+                  <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
                   <span class="glyphicon glyphicon-remove wrong"></span>
                 </span>
                 <?php } else {   ?>
@@ -451,10 +477,14 @@
                   <?php echo $value['question_id'];?>) <?php echo $value['question'];?> 
                   <span class="glyphicon glyphicon-ok correct"></span>
                 </span>
-                <?php } ?>
+                <?php } } ?>
               </label>
               <div class="radio">
-                <?php echo $value['answer'] ?>
+                <?php if($value['app_answer'] == null) { ?>
+                <i>Did not answer</i>
+                <?php } else { ?>
+                <?php echo $value['app_answer'] ?>
+                <?php } ?>
               </div>
             </div>
 
@@ -479,9 +509,15 @@
               <?php } ?>
               <div class="col-lg-6 col-print-6">
                 <label style="margin: -6px;">
+                  <?php if ($value['app_answer'] == null) {?>
+                  <span class="bg-warning">
+                    <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
+                    <span class="fa fa-exclamation blank"></"></span>
+                  </span>
+                  <?php } else { ?>
                   <?php if ($value['answer'] != $value['app_answer']) { ?>
                   <span class="bg-danger">
-                    <?php echo $value['question_id'];?>) <?php echo $value['question'];?>  
+                    <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
                     <span class="glyphicon glyphicon-remove wrong"></span>
                   </span>
                   <?php } else {   ?>
@@ -489,10 +525,14 @@
                     <?php echo $value['question_id'];?>) <?php echo $value['question'];?> 
                     <span class="glyphicon glyphicon-ok correct"></span>
                   </span>
-                  <?php } ?>
+                  <?php } } ?>
                 </label>
                 <div class="radio">
-                  <?php echo $value['answer'] ?>
+                  <?php if($value['app_answer'] == null) { ?>
+                  <i>Did not answer</i>
+                  <?php } else { ?>
+                  <?php echo $value['app_answer'] ?>
+                  <?php } ?>
                 </div>
               </div>
 
@@ -517,20 +557,30 @@
                 <?php } ?>
                 <div class="col-lg-6 col-print-6">
                   <label style="margin: -6px;">
+                    <?php if ($value['app_answer'] == null) {?>
+                    <span class="bg-warning">
+                      <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
+                      <span class="fa fa-exclamation blank"></"></span>
+                    </span>
+                    <?php } else { ?>
                     <?php if ($value['answer'] != $value['app_answer']) { ?>
                     <span class="bg-danger">
-                      <?php echo $i; ?>) <?php echo $value['question'];?>  
+                      <?php echo $value['question_id'];?>) <?php echo $value['question'];?>
                       <span class="glyphicon glyphicon-remove wrong"></span>
                     </span>
                     <?php } else {   ?>
                     <span class="bg-success">
-                      <?php echo $i;?>) <?php echo $value['question'];?> 
+                      <?php echo $value['question_id'];?>) <?php echo $value['question'];?> 
                       <span class="glyphicon glyphicon-ok correct"></span>
                     </span>
-                    <?php } ?>
+                    <?php } } ?>
                   </label>
                   <div class="radio">
-                    <?php echo $value['answer'] ?>
+                    <?php if($value['app_answer'] == null) { ?>
+                    <i>Did not answer</i>
+                    <?php } else { ?>
+                    <?php echo $value['app_answer'] ?>
+                    <?php } ?>
                   </div>
                 </div>
                 <?php } } ?>
@@ -549,15 +599,32 @@
                       </tr>
                     </tbody>
                   </table>
-
-                  <?php }?>
+                  <?php } ?>
                   <label style="margin: -6px;">
                     <?php echo $essayNo; ?>) <?php echo $val['question'];?>  
                   </label>
                   <div class="radio">
                     <?php echo $val['answer'] ?>
                   </div>
-                  <?php $essayNo++; } ?>
+                  <?php $essayNo++; if($essayNo == 4) {break;} } ?>
+                  <div class="page-break"></div>
+
+                  <?php $jno = 1; foreach($job_essay as $j => $j_val) { if($jno == 1) {  ?> 
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <th rowspan="2"><h3 align="center">Job Essay</h3></th>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <?php } ?>
+                  <label style="margin: -6px;">
+                    <?php echo $jno; ?>) <?php echo $j_val['question'];?>  <?php echo $j_val['job_title'];?> 
+                  </label>
+                  <div class="radio">
+                    <?php echo $j_val['answer'] ?>
+                  </div>
+                  <?php $jno++;} ?>
                 </div>
               </div>
             </div>

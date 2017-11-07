@@ -296,6 +296,15 @@ section.module.parallax h1 {
 	.correct:before {
 		color: green !important;
 	}
+
+	.blank:before {
+		color: #8a6d3b !important;
+	}
+
+	.bg-warning {
+		background-color: #fcf8e3 !important;
+		-webkit-print-color-adjust: exact;
+	}
 	.bg-danger {
 		background-color: #f2dede !important;
 		-webkit-print-color-adjust: exact;

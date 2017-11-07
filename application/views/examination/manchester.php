@@ -92,19 +92,19 @@ ul li {
 													<div class="col-lg-6">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" >
 																<?php echo $r['option1'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="B" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="B" >
 																<?php echo $r['option2'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="C" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="C" >
 																<?php echo $r['option3'];?>
 															</label>
 														</li>	
@@ -112,13 +112,13 @@ ul li {
 													<div class="col-lg-6 exam">
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="D" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="D" >
 																<?php echo $r['option4'];?>
 															</label>
 														</li>
 														<li>
 															<label>
-																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="E" required>
+																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="E" >
 																<?php echo $r['option5'];?>
 															</label>
 														</li>
@@ -127,7 +127,7 @@ ul li {
 											</div>
 										</div>
 										<?php $q_no++; } ?>
-										<input type="submit" class="btn btn-primary pull-right" value="Submit" />
+										<input type="submit" class="btn btn-primary pull-right" onClick="return confirm('Are you sure you want to submit this examination? Once submitted, you cannot go back to this exam.')" value="Submit" />
 									</form>
 								</div>
 							</div>

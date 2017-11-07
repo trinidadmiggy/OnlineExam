@@ -11,6 +11,7 @@ class Appexam_model extends CI_Model {
     }
 
     private function _get_datatables_query() {
+        $this->db->select('app_id, lname, mname, fname, birthdate, address, telephone, mobile, email');
     	$this->db->from($this->table);
 
     	$i = 0;
@@ -58,9 +59,21 @@ class Appexam_model extends CI_Model {
     	return $this->db->count_all_results();
     }
 
+
     public function getAppDetails($app_id) {
         return $this->db->get_where('applicantinfo',array('app_id'=>$app_id))->row_array();
     }
+
+    public function getJobEssay($app_id) {
+        $this -> db -> select('es.essay_id, qb.question, es.answer, j.job_title');
+        $this -> db -> from('jobs j');
+        $this -> db -> join('applicant_appliedjob aj', 'aj.job_id = j.job_id');
+        $this -> db -> join('applicant_essay es', 'es.essay_id = aj.essay_id');
+        $this -> db -> join('question_bank qb', 'qb.question_id = es.question_id');
+        $this -> db -> where('aj.app_id', $app_id);
+        return $query = $this->db->get()->result_array();
+    }
+
 
     public function checkIfTakenExam($app_id) {
         $this -> db -> select('app_id, examtype_id');
