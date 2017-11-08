@@ -185,60 +185,26 @@
 
 <script type="text/javascript">
     var tbl;
-    $(document).ready(function () {
-
-        tbl = $('#app_exams').DataTable({
-                    "processing": true, //Feature control the processing indicator.
-                    "serverSide": true, //Feature control DataTables' server-side processing mode.
-                    "order": [], //Initial no order.
-
-                    // Load data for the table's content from an Ajax source
-                    "ajax": {
-                        "url": "<?php echo site_url('hr/app_exams/getApplicant') ?>",
-                        "type": "POST", 
-                    },
-
-                    "columns": [
-                    { 
-                        "data": "app_id",
-                        "orderable": false, 
-                        "visible": false,
-                    },
-
-                    {
-                        "data": "app_id",
-                        "orderable": false, 
-                        "render": function (data, type, row) {
-                            return "<button type='button' id='"+ data +"' class='btn btn-sm btn-primary app_details' title='Applicant Details'><i class='fa fa-info'></i></button>";
-                        }
-                    },
-                    {
-                        "data": "lname"
-                    },
-                    {
-                        "data": "mname"
-                    },
-                    {
-                        "data": "fname"
-                    },
-                    {
-                        "data": null,
-                        "orderable": false, 
-                        "render": function (data, type, row) {
-                            if(data.exam_status) {
-                                return "<button type='button' id='"+ data.app_id +"' class='btn btn-sm btn-secondary view-exam' title='Print/Save Exam'><i class='fa fa-print'></i></button>";
-                            } else {
-                                return "<button type='button' id='"+ data.app_id +"' class='btn btn-sm btn-danger view-exam' title='Applicant has not yet taken the examination or has not yet finished with the examination' disabled><i class='fa fa-exclamation-triangle' ></i></button>";
-                            }
-                            
-                        }
-                    },
-
-                    ]
-                });
-
-
-    });
+    tbl = $('#app_exams').DataTable({
+      "columnDefs": [
+      { 
+        "orderable": false, 
+        "width": "5%",
+        "targets": [0],
+        
+    },
+    {
+        "orderable": false, 
+        "width": "5%",
+        "targets": [2] 
+    },
+    {
+        "orderable": false, 
+        "width": "5%",
+        "targets": [0] 
+    }
+    ]
+});
 </script>
 <script>
     $('#app_exams tbody').on( 'click', '.app_details', function () {

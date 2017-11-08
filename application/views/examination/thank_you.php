@@ -11,7 +11,7 @@
                     <div class="box-body text-center">
                         <i class="glyphicon glyphicon-ok" style="color:#85c99d; font-size: 120px; display: inline-block;"></i>
                         <h2>Well done! </h2>
-                        <h5>May your good results will open new doors of opportunities. We'll keep in touch</h5>
+                        <h4>Thank you for taking the examination. Please do not forget to choose for a particular job position on the careers page.</h4>
                     </div>
                 </div>
             </div>

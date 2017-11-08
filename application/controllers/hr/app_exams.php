@@ -21,14 +21,25 @@ class App_exams extends CI_Controller {
 		if ($this->session->userdata('employee_login') == NULL) {
 			redirect('login');
 		} else {
+			$list = $this->appexam_model->getAppExam();
+			$es = array();
+			foreach ($list as $jobs) {
+				$row['app_id'] = $jobs['app_id'];
+				$row['fullname'] = $jobs['fullname'];
+				$row['exam_status'] = $this->appexam_model->checkIfTakenExam($jobs['app_id']);
+				$es[] = $row;
+			}
+			$data = array(
+				'exams' => $es
+			);
 			$this->load->view('careers/includes/header', $this->getSession());
-			$this->load->view('careers/applicant_exams');
+			$this->load->view('careers/applicant_exams', $data);
 			$this->load->view('careers/includes/footer');
 		}
 
 		
 	}
-	public function getApplicant() {
+/*	public function getApplicant() {
 		
 		$list = $this->appexam_model->get_datatables();
 		$data = array();
@@ -40,6 +51,7 @@ class App_exams extends CI_Controller {
 			$row['lname'] = $jobs->lname;
 			$row['fname'] = $jobs->fname;
 			$row['mname'] = $jobs->mname;
+			$row['fullname'] = $jobs->fullname;
 			$data[] = $row;
 		}
 
@@ -51,7 +63,8 @@ class App_exams extends CI_Controller {
 		);
         //output to json format
 		echo json_encode($output);
-	}
+	}*/
+
 
 	public function getAppDetails() {
 		$app_details = $this->appexam_model->getAppDetails($this->input->post('app_id'));
@@ -67,6 +80,7 @@ class App_exams extends CI_Controller {
 		);
 		$this->load->view('careers/appans', $data);
 	}
+
 
 }
 ?>

@@ -37,7 +37,7 @@ ul li {
 						<h2 style="margin:0">Manchester Personality</h2>
 						<h5 style="margin:0" >
 							<a data-toggle="modal" data-target="#exampleModal" title="Click for Example" style="text-decoration: none; color:black; cursor:pointer;">
-								Instructions: This questionnaire contains statement about how you act, think or feel in different situations. Please indicate the extend to which each statement applies to you using the rating scale below.
+								Instructions: This questionnaire contains statement about how you act, think or feel in different situations. Please indicate the extent to which each statement applies to you using the rating scale below.
 								<h4>Rating Scale</h4>
 								<table class="table table-bordered">
 									<thead style="display: none;">
