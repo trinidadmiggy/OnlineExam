@@ -39,7 +39,7 @@
 									<form method="POST" action="<?= site_url('hr/check_answer/technical')?>">
 										<input type="hidden" name="examtype_id" value="5" />
 										<?php $no=1; foreach($result as $r) { ?>
-										<div class="questions col-lg-6">
+										<div class="questions col-lg-6 col-md-6 col-sm-6">
 											<br/>
 											<label>
 												<?php echo $no++?>) <?php echo $r['question']; ?>
@@ -47,7 +47,7 @@
 											<br />
 											<div class="radio">
 												<ol type="1">
-													<div class="col-lg-6">
+													<div class="col-lg-6 col-md-6">
 														<li>
 															<label>
 																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>">
@@ -61,7 +61,7 @@
 															</label>
 														</li>	
 													</div>
-													<div class="col-lg-6">
+													<div class="col-lg-6 col-md-6">
 														<li>
 															<label>
 																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>">
@@ -94,7 +94,7 @@
 					</div>	
 				</div>
 			</div>
-			<div class="col-lg-2">
+			<div class="col-lg-2 hidetime">
 				<div class="direct-chat-text pull-left follow-scroll" style="margin: 0;">
 					<span class="info-box-number" id="time"></span>
 				</div>

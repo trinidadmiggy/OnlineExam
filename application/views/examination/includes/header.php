@@ -21,60 +21,54 @@
 	
 	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/custom.css">
   <link rel="stylesheet" href="<?=base_url()?>public/plugins/animate.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-  	folder instead of downloading all of them to reduce the load. -->
-  	<link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
-  	<!-- Mathjax -->
-  	<script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-
-    <link rel="stylesheet" href="<?=base_url()?>public/dist/css/sourcesans.css">
-  </head>
-  <body class="hold-transition skin-black sidebar-mini sidebar-collapse">
-  	<div class="wrapper">
-  		<header class="main-header">
-  			<a class="logo">
-  				<span class="logo-mini"><b>Q</b>NX</span>
-  				<span class="logo-lg"><small>Q U E S T R O N I X</small> </span>
-  			</a>
-  			<nav class="navbar navbar-static-top">
-  				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-  				</a>
-  				<div class="navbar-custom-menu">
-  					<ul class="nav navbar-nav">
-  						<li class="dropdown user user-menu">
-  							<a href="#" >
-  								Hi! <span class="hidden-xs"><?php echo $fname." ".$lname;  ?></span>
-  							</a>
-  							<ul class="dropdown-menu">
-  								<li>
-  									<div class="pull-right">
-
-  									</div>
-  								</li>
-  							</ul>
-  						</li>
-  						<li class="dropdown user user-menu">
-  							<a href="<?= site_url('home/logout')?>" title="logout">
-  								<i class="fa fa-sign-out" ></i>
-  							</a>
-  						</li>
-  					</ul>
-  				</div>
-  			</nav>
-  		</header>
-  		<aside class="main-sidebar">
-  			<section class="sidebar">
-  				<ul class="sidebar-menu" data-widget="tree">
-  					<li>
-  						<a href="<?=base_url()?>applicant/examination/">
-  							<i class="fa fa-pencil-square-o"></i> <span>Examination</span>
-  						</a>
-  					</li>
-  					<li>
-  						<a href="<?=base_url()?>applicant/jobs/">
-  							<i class="fa fa-briefcase"></i> <span>Careers</span>
-  						</a>
-  					</li>
-  				</ul>
-  			</section>
-  		</aside>
+  <link rel="stylesheet" href="<?=base_url()?>public/dist/css/skins/_all-skins.css">
+  <script src='<?=base_url()?>public/plugins/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+  <link rel="stylesheet" href="<?=base_url()?>public/dist/css/sourcesans.css">
+</head>
+<body class="hold-transition skin-black fixed sidebar-mini sidebar-collapse">
+ <div class="wrapper">
+  <header class="main-header">
+   <a class="logo">
+    <span class="logo-mini"><b>Q</b>NX</span>
+    <span class="logo-lg"><small>Q U E S T R O N I X</small> </span>
+  </a>
+  <nav class="navbar navbar-custom-menuatic-top">
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+    </a>
+    <div class="navbar-custom-menu">
+     <ul class="nav navbar-nav">
+      <li class="dropdown user user-menu" style="visibility: hidden;">
+        <div class="showtime navbox" >
+          <span class="info-box-number" id="timer" ></span>
+        </div>
+      </li>
+      <li class="dropdown user user-menu">
+        <div class="hidden-xs navbox">
+          Hi!<?php echo $fname." ".$lname;  ?>
+        </div>
+      </li>
+      <li class="dropdown user user-menu">
+       <a href="<?= site_url('home/logout')?>" title="logout">
+        <i class="fa fa-sign-out" ></i>
+      </a>
+    </li>
+  </ul>
+</div>
+</nav>
+</header>
+<aside class="main-sidebar">
+ <section class="sidebar">
+  <ul class="sidebar-menu" data-widget="tree">
+   <li>
+    <a href="<?=base_url()?>applicant/examination/">
+     <i class="fa fa-pencil-square-o"></i> <span>Examination</span>
+   </a>
+ </li>
+ <li>
+  <a href="<?=base_url()?>applicant/jobs/">
+   <i class="fa fa-briefcase"></i> <span>Careers</span>
+ </a>
+</li>
+</ul>
+</section>
+</aside>

@@ -40,38 +40,42 @@
 											<?php echo $r['question_id'];?>. <?php echo $r['question']; ?>
 										</label>
 										<br/>
-										<div class="multiplechoice radio">
+										<div class="radio">
 											<ol type="1" > 
-												<li>
-													<label>
-														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>">
-														<?php echo $r['option1'];?>
-													</label>
-												</li>
-												<li>
-													<label>
-														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>">
-														<?php echo $r['option2'];?>
-													</label>
-												</li>
-												<li>
-													<label>
-														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>">
-														<?php echo $r['option3'];?>
-													</label>
-												</li>
-												<li>
-													<label>
-														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>">
-														<?php echo $r['option4'];?>
-													</label>
-												</li>
-												<li>
-													<label>
-														<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option5'];?>">
-														<?php echo $r['option5'];?>
-													</label>
-												</li>
+												<div class="exam-font col-lg-6">
+													<li>
+														<label>
+															<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>">
+															<?php echo $r['option1'];?>
+														</label>
+													</li>
+													<li>
+														<label>
+															<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option2'];?>">
+															<?php echo $r['option2'];?>
+														</label>
+													</li>
+													<li>
+														<label>
+															<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option3'];?>">
+															<?php echo $r['option3'];?>
+														</label>
+													</li>
+												</div>
+												<div class="exam-font exam col-lg-6">
+													<li>
+														<label>
+															<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>">
+															<?php echo $r['option4'];?>
+														</label>
+													</li>
+													<li>
+														<label>
+															<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option5'];?>">
+															<?php echo $r['option5'];?>
+														</label>
+													</li>
+												</div>
 											</ol>
 										</div>
 										<?php } ?>
@@ -95,7 +99,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2">
+			<div class="col-lg-2 hide">
 				<a data-toggle="modal" data-target="#exampleModal" title="Click for Example" style="text-decoration: none; color:black; cursor:pointer;">
 					<div class="direct-chat-msg">
 						<div class="direct-chat-text pull-left animated tada" style="margin: 0;">
@@ -122,13 +126,13 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<div class="input-group" style="padding: 0;">
-							<div class="col-lg-6">
+							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 								<br />
 								S1. An office manager ordered a conference table which cost S dollars, a dozen chairs which costs P dollars each, and three book shelves which costs Y dollars apiece. The total cost of the order in dollars is
 							</div>
 							<div class="col-lg-2"></div>
-							<div class="col-lg-6">
-								<div class="col-lg-4" style="padding: 0;">
+							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6" style="padding: 0;">
 									<br />
 									1. S + P + Y
 									<br />
@@ -140,7 +144,7 @@
 									<br />
 									5. S + P + 3Y
 								</div>
-								<div class="col-lg-5" style="padding: 0;">
+								<div class="col-lg-5 col-md-4 col-sm-4 col-xs-6" style="padding: 0;">
 									<div class="text-center">
 										Answer Sheet<br />
 										<div class="example-border">1</div><br/>

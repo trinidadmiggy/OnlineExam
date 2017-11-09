@@ -81,7 +81,7 @@ ul li {
 								<div class="row">
 									<form method="POST" action="<?= site_url('hr/check_answer/manchester')?>">
 										<?php $q_no = 1; foreach($result as $r) {  ?>
-										<div class="questions col-lg-6" style="margin-bottom: 10px;">
+										<div class="questions col-lg-6 col-md-6" style="margin-bottom: 10px;">
 											<br/>
 											<label class="exam-font-label">
 												<?php echo $q_no;?>) <?php echo $r['question']; ?>
@@ -89,7 +89,7 @@ ul li {
 											<br />
 											<div class="radio">
 												<ol type="a">
-													<div class="col-lg-6">
+													<div class="col-lg-6 col-md-6">
 														<li>
 															<label>
 																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="A" >
@@ -109,7 +109,7 @@ ul li {
 															</label>
 														</li>	
 													</div>
-													<div class="col-lg-6 exam">
+													<div class="col-lg-6 col-md-6 exam">
 														<li>
 															<label>
 																<input type="radio" class="minimal" name="manchester_q<?php echo $q_no;?>" id="" value="D" >
@@ -147,7 +147,7 @@ ul li {
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-1">
+			<div class="col-lg-1 hidetime">
 				<a data-toggle="modal" data-target="#exampleModal" title="Click for Example" style="text-decoration: none; color:black; cursor:pointer;">
 					<div class="direct-chat-msg">
 						<div class="direct-chat-text pull-left animated tada" style="margin: 0;">

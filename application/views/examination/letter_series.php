@@ -34,7 +34,7 @@
 									<form method="post" action="<?= site_url('hr/check_answer/technical')?>">
 										<input type="hidden" name="examtype_id" value="3" />
 										<?php foreach($result as $r) { ?>
-										<div class="questions col-lg-6">
+										<div class="questions col-lg-6 col-md-6 col-sm-6 col-xs-12">
 											<br/>
 											<label>
 												<?php echo $r['question_id'];?>) <?php echo $r['question']; ?>
@@ -42,7 +42,7 @@
 											<br />
 											<div class="radio">
 												<ol type="1">
-													<div class="col-lg-6">
+													<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 														<li>
 															<label>
 																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option1'];?>">
@@ -62,7 +62,7 @@
 															</label>
 														</li>	
 													</div>
-													<div class="col-lg-6">
+													<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 														<li>
 															<label>
 																<input type="radio" class="minimal" name="q_<?php echo $r['question_id'];?>" id="" value="<?php echo $r['option4'];?>">
@@ -100,7 +100,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2">
+			<div class="col-lg-2 hidetime">
 				<a data-toggle="modal" data-target="#exampleModal" title="Click for Example" style="text-decoration: none; color:black; cursor:pointer;">
 					<div class="direct-chat-msg">
 						<div class="direct-chat-text pull-left animated tada" style="margin: 0;">

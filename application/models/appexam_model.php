@@ -60,8 +60,10 @@ class Appexam_model extends CI_Model {
 */
 
     function getAppExam() {
+       $this->db->select('app_id, lname, mname, fname, CONCAT(lname, ", ", fname, " ", mname) as fullname, birthdate, address, telephone, mobile, email');
        $this->db->from('applicantinfo');
        $query = $this->db->get();
+       return $query->result_array();
    }
 
    public function getAppDetails($app_id) {
@@ -99,9 +101,11 @@ public function checkIfTakenExam($app_id) {
     $essay = $this -> db -> get();
 
     if($technical->num_rows() < 5 && $manchester->num_rows() == 0 && $essay->num_rows() == 0) {
+        return false;
     }
     else
     {
+        return true;
     }
 }
 }

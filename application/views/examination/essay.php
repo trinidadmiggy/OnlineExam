@@ -53,7 +53,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2">
+			<div class="col-lg-2 hidetime">
 				<div class="direct-chat-text pull-left follow-scroll" style="margin: 0;">
 					<span class="info-box-number" id="time"></span>
 				</div>

@@ -90,11 +90,13 @@
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
-
+    document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
     if(distance < 0 ) {
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) + 1;
       document.getElementById("time").innerHTML = minutes+ "m " + seconds + "s ";
       document.getElementById("time").style.color = "red";
+      document.getElementById("timer").innerHTML = minutes+ "m " + seconds + "s ";
+      document.getElementById("timer").style.color = "red";
     }
   }, 100)
  });
